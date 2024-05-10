@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://n82ktd4fifvr"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "Gun Go Pew Pew"
+horizontal_alignment = 1
+vertical_alignment = 1
