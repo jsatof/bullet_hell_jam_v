@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccejxm28iefik"]
+[gd_scene load_steps=3 format=3 uid="uid://ccejxm28iefik"]
 
-[ext_resource type="Script" path="res://RootUI.gd" id="1_n5asr"]
+[ext_resource type="Script" path="res://Scripts/LevelUI.gd" id="1_cjrv7"]
+[ext_resource type="PackedScene" uid="uid://bqr8gvqlrjdmp" path="res://Scenes/StockGraph.tscn" id="2_y6mi4"]
 
-[node name="RootUI" type="Control"]
+[node name="LevelUI" type="Control"]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -13,7 +14,7 @@ offset_left = -1280.0
 offset_top = -960.0
 grow_horizontal = 0
 grow_vertical = 0
-script = ExtResource("1_n5asr")
+script = ExtResource("1_cjrv7")
 
 [node name="MoneyLabel" type="Label" parent="."]
 layout_mode = 1
@@ -86,3 +87,10 @@ offset_right = 1167.0
 offset_bottom = 299.0
 text = "Shoot Bullet
 "
+
+[node name="StockGraph" parent="." instance=ExtResource("2_y6mi4")]
+layout_mode = 1
+offset_left = 9.0
+offset_top = 597.0
+offset_right = -911.0
+offset_bottom = -9.0
