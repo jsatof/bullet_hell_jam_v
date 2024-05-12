@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqr8gvqlrjdmp"]
 
-[ext_resource type="Script" path="res://Scripts/StockGraph.gd" id="1_s68er"]
+[ext_resource type="PackedScene" uid="uid://bvmr05jnuptue" path="res://Scenes/StockGraphGraph.tscn" id="2_ewybj"]
 
 [node name="StockGraph" type="Control"]
 layout_mode = 3
@@ -8,37 +8,62 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 8.0
-offset_right = -779.0
-offset_bottom = -489.0
+offset_right = -920.0
+offset_bottom = -598.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_s68er")
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.017
-anchor_bottom = -0.017
-offset_top = -0.129
+anchor_top = -0.022
+anchor_bottom = -0.022
+offset_top = -0.211999
 offset_right = 360.0
-offset_bottom = 359.871
+offset_bottom = 359.788
 color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
 [node name="CompanyNameLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 123.0
-offset_top = 5.0
-offset_right = 252.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.017
+anchor_bottom = -0.017
+offset_left = 42.0
+offset_top = 14.018
+offset_right = 171.0
+offset_bottom = 37.018
 text = "Heckler & Gooch"
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 43.0
-offset_right = 345.0
-offset_bottom = 337.0
-
-[node name="GraphBGColorRect" type="ColorRect" parent="PanelContainer"]
+[node name="GraphBGColorRect" type="ColorRect" parent="."]
 layout_mode = 2
-color = Color(0.310617, 0.310617, 0.310617, 1)
+anchor_top = -0.017
+anchor_bottom = -0.017
+offset_left = 16.0
+offset_top = 48.018
+offset_right = 346.0
+offset_bottom = 342.018
+color = Color(0.144063, 0.144063, 0.144063, 1)
+
+[node name="StockPriceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 8.147
+offset_right = 247.0
+offset_bottom = 31.147
+text = "$23.23"
+
+[node name="StockDiffLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 8.0
+offset_right = 323.0
+offset_bottom = 31.0
+text = "0.00%"
+
+[node name="StockGraphGraph" parent="." instance=ExtResource("2_ewybj")]
+position = Vector2(15, 43)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="StockGraphGraph" method="_on_timer_timeout"]

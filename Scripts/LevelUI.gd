@@ -8,7 +8,7 @@ extends Control
 @onready var global_state = get_node("/root/GlobalState")
 
 func _ready():
-	money_value.text = "$%2.f" % global_state.money
+	money_value.text = "$%.2f" % global_state.money
 	money_value.add_theme_color_override("font_color", Color.WEB_GREEN)
 	accuracy_value.text = "%.2f%%" % global_state.accuracy
 
