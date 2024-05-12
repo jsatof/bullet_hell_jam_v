@@ -63,7 +63,43 @@ offset_bottom = 88.0
 grow_horizontal = 0
 text = "0.00%"
 
-[node name="BoostMoneyButton" type="Button" parent="."]
+[node name="SharesOwnedLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -284.0
+offset_top = 387.0
+offset_right = -84.0
+offset_bottom = 410.0
+grow_horizontal = 0
+text = "Heckler Shares Onwed:     "
+
+[node name="SharesOwnedValueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -84.0
+offset_top = 387.0
+offset_right = -10.0
+offset_bottom = 410.0
+grow_horizontal = 0
+text = "0"
+
+[node name="StockGraph" parent="." instance=ExtResource("2_y6mi4")]
+layout_mode = 1
+offset_left = 9.0
+offset_top = 597.0
+offset_right = -911.0
+offset_bottom = -9.0
+
+[node name="TestButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BoostMoneyButton" type="Button" parent="TestButtons"]
 layout_mode = 0
 offset_left = 1008.0
 offset_top = 142.0
@@ -71,7 +107,7 @@ offset_right = 1164.0
 offset_bottom = 185.0
 text = "Plus Money"
 
-[node name="SubtractMoneyButton" type="Button" parent="."]
+[node name="SubtractMoneyButton" type="Button" parent="TestButtons"]
 layout_mode = 0
 offset_left = 1008.0
 offset_top = 198.0
@@ -79,7 +115,7 @@ offset_right = 1165.0
 offset_bottom = 244.0
 text = "Minus Money"
 
-[node name="ShootBulletButton" type="Button" parent="."]
+[node name="ShootBulletButton" type="Button" parent="TestButtons"]
 layout_mode = 0
 offset_left = 1009.0
 offset_top = 257.0
@@ -88,9 +124,19 @@ offset_bottom = 299.0
 text = "Shoot Bullet
 "
 
-[node name="StockGraph" parent="." instance=ExtResource("2_y6mi4")]
-layout_mode = 1
-offset_left = 9.0
-offset_top = 597.0
-offset_right = -911.0
-offset_bottom = -9.0
+[node name="SellShareButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 480.0
+offset_right = 1162.0
+offset_bottom = 524.0
+disabled = true
+text = "Sell Share"
+
+[node name="BuyShareButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 429.0
+offset_right = 1161.0
+offset_bottom = 473.0
+text = "Buy Share"

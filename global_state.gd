@@ -21,3 +21,11 @@ func set_new_heckler_stock_price():
 	last_heckler_stock_price = heckler_stock_price
 	heckler_stock_price = rng.randf() * 50.0 + 40.0
 	heckler_percent_diff = heckler_stock_price - last_heckler_stock_price / heckler_stock_price * 100.0
+
+func buy_heckler_stock():
+	heckler_shares_owned += 1
+	money -= heckler_stock_price
+
+func sell_heckler_stock():
+	heckler_shares_owned -= 1
+	money += heckler_stock_price
