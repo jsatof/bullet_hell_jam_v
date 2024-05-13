@@ -49,7 +49,6 @@ one_shot = true
 autostart = true
 
 [node name="CircleSinPattern" type="Node2D" parent="."]
-process_mode = 4
 script = ExtResource("4_i87ad")
 
 [node name="ShotTimer" type="Timer" parent="CircleSinPattern"]
@@ -69,6 +68,7 @@ scale = Vector2(0.199999, 0.199999)
 texture = ExtResource("6_1adtb")
 
 [node name="ComboPattern" type="Node2D" parent="."]
+process_mode = 4
 script = ExtResource("7_c8lhg")
 
 [connection signal="timeout" from="TriPattern/ShotTimer2" to="TriPattern" method="_on_shot_timer_2_timeout"]

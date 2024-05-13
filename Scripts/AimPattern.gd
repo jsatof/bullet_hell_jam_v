@@ -15,7 +15,7 @@ func _process(delta):
 func _on_shot_timer_timeout():
 	for i in range(3):
 		var b = bullet.instantiate()
-		b.set_color(Color("PURPLE"))
+		b.set_color(Color("RED"))
 		b.transform = spawner1.transform
 		b.position.x += -100 + (i * 100)
 		b.velocity = 300.0
