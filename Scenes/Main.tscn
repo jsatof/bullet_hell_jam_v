@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://n82ktd4fifvr"]
+[gd_scene load_steps=5 format=3 uid="uid://n82ktd4fifvr"]
 
 [ext_resource type="PackedScene" uid="uid://ecqkk0l8ehf8" path="res://Scenes/Player.tscn" id="1_5kycy"]
 [ext_resource type="Script" path="res://Scripts/Spawner.gd" id="2_oocjj"]
-[ext_resource type="PackedScene" uid="uid://boatpmwbji34u" path="res://Scenes/Bullet.tscn" id="3_kmu4w"]
+[ext_resource type="Texture2D" uid="uid://cwaqx1vlgv32g" path="res://icon.svg" id="3_m4dj3"]
+[ext_resource type="PackedScene" uid="uid://dsq7owxitnpq2" path="res://Scenes/Enemy.tscn" id="4_veuym"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -20,8 +21,16 @@ vertical_alignment = 1
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, -122)
 script = ExtResource("2_oocjj")
-bullet = ExtResource("3_kmu4w")
 
 [node name="ShotTimer" type="Timer" parent="Spawner"]
+wait_time = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="Spawner"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_m4dj3")
+
+[node name="Enemy" parent="." instance=ExtResource("4_veuym")]
+visible = false
+position = Vector2(-180, -165)
 
 [connection signal="timeout" from="Spawner/ShotTimer" to="Spawner" method="_on_shot_timer_timeout"]

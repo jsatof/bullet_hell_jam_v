@@ -11,10 +11,18 @@ config_version=5
 [application]
 
 config/name="helljam5"
-
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/BulletTesting.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalState="*res://global_state.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=960
 
 [input]
 
@@ -42,20 +50,9 @@ move_down={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
-
 run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[autoload]
-
-GlobalState="*res://global_state.gd"
-
-[display]
-
-window/size/viewport_width=1280
-window/size/viewport_height=960
-
 
 [rendering]
 

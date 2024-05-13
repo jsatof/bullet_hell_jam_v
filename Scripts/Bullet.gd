@@ -1,14 +1,26 @@
 extends Area2D
 
-var bullet_speed = 100.0
+var velocity = 0.0
+var lifetime = 1.0
+var current_time = 0.0
+var target: Vector2 = Vector2(0.0, 0.0)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	current_time = 0.0
 
+func _process(delta):
+	position += transform.x * velocity * delta
+	# position += transform.x * direction * 50 * delta
+	current_time += delta
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
-	var velocity = transform.y * bullet_speed * delta
-	position += velocity
-	pass
+	if current_time >= lifetime:
+		queue_free()
+
+func set_color(color: Color):
+	$OuterSprite.modulate = color
+
+func linear(vel):
+	return vel
+
+func accel(vel, acc):
+	return vel * acc
