@@ -13,29 +13,52 @@ func _ready():
 	})
 	groups.append({
 		"time": 10.0, "enemies": [
-			{"health": 100, "speed": 300, "position": Vector2(0.0, -400.0), "lifetime": 20,
-			"movement": [Vector2(0.0, 0.0)]},
+			{"health": 100, "speed": 50, "position": Vector2(0.0, -400.0), "lifetime": 20,
+				"movement": [
+				{ point = Vector2(0.0, 0.0), trans = Tween.TRANS_SINE, pause = 2.0 },
+				{ point = Vector2(-140.0, 500.0), trans = Tween.TRANS_SINE, pause = 0.0 }
+				]
+			},
 			{"health": 100, "speed": 300, "position": Vector2(100.0, -430.0), "lifetime": 20,
-			"movement": [Vector2(200.0, 0.0)]},
+				"movement": [
+				{ point = Vector2(200.0, 0.0), trans = Tween.TRANS_SINE, pause = 2.0 },
+				{ point = Vector2(-140.0, 500.0), trans = Tween.TRANS_SINE, pause = 0.0 }
+				]
+			},
 			{"health": 100, "speed": 300, "position": Vector2(-80.0, -470.0),  "lifetime": 20,
-			"movement": [Vector2(-140.0, 0.0)]},
+				"movement": [
+				{ point = Vector2(-140.0, 0.0), trans = Tween.TRANS_SINE, pause = 2.0 },
+				{ point = Vector2(-140.0, 500.0), trans = Tween.TRANS_SINE, pause = 0.0 }
+				]
+			},
 		]
 	})
 	groups.append({
 		"delay": 0.0, "time": 10.0, "enemies": [
 			{"health": 100, "speed": 400, "position": Vector2(0.0, -400.0), "lifetime": 20,
-			"movement": [Vector2(0.0, 0.0)]},
+				"movement": [
+				{ point = Vector2(0.0, 0.0), trans = Tween.TRANS_SINE, pause = 0.5 },
+				{ point = Vector2(-140.0, 500.0), trans = Tween.TRANS_SINE, pause = 0.0 }
+				]
+			},
 			{"health": 100, "speed": 400, "position": Vector2(300.0, -470.0), "lifetime": 20,
-			"movement": [Vector2(0.0, 0.0)]},
+				"movement": [
+				{ point = Vector2(200.0, 0.0), trans = Tween.TRANS_SINE, pause = 0.5 },
+				{ point = Vector2(-140.0, 500.0), trans = Tween.TRANS_SINE, pause = 0.0 }
+				]
+			},
 			{"health": 100, "speed": 400, "position": Vector2(-300.0, -500.0),  "lifetime": 20,
-			"movement": [Vector2(0.0, 0.0)]},
+				"movement": [
+				{ point = Vector2(-140.0, 0.0), trans = Tween.TRANS_SINE, pause = 0.5 },
+				{ point = Vector2(-140.0, 500.0), trans = Tween.TRANS_SINE, pause = 0.0 }
+				]
+			},
 		]
 	})
 	call_groups_seqenced()
 
 func call_groups_seqenced():
 	for i in range(current_group, groups.size()):
-		print(current_group)
 		spawn_group()
 		await wait_group_time()
 		current_group += 1
