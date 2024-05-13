@@ -1,15 +1,21 @@
 extends Control
 
+@onready var global := get_node("/root/GlobalState")
 @onready var money_value := $MoneyValueLabel
 @onready var accuracy_value := $AccuracyValueLabel
 @onready var shares_owned_value := $SharesOwnedValueLabel
-@onready var global := get_node("/root/GlobalState")
+@onready var shop_gun_name := $GunNameLabel
+@onready var shop_gun_purchase_value := $PurchaseValueLabel
+@onready var shop_gun_price_per_shot := $PricePerShotValueLabel
+@onready var gun_image_region := $GunImageRegion
 
 @onready var shoot_button := $TestButtons/ShootBulletButton
 @onready var boost_money := $TestButtons/BoostMoneyButton
 @onready var subtract_money := $TestButtons/SubtractMoneyButton
 @onready var buy_share_button := $TestButtons/BuyShareButton
 @onready var sell_share_button := $TestButtons/SellShareButton
+@onready var buy_gun_button := $TestButtons/BuyGunButton
+
 
 func _ready():
 	money_value.text = "$%.2f" % global.money
@@ -21,6 +27,7 @@ func _ready():
 	subtract_money.button_down.connect(on_subtract_money)
 	buy_share_button.button_down.connect(on_buy_share_pressed)
 	sell_share_button.button_down.connect(on_sell_share_pressed)
+	buy_gun_button.button_down.connect(on_buy_gun_pressed)
 
 func on_shoot_button():
 	global.bullet_count += 1
@@ -70,3 +77,7 @@ func on_buy_share_pressed():
 func on_sell_share_pressed():
 	global.sell_heckler_stock()
 	update_stock_owned()
+
+func on_buy_gun_pressed():
+	update_money()
+
