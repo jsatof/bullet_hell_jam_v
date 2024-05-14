@@ -21,13 +21,13 @@ func _ready():
 
 func _draw():
 	for i in range(1, len(stock_points)):
-		var start := Vector2(point_size + (i - 1) * color_rect.size.x / 8, stock_points[i - 1])
-		var current := Vector2(point_size + i * color_rect.size.x / 8, stock_points[i])
+		var start: Vector2 = screen_coord_from_stock_points(i - 1)
+		var current: Vector2 = screen_coord_from_stock_points(i)
 		draw_line(start, current, Color.WEB_GREEN, 1, true)
 	# draw circle at last point
 	if len(stock_points) > 0:
 		var last_index := len(stock_points) - 1
-		draw_circle(Vector2(point_size + last_index * color_rect.size.x / 8, stock_points[last_index]), point_size, Color.WEB_GREEN)
+		draw_circle(screen_coord_from_stock_points(last_index), point_size, Color.WEB_GREEN)
 
 # every second the stock prices will update
 # so far only the last 10 points are saved,
@@ -59,7 +59,9 @@ func _on_timer_timeout():
 	global.set_new_heckler_stock_price()
 	queue_redraw()
 
-
-
-
+func screen_coord_from_stock_points(index: int) -> Vector2:
+	# This condition should never occur, but just in case
+	if index < 0 || index >= len(stock_points):
+		return Vector2(-1000, -1000) # will lead to draw dramatically wild line
+	return Vector2(point_size + index * color_rect.size.x / 8, stock_points[index])
 

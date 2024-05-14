@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://5557dvy4b3to"]
+[gd_scene load_steps=3 format=3 uid="uid://5557dvy4b3to"]
 
+[ext_resource type="Script" path="res://Scripts/GunShop.gd" id="1_qm3ll"]
 [ext_resource type="Texture2D" uid="uid://cwaqx1vlgv32g" path="res://icon.svg" id="1_ytpni"]
 
 [node name="GunShop" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qm3ll")
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 layout_mode = 0
