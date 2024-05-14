@@ -2,10 +2,12 @@ extends Node2D
 
 var bullet = preload("res://Scenes/Bullet.tscn")
 @onready var timer = $ShotTimer
+var pool
 var spawner1: Node2D = Node2D.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pool = get_parent().get_node("BulletPool")
 	pass
 
 
@@ -21,11 +23,10 @@ func fire_pattern1():
 	print("Fire pattern1")
 	rotation_degrees += 10
 	for i in range(2):
-		var b = bullet.instantiate()
+		var b = pool.bullet()
 		b.set_color(Color("CYAN"))
 		b.transform = spawner1.transform
 		b.rotation = rotation
 		b.rotation_degrees += i * 180
 		b.velocity = 200.0
 		b.lifetime = 2
-		get_tree().root.add_child(b)

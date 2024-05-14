@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57qxv"]
 
 [node name="Enemy" type="Area2D" groups=["Enemy"]]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_rq2yt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

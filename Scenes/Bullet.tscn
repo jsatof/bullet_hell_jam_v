@@ -9,6 +9,9 @@ radius = 8.0
 [node name="Bullet" type="Area2D" groups=["Bullet"]]
 script = ExtResource("1_hjrcg")
 
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tqqmj")
+
 [node name="OuterSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 1, 1)
 z_index = 1
@@ -19,6 +22,3 @@ texture = ExtResource("2_atb0u")
 z_index = 1
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("2_atb0u")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_tqqmj")

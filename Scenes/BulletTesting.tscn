@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp50pj5a6xv4f"]
+[gd_scene load_steps=9 format=3 uid="uid://bp50pj5a6xv4f"]
 
 [ext_resource type="Script" path="res://Scripts/Circular.gd" id="1_8whwu"]
+[ext_resource type="Script" path="res://Scripts/BulletPool.gd" id="1_032lq"]
 [ext_resource type="Script" path="res://Scripts/TriPattern.gd" id="1_bbgcp"]
 [ext_resource type="Script" path="res://Scripts/Pattern.gd" id="2_un000"]
 [ext_resource type="Script" path="res://Scripts/CircilSinPattern.gd" id="4_i87ad"]
@@ -9,6 +10,9 @@
 [ext_resource type="Script" path="res://Scripts/ComboPattern.gd" id="7_c8lhg"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="BulletPool" type="Node" parent="."]
+script = ExtResource("1_032lq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -25,7 +29,6 @@ one_shot = true
 autostart = true
 
 [node name="SwirlPattern" type="Node2D" parent="."]
-process_mode = 4
 script = ExtResource("1_8whwu")
 
 [node name="ShotTimer" type="Timer" parent="SwirlPattern"]
@@ -49,6 +52,7 @@ one_shot = true
 autostart = true
 
 [node name="CircleSinPattern" type="Node2D" parent="."]
+process_mode = 4
 script = ExtResource("4_i87ad")
 
 [node name="ShotTimer" type="Timer" parent="CircleSinPattern"]
@@ -56,6 +60,7 @@ wait_time = 0.25
 autostart = true
 
 [node name="AimPattern" type="Node2D" parent="."]
+process_mode = 4
 script = ExtResource("5_bwtd3")
 
 [node name="ShotTimer" type="Timer" parent="AimPattern"]
