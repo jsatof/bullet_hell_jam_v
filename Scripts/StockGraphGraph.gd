@@ -6,6 +6,7 @@ extends Node2D
 @onready var color_rect = get_parent().get_node("GraphBGColorRect")
 @onready var timer := get_parent().get_node("Timer")
 
+
 var stock_points: PackedFloat32Array
 
 # draw region is 300x300
@@ -28,6 +29,7 @@ func _draw():
 	if len(stock_points) > 0:
 		var last_index := len(stock_points) - 1
 		draw_circle(screen_coord_from_stock_points(last_index), point_size, Color.WEB_GREEN)
+
 
 # every second the stock prices will update
 # so far only the last 10 points are saved,

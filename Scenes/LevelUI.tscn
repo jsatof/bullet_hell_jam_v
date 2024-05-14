@@ -73,6 +73,7 @@ offset_left = -1216.0
 offset_top = 433.0
 offset_right = -1016.0
 offset_bottom = 456.0
+
 grow_horizontal = 0
 text = "Heckler Shares Onwed:     "
 
@@ -95,12 +96,14 @@ offset_top = 597.0
 offset_right = -911.0
 offset_bottom = -9.0
 
+
 [node name="GunShop" parent="." instance=ExtResource("3_ijx18")]
 layout_mode = 1
 offset_left = 910.0
 offset_top = 590.0
 offset_right = -10.0
 offset_bottom = -10.0
+
 
 [node name="TestButtons" type="Control" parent="."]
 anchors_preset = 0
@@ -138,6 +141,7 @@ offset_left = 84.0
 offset_top = 526.0
 offset_right = 230.0
 offset_bottom = 570.0
+
 disabled = true
 text = "Sell Share"
 
@@ -172,3 +176,4 @@ offset_top = 490.0
 offset_right = 1173.0
 offset_bottom = 517.0
 text = "Default Pea Shooter"
+

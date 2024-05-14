@@ -10,6 +10,7 @@ extends Control
 @onready var gun_image_region := $GunImageRegion
 @onready var equipped_gun_value := $EquippedGunValueLabel
 
+
 @onready var shoot_button := $TestButtons/ShootBulletButton
 @onready var boost_money := $TestButtons/BoostMoneyButton
 @onready var subtract_money := $TestButtons/SubtractMoneyButton
@@ -66,4 +67,5 @@ func on_buy_gun_pressed() -> void:
 	global.buy_and_equip_gun_from_shop()
 	update_money_label()
 	update_equipped_gun_label()
+
 
