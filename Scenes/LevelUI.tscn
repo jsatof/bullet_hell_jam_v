@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccejxm28iefik"]
+[gd_scene load_steps=4 format=3 uid="uid://ccejxm28iefik"]
 
 [ext_resource type="Script" path="res://Scripts/LevelUI.gd" id="1_cjrv7"]
 [ext_resource type="PackedScene" uid="uid://bqr8gvqlrjdmp" path="res://Scenes/StockGraph.tscn" id="2_y6mi4"]
+[ext_resource type="PackedScene" uid="uid://5557dvy4b3to" path="res://Scenes/GunShop.tscn" id="3_ijx18"]
 
 [node name="LevelUI" type="Control"]
 layout_mode = 3
@@ -68,10 +69,11 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -284.0
-offset_top = 387.0
-offset_right = -84.0
-offset_bottom = 410.0
+offset_left = -1216.0
+offset_top = 433.0
+offset_right = -1016.0
+offset_bottom = 456.0
+
 grow_horizontal = 0
 text = "Heckler Shares Onwed:     "
 
@@ -80,10 +82,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -84.0
-offset_top = 387.0
-offset_right = -10.0
-offset_bottom = 410.0
+offset_left = -1016.0
+offset_top = 433.0
+offset_right = -942.0
+offset_bottom = 456.0
 grow_horizontal = 0
 text = "0"
 
@@ -93,6 +95,15 @@ offset_left = 9.0
 offset_top = 597.0
 offset_right = -911.0
 offset_bottom = -9.0
+
+
+[node name="GunShop" parent="." instance=ExtResource("3_ijx18")]
+layout_mode = 1
+offset_left = 910.0
+offset_top = 590.0
+offset_right = -10.0
+offset_bottom = -10.0
+
 
 [node name="TestButtons" type="Control" parent="."]
 anchors_preset = 0
@@ -126,17 +137,43 @@ text = "Shoot Bullet
 
 [node name="SellShareButton" type="Button" parent="TestButtons"]
 layout_mode = 0
-offset_left = 1016.0
-offset_top = 480.0
-offset_right = 1162.0
-offset_bottom = 524.0
+offset_left = 84.0
+offset_top = 526.0
+offset_right = 230.0
+offset_bottom = 570.0
+
 disabled = true
 text = "Sell Share"
 
 [node name="BuyShareButton" type="Button" parent="TestButtons"]
 layout_mode = 0
-offset_left = 1016.0
-offset_top = 429.0
-offset_right = 1161.0
-offset_bottom = 473.0
+offset_left = 84.0
+offset_top = 475.0
+offset_right = 229.0
+offset_bottom = 519.0
 text = "Buy Share"
+
+[node name="BuyGunButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 531.0
+offset_right = 1170.0
+offset_bottom = 573.0
+text = "Buy Weapon"
+
+[node name="EquippedGunNameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 951.0
+offset_top = 490.0
+offset_right = 1058.0
+offset_bottom = 517.0
+text = "Current Gun:"
+
+[node name="EquippedGunValueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1066.0
+offset_top = 490.0
+offset_right = 1173.0
+offset_bottom = 517.0
+text = "Default Pea Shooter"
+
