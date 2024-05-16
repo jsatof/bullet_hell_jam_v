@@ -29,6 +29,7 @@ one_shot = true
 autostart = true
 
 [node name="SwirlPattern" type="Node2D" parent="."]
+process_mode = 4
 script = ExtResource("1_8whwu")
 
 [node name="ShotTimer" type="Timer" parent="SwirlPattern"]
@@ -52,7 +53,6 @@ one_shot = true
 autostart = true
 
 [node name="CircleSinPattern" type="Node2D" parent="."]
-process_mode = 4
 script = ExtResource("4_i87ad")
 
 [node name="ShotTimer" type="Timer" parent="CircleSinPattern"]

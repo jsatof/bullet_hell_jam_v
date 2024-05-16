@@ -22,7 +22,7 @@ func _process(delta):
 	# print(direction)
 	position += transform.y * velocity * delta
 	position += transform.x * (amplitude * sin(frequency * current_time)) * delta
-	# position += transform.x * (amplitude * sin(frequency * current_time))
+	position += transform.x * (amplitude * sin(frequency * current_time))
 	current_time += delta
 
 	if current_time >= lifetime:

@@ -13,26 +13,18 @@ func _ready():
 	})
 	groups.append({
 		"time": 5.0, "enemies": [
-			{"health": 100, "speed": 50, "position": Vector2(0.0, -400.0), "lifetime": 20,
+			{"health":100,"speed":50,"position":Vector2(0.0, -400.0),"lifetime":20,
 				"movement": [
-				{ point = Vector2(0.0, 0.0), time = 3, trans = Tween.TRANS_SINE, pause = 0.0 },
-				{ point = Vector2(-140.0, 500.0), time = 1, trans = Tween.TRANS_SINE, pause = 0.0 }
+				{ point=Vector2(-330.0, -370.0),time=1,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=1.0 },
+				{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
 				],
-				"patterns": [
-					{}
+				"spawners": [
+					{ type="radial",cycles=5,shot_delay=0.3,
+						spawn_params={"amount":20},
+						bullet_data={
+						velocity=400.0,target=false,color=Color("PURPLE")
+					}}
 				],
-			},
-			{"health": 100, "speed": 300, "position": Vector2(100.0, -430.0), "lifetime": 20,
-				"movement": [
-				{ point = Vector2(200.0, 0.0), time = 3, trans = Tween.TRANS_SINE, pause = 0.0 },
-				{ point = Vector2(-140.0, 500.0), time = 1, trans = Tween.TRANS_SINE, pause = 0.0 }
-				]
-			},
-			{"health": 100, "speed": 300, "position": Vector2(-80.0, -470.0),  "lifetime": 20,
-				"movement": [
-				{ point = Vector2(-140.0, 0.0), time = 3, trans = Tween.TRANS_SINE, pause = 0.0 },
-				{ point = Vector2(-140.0, 500.0), time = 1, trans = Tween.TRANS_SINE, pause = 0.0 }
-				]
 			},
 		]
 	})
@@ -57,5 +49,6 @@ func spawn_group():
 		e.position = i["position"]
 		for pos in i["movement"]:
 			e.movement_targets.append(pos)
-
+		for spawner in i["spawners"]:
+			e.spawners.append(spawner)
 		add_child(e)

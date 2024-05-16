@@ -7,9 +7,9 @@
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_v6ncg")
 
-[node name="Player" parent="." instance=ExtResource("2_k12x8")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_k12x8")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="BulletPool" type="Node" parent="."]
+[node name="BulletPool" type="Node" parent="." groups=["BulletPool"]]
 script = ExtResource("3_wf8p5")

@@ -1,13 +1,12 @@
 extends Node
 
-const BULLET = preload("res://Scenes/Bullet.tscn")
-const SIZE: int = 5000
-var idx: int = -1
+const BULLET := preload("res://Scenes/Bullet.tscn")
+const SIZE := 5000
+var idx := -1
 
-var pool = []
+var pool := []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	for i in SIZE:
 		pool.append(BULLET.instantiate())
 		add_child(pool[i])

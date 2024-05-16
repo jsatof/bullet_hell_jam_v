@@ -1,21 +1,24 @@
 extends Area2D
 
+var Spawner = preload("res://Scripts/Spawner.gd")
+@onready var globals = get_node("/root/GlobalState")
+@onready var pool = get_node("../BulletPool")
+
 var health: float = 100.0
 var velocity: float = 100.0
 var lifetime: float = 5.0
 var movement_targets = []
+var spawners = []
 
 var current_target: int = 0
 var current_time: float = 0.0
 
-@onready var globals = get_node("/root/GlobalState")
-var bullet = preload("res://Scenes/Bullet.tscn")
 
 func _ready():
 	current_time = 0.0
 	current_target = 0
 	move_to_targets()
-	fire_pattern()
+	create_spawners()
 
 func _process(delta):
 	current_time += delta
@@ -23,31 +26,35 @@ func _process(delta):
 	if current_time >= lifetime:
 		remove_self()
 
-func move_to_targets():
+func move_to_targets() -> void:
 	var move_tween = get_tree().create_tween()
 	for t in movement_targets:
 		move_tween.chain().tween_property(self,
 			"position",
 			t.point,
-			t.time).set_trans(t.trans)
+			t.time).set_trans(t.trans).set_ease(t.ease)
 		move_tween.tween_interval(t.pause).finished
 
 	await move_tween.finished
 	remove_self()
 
-func fire_pattern():
-	for i in range(0, 5):
-		for j in range(3):
-			var b = bullet.instantiate()
-			b.set_color(Color("RED"))
-			b.position = position
-			b.position.x += -100 + (j * 100)
-			b.velocity = 400.0
-			b.lifetime = 20
-			b.look_at(Vector2(0.0, 400.0))
-			get_tree().root.add_child(b)
-		await get_tree().create_timer(.7).timeout
+func create_spawners() -> void:
+	for s in spawners:
+		var spawner = Spawner.new()
+		if s.has("cycles"):
+			spawner.cycles = s.cycles
+		if s.has("shot_delay"):
+			spawner.shot_delay = s.shot_delay
+		if s.has("init_delay"):
+			spawner.init_delay = s.init_delay
+		if s.has("offset"):
+			spawner.offset = s.offset
+		self.add_child(spawner)
+		spawner.set_type(s.type)
+		spawner.spawn_params = s.spawn_params
+		spawner.bullet_data = s.bullet_data
+		spawner.activate()
 
 func remove_self():
-	print("dead")
+	print("gone")
 	queue_free()
