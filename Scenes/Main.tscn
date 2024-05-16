@@ -22,9 +22,17 @@ offset_bottom = 481.0
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, -122)
 script = ExtResource("2_oocjj")
-bullet = ExtResource("3_kmu4w")
 
 [node name="ShotTimer" type="Timer" parent="Spawner"]
+wait_time = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="Spawner"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_m4dj3")
+
+[node name="Enemy" parent="." instance=ExtResource("4_veuym")]
+visible = false
+position = Vector2(-180, -165)
 
 [node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
 

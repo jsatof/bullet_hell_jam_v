@@ -1,17 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://boatpmwbji34u"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_hjrcg"]
-[ext_resource type="Texture2D" uid="uid://cwaqx1vlgv32g" path="res://icon.svg" id="1_htgdj"]
+[ext_resource type="Texture2D" uid="uid://cxb4bo5cbkgs7" path="res://Art/Bullet.png" id="2_atb0u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7x1m"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqqmj"]
+radius = 8.0
 
 [node name="Bullet" type="Area2D" groups=["Bullet"]]
 script = ExtResource("1_hjrcg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-scale = Vector2(0.203125, 0.203125)
-texture = ExtResource("1_htgdj")
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tqqmj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_h7x1m")
+[node name="OuterSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+z_index = 1
+scale = Vector2(0.0831244, 0.0831244)
+texture = ExtResource("2_atb0u")
+
+[node name="InnerSprite" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_atb0u")

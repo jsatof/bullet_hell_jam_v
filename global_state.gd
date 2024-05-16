@@ -1,5 +1,8 @@
 extends Node
 
+@export_group("Game Properties")
+@export var playspace = Vector2(200.0, 500.0)
+
 var hit_count := 0
 var accuracy := 100.0
 var money := 1000.0
