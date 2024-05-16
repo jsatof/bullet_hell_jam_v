@@ -37,7 +37,6 @@ var total_bullet_count := 0
 func _ready() -> void:
 	stock_rng.seed = 42069 # TODO: remove me when finalizing
 	test_bullet_rng.seed = int("doomguy")
-	set_new_heckler_stock_price()
 
 func set_new_heckler_stock_price() -> void:
 	last_heckler_stock_price = heckler_stock_price

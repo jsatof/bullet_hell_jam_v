@@ -6,8 +6,8 @@ extends Node2D
 @onready var color_rect = get_parent().get_node("GraphBGColorRect")
 @onready var timer := get_parent().get_node("Timer")
 
-
 var stock_points: PackedFloat32Array
+const max_stock_points_size := 10
 
 # draw region is 300x300
 const y_start_pos := 350.0
@@ -35,30 +35,21 @@ func _draw():
 # so far only the last 10 points are saved,
 # the oldest will be evicted when a new one comes in if full
 func _on_timer_timeout():
-	print("Current Stock Price: $%.2f" % global.heckler_stock_price)
+	global.set_new_heckler_stock_price()
 	var current_price: float = global.heckler_stock_price
 	var percent_diff: float = global.heckler_percent_diff
 
 	price_label.text = "$%.2f" % current_price
-
-	if percent_diff < 0.0:
-		price_diff_label.add_theme_color_override("font_color", Color.DARK_RED)
-	else:
-		price_diff_label.add_theme_color_override("font_color", Color.WEB_GREEN)
+	var label_color := Color.DARK_RED if percent_diff < 0.0 else Color.WEB_GREEN
+	price_diff_label.add_theme_color_override("font_color", label_color)
 	price_diff_label.text = "%.2f%%" % percent_diff
 
 	var new_price_point: float = y_start_pos - scaling * current_price
 	stock_points.push_back(new_price_point)
 
-	# Test code for interacting with stock market
-	if current_price > 70.0:
-		print("Current Stock Price: ", current_price)
-		timer.stop()
+	if len(stock_points) >= max_stock_points_size:
+		stock_points = stock_points.slice(1, max_stock_points_size)
 
-	if len(stock_points) >= 10:
-		stock_points = stock_points.slice(1, 10)
-
-	global.set_new_heckler_stock_price()
 	queue_redraw()
 
 func screen_coord_from_stock_points(index: int) -> Vector2:
