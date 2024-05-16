@@ -5,26 +5,16 @@ var Spawner = preload("res://Scripts/Spawner.gd")
 @onready var pool = get_node("../BulletPool")
 
 var health: float = 100.0
-var velocity: float = 100.0
-var lifetime: float = 5.0
 var movement_targets = []
 var spawners = []
 
 var current_target: int = 0
-var current_time: float = 0.0
 
 
 func _ready():
-	current_time = 0.0
 	current_target = 0
 	move_to_targets()
 	create_spawners()
-
-func _process(delta):
-	current_time += delta
-
-	if current_time >= lifetime:
-		remove_self()
 
 func move_to_targets() -> void:
 	var move_tween = get_tree().create_tween()
@@ -49,6 +39,10 @@ func create_spawners() -> void:
 			spawner.init_delay = s.init_delay
 		if s.has("offset"):
 			spawner.offset = s.offset
+		if s.has("rotation"):
+			spawner.rotation_degrees = s.rotation
+		if s.has("rotate_speed"):
+			spawner.rotate_speed = s.rotate_speed
 		self.add_child(spawner)
 		spawner.set_type(s.type)
 		spawner.spawn_params = s.spawn_params
@@ -57,4 +51,4 @@ func create_spawners() -> void:
 
 func remove_self():
 	print("gone")
-	queue_free()
+	self.queue_free()

@@ -10,10 +10,20 @@ var init_delay := 0.0
 var bullet_data := { }
 var spawn_params := { }
 
+var rotate_speed := 0.0
+
 var spawn_func := Callable(self, "linear")
 
+func _ready() -> void:
+	self.set_process(false)
+
+func _process(delta: float) -> void:
+	self.rotate(rotate_speed * delta)
+	# self.rotation_degrees = fmod(rotation_degrees, 360)
 
 func set_bullet_data(b) -> void:
+	b.position = self.global_position
+	b.rotation_degrees = self.rotation_degrees
 	if bullet_data.has("color"):
 		b.set_color(bullet_data.color)
 	if bullet_data.has("velocity"):
@@ -35,6 +45,7 @@ func activate() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	if init_delay > 0:
 		await get_tree().create_timer(init_delay).timeout
+	self.set_process(true)
 
 	var delay = Timer.new()
 	delay.wait_time = shot_delay
@@ -44,7 +55,13 @@ func activate() -> void:
 		spawn_func.call(spawn_params)
 		await delay.timeout
 
+	finish()
+
+func finish() -> void:
+	self.queue_free()
+
 ### Shaping functions ###
+#TODO add ability to randomize positions
 func set_type(type: String) -> void:
 	match type:
 		"linear":
@@ -56,7 +73,9 @@ func linear(params) -> void:
 	for j in range(params["amount"]):
 		var b = pool.bullet()
 		set_bullet_data(b)
-		b.position.x += -100 + (j * 100)
+		#TODO fix this
+		if params.has("range"):
+			b.position += transform.x * (-(params["range"]/2) + j * (-params["range"]/params["amount"]))
 	await get_tree().create_timer(shot_delay).timeout
 
 func radial(params) -> void:
@@ -65,6 +84,3 @@ func radial(params) -> void:
 		set_bullet_data(b)
 		b.rotation_degrees += i * (360 / params["amount"])
 	await get_tree().create_timer(shot_delay).timeout
-
-# Spawn radial (from deg, to deg, number) REST (velcity, color, lifetime, target)
-# Spawn radial (from deg, to deg, number) REST (velcity, color, lifetime)
