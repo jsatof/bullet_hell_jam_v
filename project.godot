@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="helljam5"
-run/main_scene="res://Scenes/BulletTesting.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -27,6 +27,10 @@ gdscript/warnings/untyped_declaration=1
 
 window/size/viewport_width=1280
 window/size/viewport_height=960
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_vim/plugin.cfg")
 
 [input]
 

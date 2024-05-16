@@ -1,0 +1,174 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccejxm28iefik"]
+
+[ext_resource type="Script" path="res://Scripts/LevelUI.gd" id="1_cjrv7"]
+[ext_resource type="PackedScene" uid="uid://bqr8gvqlrjdmp" path="res://Scenes/StockGraph.tscn" id="2_y6mi4"]
+[ext_resource type="PackedScene" uid="uid://5557dvy4b3to" path="res://Scenes/GunShop.tscn" id="3_ijx18"]
+
+[node name="LevelUI" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1280.0
+offset_top = -960.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_cjrv7")
+
+[node name="MoneyLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -284.0
+offset_top = 35.0
+offset_right = -219.0
+offset_bottom = 63.0
+grow_horizontal = 0
+text = "Money:"
+
+[node name="MoneyValueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -199.0
+offset_top = 36.0
+offset_right = -33.0
+offset_bottom = 59.0
+text = "$0"
+
+[node name="AccuracyLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -283.0
+offset_top = 64.0
+offset_right = -209.0
+offset_bottom = 87.0
+grow_horizontal = 0
+text = "Accuracy:"
+
+[node name="AccuracyValueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -190.0
+offset_top = 65.0
+offset_right = -116.0
+offset_bottom = 88.0
+grow_horizontal = 0
+text = "0.00%"
+
+[node name="SharesOwnedLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1216.0
+offset_top = 433.0
+offset_right = -1016.0
+offset_bottom = 456.0
+grow_horizontal = 0
+text = "Heckler Shares Onwed:     "
+
+[node name="SharesOwnedValueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1016.0
+offset_top = 433.0
+offset_right = -942.0
+offset_bottom = 456.0
+grow_horizontal = 0
+text = "0"
+
+[node name="StockGraph" parent="." instance=ExtResource("2_y6mi4")]
+layout_mode = 1
+offset_left = 9.0
+offset_top = 597.0
+offset_right = -911.0
+offset_bottom = -9.0
+
+[node name="GunShop" parent="." instance=ExtResource("3_ijx18")]
+layout_mode = 1
+offset_left = 910.0
+offset_top = 590.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="TestButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BoostMoneyButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 1008.0
+offset_top = 142.0
+offset_right = 1164.0
+offset_bottom = 185.0
+text = "Plus Money"
+
+[node name="SubtractMoneyButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 1008.0
+offset_top = 198.0
+offset_right = 1165.0
+offset_bottom = 244.0
+text = "Minus Money"
+
+[node name="ShootBulletButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 1009.0
+offset_top = 257.0
+offset_right = 1167.0
+offset_bottom = 299.0
+text = "Shoot Bullet
+"
+
+[node name="SellShareButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 526.0
+offset_right = 230.0
+offset_bottom = 570.0
+disabled = true
+text = "Sell Share"
+
+[node name="BuyShareButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 475.0
+offset_right = 229.0
+offset_bottom = 519.0
+text = "Buy Share"
+
+[node name="BuyGunButton" type="Button" parent="TestButtons"]
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 531.0
+offset_right = 1170.0
+offset_bottom = 573.0
+text = "Buy Weapon"
+
+[node name="EquippedGunNameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 951.0
+offset_top = 490.0
+offset_right = 1058.0
+offset_bottom = 517.0
+text = "Current Gun:"
+
+[node name="EquippedGunValueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1066.0
+offset_top = 490.0
+offset_right = 1173.0
+offset_bottom = 517.0
+text = "Default Pea Shooter"
