@@ -16,6 +16,7 @@ func _input(event: InputEvent) -> void:
 		on_buy_gun_pressed()
 
 func _ready() -> void:
+	global.money_added.connect(update_money_label)
 	money_value.text = "$%.2f" % global.money
 	money_value.add_theme_color_override("font_color", Color.WEB_GREEN)
 	accuracy_value.text = "%.2f%%" % global.accuracy
