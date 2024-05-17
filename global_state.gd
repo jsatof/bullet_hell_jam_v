@@ -21,7 +21,7 @@ var bullet_price := 10.0
 var heckler_shares_owned := 0
 
 var stock_rng := RandomNumberGenerator.new()
-var test_bullet_rng := RandomNumberGenerator.new()
+var bullet_rng := RandomNumberGenerator.new()
 
 # Fixed fire rate as of now. Can tie to weapon if desired
 const fire_rate := 0.05
@@ -50,7 +50,7 @@ var total_bullet_count := 0
 
 func _ready() -> void:
 	stock_rng.seed = 42069 # TODO: remove me when finalizing
-	test_bullet_rng.seed = int("2hu")
+	bullet_rng.seed = int("2hu")
 
 func set_new_heckler_stock_price() -> void:
 	last_heckler_stock_price = heckler_stock_price
@@ -91,7 +91,7 @@ func simulate_bullet_fired() -> void:
 	money -= current_weapon["bulletcost"]
 
 func simulate_bullet_hit() -> bool:
-	return test_bullet_rng.randi() % 2 == 0
+	return bullet_rng.randi() % 2 == 0
 
 func get_accuracy() -> float:
 	return accuracy

@@ -11,6 +11,7 @@ input_pickable = false
 script = ExtResource("1_rq2yt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
 texture = ExtResource("1_c1kmb")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

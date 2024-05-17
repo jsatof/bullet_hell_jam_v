@@ -54,8 +54,8 @@ func create_spawners() -> void:
 
 func drop_money() -> void:
 	for i in range(max_health/25 + pow(max_health/100, globals.money_exponent)):
-		var x = position.x + randi_range(-100, 100)
-		var y = position.y + randi_range(-100, 100)
+		var x = position.x + globals.bullet_rng.randi_range(-100, 100)
+		var y = position.y + globals.bullet_rng.randi_range(-100, 100)
 		var m = pool.money()
 		m.position = Vector2(x, y)
 

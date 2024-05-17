@@ -7,6 +7,7 @@ const ENEMY_SIZE := 2000
 var enemy_idx := -1
 var enemy_pool := []
 
+const PLAYER_BULLET := preload("res://Scenes/PlayerBullet.tscn")
 const PLAYER_SIZE := 100
 var player_idx := -1
 # Was going to call it p_pool, but I don't p in the pool
@@ -24,7 +25,7 @@ func _ready() -> void:
 		enemy_pool[i].add_to_group("enemy")
 
 	for i in PLAYER_SIZE:
-		player_pool.append(ENEMY_BULLET.instantiate())
+		player_pool.append(PLAYER_BULLET.instantiate())
 		add_child(player_pool[i])
 		player_pool[i].add_to_group("player_bullet")
 
