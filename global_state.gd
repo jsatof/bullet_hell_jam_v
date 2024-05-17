@@ -95,3 +95,12 @@ func simulate_bullet_hit() -> bool:
 
 func get_accuracy() -> float:
 	return accuracy
+
+func take_damage() -> void:
+	lives -= 1
+	if lives <= 0:
+		#TODO game over screen
+		print("Game over, man!")
+
+func collect_scrap() -> void:
+	add_money(scrap_value)

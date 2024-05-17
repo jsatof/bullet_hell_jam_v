@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfuk0pi3ug38b"]
 
-[ext_resource type="Script" path="res://Scripts/BulletPool.gd" id="1_032lq"]
+[ext_resource type="Script" path="res://Scripts/Pools.gd" id="1_032lq"]
 [ext_resource type="Texture2D" uid="uid://cxb4bo5cbkgs7" path="res://Art/Bullet.png" id="6_1adtb"]
 
 [sub_resource type="GDScript" id="GDScript_1o6em"]

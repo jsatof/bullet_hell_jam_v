@@ -1,9 +1,8 @@
 extends Area2D
 
 const SPAWNER = preload("res://Scripts/Spawner.gd")
-const MONEY = preload("res://Scenes/Money.tscn")
 @onready var globals = get_node("/root/GlobalState")
-@onready var pool = get_node("../BulletPool")
+@onready var pool = get_tree().get_first_node_in_group("pools")
 
 var max_health := 100.0
 var health := max_health
@@ -57,9 +56,8 @@ func drop_money() -> void:
 	for i in range(max_health/25 + pow(max_health/100, globals.money_exponent)):
 		var x = position.x + randi_range(-100, 100)
 		var y = position.y + randi_range(-100, 100)
-		var m = MONEY.instantiate()
+		var m = pool.money()
 		m.position = Vector2(x, y)
-		get_tree().root.add_child(m)
 
 func remove_self() -> void:
 	self.queue_free()
@@ -67,6 +65,7 @@ func remove_self() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_bullet"):
 		enemy_hit.emit()
+		area.enable(false)
 
 func _on_enemy_hit() -> void:
 	health -= globals.current_weapon["damage"]

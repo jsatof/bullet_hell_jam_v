@@ -15,7 +15,11 @@ var target := Vector2(0.0, 0.0)
 
 
 func _ready():
-	current_time = 0.0
+	current_time = 0
+	set_process(false)
+	set_physics_process(false)
+	set_visible(false)
+	$CollisionShape.disabled = true
 
 func _process(delta):
 	movement.call(delta)
@@ -27,13 +31,13 @@ func _process(delta):
 func set_color(color: Color):
 	$OuterSprite.modulate = color
 
-
+# Do not use on bult initilization. Deffering action leads to long load time
 func enable(is_enabled: bool):
 	current_time = 0
 	set_process(is_enabled)
 	set_physics_process(is_enabled)
 	set_visible(is_enabled)
-	get_child(0).disabled = !is_enabled
+	get_child(0).set_deferred("disabled", !is_enabled)
 
 
 ### Movement functions ###

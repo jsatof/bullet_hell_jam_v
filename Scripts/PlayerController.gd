@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var globals = $'/root/GlobalState'
-@onready var bullet_pool = get_tree().get_first_node_in_group("BulletPool")
+@onready var bullet_pool = get_tree().get_first_node_in_group("pools")
 @onready var bullet_collider = $'BulletCollider'
 @onready var sprite = $'Sprite2D'
 @onready var hit_timer = $'HitTimer'
@@ -11,7 +11,6 @@ var sprite_visible := true
 
 var normal_speed := 400.0
 var focus_speed := 200.0
-var lives = 10
 
 var shot_timer: Timer
 var flash_timer: Timer
@@ -19,7 +18,6 @@ var can_fire := true
 var invincible := false
 
 signal player_hit
-signal collected_money
 
 func _ready() -> void:
 	shot_timer = Timer.new()
@@ -63,6 +61,7 @@ func _on_shot_timer_timeout() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") && !invincible:
+		globals.take_damage()
 		player_hit.emit()
 
 func _on_player_hit() -> void:

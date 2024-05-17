@@ -7,23 +7,35 @@ var t := 0.0
 
 signal money_collected
 
+func _ready() -> void:
+	t = 0.0
+	collected = false
+	set_process(false)
+	set_physics_process(false)
+	set_visible(false)
+	$CollisionShape.disabled = true
+
 func _process(delta: float) -> void:
 	position += transform.y * globals.money_speed * delta
 
 	if collected:
 		t += delta * 0.6
 		position = position.lerp(player.position, t)
-		if t >= 0.1:
+		if t >= 0.2:
 			money_collected.emit()
-			globals.money += globals.scrap_value
-			print("CASH MONEY")
-			remove()
+			globals.collect_scrap()
+			enable(false)
 
 	if global_position.y >= globals.playspace.y + 20:
-		remove()
+		enable(false)
 
 func collect() -> void:
 	collected = true
 
-func remove() -> void:
-	queue_free()
+func enable(is_enabled: bool) -> void:
+	t = 0.0
+	collected = !is_enabled
+	set_process(is_enabled)
+	set_physics_process(is_enabled)
+	set_visible(is_enabled)
+	get_child(0).set_deferred("disabled", !is_enabled)
