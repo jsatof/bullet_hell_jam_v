@@ -19,18 +19,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	self.rotate(rotate_speed * delta)
-	# self.rotation_degrees = fmod(rotation_degrees, 360)
 
 func set_bullet_data(b) -> void:
 	b.position = self.global_position
 	b.rotation_degrees = self.rotation_degrees
+	b.rotate(PI/2) # Rotate 90 degrees for downward firing
 	if bullet_data.has("color"):
 		b.set_color(bullet_data.color)
 	if bullet_data.has("velocity"):
 		b.velocity = bullet_data.velocity
 	if bullet_data.has("lifetime"):
 		b.lifetime = bullet_data.lifetime
-	b.rotate(PI/2)
 	if bullet_data.has("target") && bullet_data.target == true:
 		b.look_at(player.position)
 	if bullet_data.has("frequency"):

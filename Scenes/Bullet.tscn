@@ -6,7 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqqmj"]
 radius = 8.0
 
-[node name="Bullet" type="Area2D" groups=["Bullet"]]
+[node name="Bullet" type="Area2D"]
+input_pickable = false
 script = ExtResource("1_hjrcg")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -14,11 +15,11 @@ shape = SubResource("CircleShape2D_tqqmj")
 
 [node name="OuterSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 1, 1)
-z_index = 1
+z_index = 3
 scale = Vector2(0.0831244, 0.0831244)
 texture = ExtResource("2_atb0u")
 
 [node name="InnerSprite" type="Sprite2D" parent="."]
-z_index = 1
+z_index = 3
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("2_atb0u")

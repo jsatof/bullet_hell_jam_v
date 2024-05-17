@@ -10,6 +10,7 @@ var frequency := 1.0
 var movement := Callable(self, "linear_move")
 var lifetime := 10.0
 var current_time := 0.0
+var damage := 1.0
 var target := Vector2(0.0, 0.0)
 
 
@@ -28,6 +29,7 @@ func set_color(color: Color):
 
 
 func enable(is_enabled: bool):
+	current_time = 0
 	set_process(is_enabled)
 	set_physics_process(is_enabled)
 	set_visible(is_enabled)

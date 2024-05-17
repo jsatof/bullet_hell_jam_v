@@ -48,6 +48,19 @@ func _ready():
 				}}
 				]
 			},
+			{"health":100,"position":Vector2(0.0, -500.0),
+				"movement": [
+				{ point=Vector2(0.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
+				{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+				],
+				"spawners": [
+				{ type="linear",cycles=20,shot_delay=0.3,init_delay=0.5,
+					spawn_params={"amount":10},
+					bullet_data={
+					velocity=400.0,target=false,color=Color("YELLOW")
+				}}
+				]
+			},
 		]
 	})
 	# Some crazy shit here man
@@ -83,7 +96,7 @@ func wait_group_time():
 func spawn_group():
 	for i in groups[current_group]["enemies"]:
 		var e = Enemy.instantiate()
-		e.health = i["health"]
+		e.max_health = i["health"]
 		e.position = i["position"]
 		for pos in i["movement"]:
 			e.movement_targets.append(pos)
