@@ -8,11 +8,7 @@ extends Node2D
 
 var stock_points: PackedFloat32Array
 const max_stock_points_size := 10
-
-# draw region is 300x300
-const y_start_pos := 350.0
 const point_size := 3
-const scaling := 3.5
 
 func _ready():
 	assert(price_label)
@@ -30,7 +26,6 @@ func _draw():
 		var last_index := len(stock_points) - 1
 		draw_circle(screen_coord_from_stock_points(last_index), point_size, Color.WEB_GREEN)
 
-
 # every second the stock prices will update
 # so far only the last 10 points are saved,
 # the oldest will be evicted when a new one comes in if full
@@ -44,7 +39,7 @@ func _on_timer_timeout():
 	price_diff_label.add_theme_color_override("font_color", label_color)
 	price_diff_label.text = "%.2f%%" % percent_diff
 
-	var new_price_point: float = y_start_pos - scaling * current_price
+	var new_price_point: float = color_rect.size.y - current_price
 	stock_points.push_back(new_price_point)
 
 	if len(stock_points) >= max_stock_points_size:
@@ -56,5 +51,5 @@ func screen_coord_from_stock_points(index: int) -> Vector2:
 	# This condition should never occur, but just in case
 	if index < 0 || index >= len(stock_points):
 		return Vector2(-1000, -1000) # will lead to draw dramatically wild line
-	return Vector2(point_size + index * color_rect.size.x / 8, stock_points[index])
+	return Vector2(index * color_rect.size.x / 8, stock_points[index])
 

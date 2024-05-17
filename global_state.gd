@@ -57,15 +57,21 @@ func set_new_heckler_stock_price() -> void:
 	heckler_stock_price = stock_rng.randf() * 50.0 + 40.0 # range from [40.0, 90.0)
 	heckler_percent_diff = heckler_stock_price - last_heckler_stock_price / heckler_stock_price * 100.0
 
-func buy_heckler_stock() -> void:
+func buy_heckler_stock() -> bool:
+	if money < heckler_stock_price:
+		return false
 	heckler_shares_owned += 1
 	money -= heckler_stock_price
 	print("Bought Stock for $", heckler_stock_price)
+	return true
 
-func sell_heckler_stock() -> void:
+func sell_heckler_stock() -> bool:
+	if heckler_shares_owned <= 0:
+		return false
 	heckler_shares_owned -= 1
 	money += heckler_stock_price
 	print("Sold Stock for $", heckler_stock_price)
+	return true
 
 func add_money(x: float) -> void:
 	money += x
