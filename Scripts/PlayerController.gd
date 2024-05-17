@@ -58,14 +58,6 @@ func fire() -> void:
 	can_fire = false
 	shot_timer.start()
 
-func pull_to_self(object) -> void:
-	# object.position = object.position.lerp(transform.position)
-	pass
-
-func collect_money(money) -> void:
-	globals.money += globals.scrap_value
-	money.queue_free()
-
 func _on_shot_timer_timeout() -> void:
 	can_fire = true
 
@@ -74,7 +66,6 @@ func _on_area_entered(area: Area2D) -> void:
 		player_hit.emit()
 
 func _on_player_hit() -> void:
-	print("Hit")
 	invincible = true # could not set bullet collider to disabled and get expected result...
 	flash_timer.start()
 	hit_timer.start()
@@ -88,8 +79,6 @@ func _on_sprite_flash() -> void:
 	sprite_visible = !sprite_visible
 	sprite.visible = sprite_visible
 
-
 func _on_bullet_collecter_area_entered(area: Area2D) -> void:
 	if area.is_in_group("money"):
-		collect_money(area)
-		pull_to_self(area)
+		area.collect()

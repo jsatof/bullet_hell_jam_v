@@ -1,6 +1,6 @@
 extends Node
 
-const playspace = Vector2(200.0, 500.0)
+const playspace = Vector2(400.0, 500.0)
 const scrap_value := 10
 
 const money_speed := 600.0

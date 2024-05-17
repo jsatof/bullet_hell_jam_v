@@ -74,7 +74,5 @@ func _on_enemy_hit() -> void:
 		enemy_killed.emit()
 
 func _on_enemy_killed() -> void:
-	print("Killed enemy")
 	drop_money()
 	remove_self()
-

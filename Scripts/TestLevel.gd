@@ -91,7 +91,6 @@ func call_groups_seqenced():
 
 func wait_group_time():
 	await get_tree().create_timer(groups[current_group]["time"]).timeout
-	print("Finished group")
 
 func spawn_group():
 	for i in groups[current_group]["enemies"]:
