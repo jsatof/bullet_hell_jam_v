@@ -4,31 +4,21 @@ extends Control
 @onready var money_value := $MoneyValueLabel
 @onready var accuracy_value := $AccuracyValueLabel
 @onready var shares_owned_value := $SharesOwnedValueLabel
-@onready var shop_gun_name := $GunNameLabel
-@onready var shop_gun_purchase_value := $PurchaseValueLabel
-@onready var shop_gun_price_per_shot := $PricePerShotValueLabel
-@onready var gun_image_region := $GunImageRegion
+@onready var shop_gun_name := $EquippedGunNameLabel
 @onready var equipped_gun_value := $EquippedGunValueLabel
 
-
-@onready var shoot_button := $TestButtons/ShootBulletButton
-@onready var boost_money := $TestButtons/BoostMoneyButton
-@onready var subtract_money := $TestButtons/SubtractMoneyButton
-@onready var buy_share_button := $TestButtons/BuyShareButton
-@onready var sell_share_button := $TestButtons/SellShareButton
-@onready var buy_gun_button := $TestButtons/BuyGunButton
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("buy_share"):
+		on_buy_share_pressed()
+	if event.is_action_pressed("sell_share"):
+		on_sell_share_pressed()
+	if event.is_action_pressed("buy_gun"):
+		on_buy_gun_pressed()
 
 func _ready() -> void:
 	money_value.text = "$%.2f" % global.money
 	money_value.add_theme_color_override("font_color", Color.WEB_GREEN)
 	accuracy_value.text = "%.2f%%" % global.accuracy
-
-	shoot_button.button_down.connect(on_shoot_button)
-	boost_money.button_down.connect(global.add_money, 100.0)
-	subtract_money.button_down.connect(global.add_money, -100.0)
-	buy_share_button.button_down.connect(on_buy_share_pressed)
-	sell_share_button.button_down.connect(on_sell_share_pressed)
-	buy_gun_button.button_down.connect(on_buy_gun_pressed)
 
 #  TODO: proper detection on a bullet collision is a priority
 func on_shoot_button() -> void:
@@ -47,25 +37,25 @@ func update_money_label() -> void:
 
 func update_stock_owned_label() -> void:
 	shares_owned_value.text = "%d" % global.heckler_shares_owned
-	sell_share_button.disabled = global.heckler_shares_owned == 0
-	buy_share_button.disabled = global.heckler_stock_price > global.money
 	update_money_label()
 
 func update_equipped_gun_label() -> void:
-	equipped_gun_value.text = global.current_equipped_gun["name"]
-	buy_gun_button.disabled = global.money < global.current_purchasable_gun["shopprice"]
+	equipped_gun_value.text = global.current_weapon["name"]
 
 func on_buy_share_pressed() -> void:
-	global.buy_heckler_stock()
-	update_stock_owned_label()
+	if global.buy_heckler_stock():
+		update_stock_owned_label()
+	# TODO: maybe play an animation when funds are insufficient
 
 func on_sell_share_pressed() -> void:
-	global.sell_heckler_stock()
-	update_stock_owned_label()
+	if global.sell_heckler_stock():
+		update_stock_owned_label()
+	# TODO: maybe play an animation when 0 stocks to sell
 
 func on_buy_gun_pressed() -> void:
-	global.buy_and_equip_gun_from_shop()
-	update_money_label()
-	update_equipped_gun_label()
+	if global.buy_and_equip_gun_from_shop():
+		update_money_label()
+		update_equipped_gun_label()
+	# TODO: maybe play an animation when funds are insufficient
 
 

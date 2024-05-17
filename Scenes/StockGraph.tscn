@@ -7,61 +7,53 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 8.0
-offset_right = -920.0
-offset_bottom = -598.0
+offset_right = -1080.0
+offset_bottom = -740.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.022
-anchor_bottom = -0.022
-offset_top = -0.211999
-offset_right = 360.0
-offset_bottom = 359.788
+offset_right = 200.0
+offset_bottom = 264.0
 color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
 [node name="CompanyNameLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.017
-anchor_bottom = -0.017
-offset_left = 42.0
-offset_top = 14.018
-offset_right = 171.0
-offset_bottom = 37.018
+offset_left = 35.0
+offset_top = 8.0
+offset_right = 164.0
+offset_bottom = 31.0
 text = "Heckler & Gooch"
 
 [node name="GraphBGColorRect" type="ColorRect" parent="."]
 layout_mode = 2
-anchor_top = -0.017
-anchor_bottom = -0.017
-offset_left = 16.0
-offset_top = 48.018
-offset_right = 346.0
-offset_bottom = 342.018
+offset_left = 10.0
+offset_top = 72.0
+offset_right = 190.0
+offset_bottom = 252.0
 color = Color(0.144063, 0.144063, 0.144063, 1)
 
 [node name="StockPriceLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 196.0
-offset_top = 8.147
-offset_right = 247.0
-offset_bottom = 31.147
+offset_left = 109.0
+offset_top = 39.147
+offset_right = 160.0
+offset_bottom = 62.147
 text = "$23.23"
 
 [node name="StockDiffLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 277.0
-offset_top = 8.0
-offset_right = 323.0
-offset_bottom = 31.0
+offset_left = 39.0
+offset_top = 39.0
+offset_right = 85.0
+offset_bottom = 62.0
 text = "0.00%"
 
 [node name="StockGraphGraph" parent="." instance=ExtResource("2_ewybj")]
-position = Vector2(15, 43)
+position = Vector2(10, 72)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

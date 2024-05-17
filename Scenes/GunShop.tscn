@@ -8,73 +8,72 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1080.0
+offset_bottom = -760.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qm3ll")
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 360.0
-offset_bottom = 360.0
+offset_right = 200.0
+offset_bottom = 220.0
 color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
-[node name="GunImageRegion" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 20.0
-offset_top = 55.0
-offset_right = 340.0
-offset_bottom = 252.0
-
-[node name="GunImageBGColorRect" type="ColorRect" parent="GunImageRegion"]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 197.0
+[node name="GunImageBGColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.648
+offset_top = 31.0
+offset_right = 190.648
+offset_bottom = 152.0
 color = Color(0.169245, 0.169245, 0.169245, 1)
 
-[node name="GunImageSprite2D" type="Sprite2D" parent="GunImageRegion"]
-position = Vector2(162, 97)
+[node name="GunImageSprite2D" type="Sprite2D" parent="."]
+position = Vector2(103.5, 91.5)
+scale = Vector2(0.945312, 0.945313)
 texture = ExtResource("1_ytpni")
 
 [node name="GunNameLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 19.0
-offset_right = 318.0
-offset_bottom = 42.0
+offset_left = 12.0
+offset_top = 5.0
+offset_right = 191.0
+offset_bottom = 28.0
 text = "The Chungus-inator"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PurchaseLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 268.0
-offset_right = 131.0
-offset_bottom = 291.0
+offset_left = 17.0
+offset_top = 153.0
+offset_right = 100.0
+offset_bottom = 176.0
 text = "Purchase:"
 
 [node name="PricePerShotLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 49.0
-offset_top = 298.0
-offset_right = 89.0
-offset_bottom = 321.0
+offset_left = 18.0
+offset_top = 183.0
+offset_right = 130.0
+offset_bottom = 206.0
 text = "Price per shot:"
 
 [node name="PurchaseValueLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 217.0
-offset_top = 268.0
-offset_right = 278.0
-offset_bottom = 291.0
+offset_left = 137.0
+offset_top = 153.0
+offset_right = 198.0
+offset_bottom = 176.0
 text = "$69.69
 "
 
 [node name="PricePerShotValueLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 217.0
-offset_top = 298.0
-offset_right = 278.0
-offset_bottom = 321.0
+offset_left = 137.0
+offset_top = 183.0
+offset_right = 198.0
+offset_bottom = 206.0
 text = "$69.69
 "
