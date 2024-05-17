@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/TestLevel.gd" id="1_v6ncg"]
 [ext_resource type="PackedScene" uid="uid://ecqkk0l8ehf8" path="res://Scenes/Player.tscn" id="2_k12x8"]
-[ext_resource type="Script" path="res://Scripts/BulletPool.gd" id="3_wf8p5"]
+[ext_resource type="Script" path="res://Scripts/Pools.gd" id="3_wf8p5"]
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_v6ncg")
@@ -11,5 +11,5 @@ script = ExtResource("1_v6ncg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="BulletPool" type="Node" parent="." groups=["BulletPool"]]
+[node name="Pools" type="Node" parent="." groups=["pools"]]
 script = ExtResource("3_wf8p5")

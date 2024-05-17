@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://hrjov2gx3v4h"]
+
+[ext_resource type="Texture2D" uid="uid://cwaqx1vlgv32g" path="res://icon.svg" id="1_1w5vx"]
+[ext_resource type="Script" path="res://Scripts/Money.gd" id="1_3mcyx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hsrmq"]
+radius = 85.0
+
+[node name="Money" type="Area2D" groups=["money"]]
+scale = Vector2(0.2, 0.2)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_3mcyx")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hsrmq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1w5vx")

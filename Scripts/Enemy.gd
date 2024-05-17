@@ -1,17 +1,20 @@
 extends Area2D
 
-var Spawner = preload("res://Scripts/Spawner.gd")
+const SPAWNER = preload("res://Scripts/Spawner.gd")
 @onready var globals = get_node("/root/GlobalState")
-@onready var pool = get_node("../BulletPool")
+@onready var pool = get_tree().get_first_node_in_group("pools")
 
-var health: float = 100.0
+var max_health := 100.0
+var health := max_health
 var movement_targets = []
 var spawners = []
 
 var current_target: int = 0
 
+signal enemy_hit
+signal enemy_killed
 
-func _ready():
+func _ready() -> void:
 	current_target = 0
 	move_to_targets()
 	create_spawners()
@@ -30,7 +33,7 @@ func move_to_targets() -> void:
 
 func create_spawners() -> void:
 	for s in spawners:
-		var spawner = Spawner.new()
+		var spawner = SPAWNER.new()
 		if s.has("cycles"):
 			spawner.cycles = s.cycles
 		if s.has("shot_delay"):
@@ -49,6 +52,26 @@ func create_spawners() -> void:
 		spawner.bullet_data = s.bullet_data
 		spawner.activate()
 
-func remove_self():
-	print("gone")
+func drop_money() -> void:
+	for i in range(max_health/25 + pow(max_health/100, globals.money_exponent)):
+		var x = position.x + globals.bullet_rng.randi_range(-100, 100)
+		var y = position.y + globals.bullet_rng.randi_range(-100, 100)
+		var m = pool.money()
+		m.position = Vector2(x, y)
+
+func remove_self() -> void:
 	self.queue_free()
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_bullet"):
+		enemy_hit.emit()
+		area.enable(false)
+
+func _on_enemy_hit() -> void:
+	health -= globals.current_weapon["damage"]
+	if health <= 0:
+		enemy_killed.emit()
+
+func _on_enemy_killed() -> void:
+	drop_money()
+	remove_self()

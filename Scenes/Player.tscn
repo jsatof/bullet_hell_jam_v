@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ecqkk0l8ehf8"]
+[gd_scene load_steps=5 format=3 uid="uid://ecqkk0l8ehf8"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_rfj1w"]
 [ext_resource type="Texture2D" uid="uid://coi6pkbdtvsmx" path="res://Art/Player.png" id="2_0wv44"]
@@ -6,15 +6,33 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7c4x"]
 radius = 18.2483
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_478ro"]
+radius = 206.475
+
 [node name="Player" type="Area2D"]
 scale = Vector2(0.5, 0.5)
+input_pickable = false
 script = ExtResource("1_rfj1w")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.0235294, 1, 0, 1)
-texture = ExtResource("2_0wv44")
 
 [node name="BulletCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_f7c4x")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.0235294, 1, 0, 1)
+z_index = 2
+texture = ExtResource("2_0wv44")
+
+[node name="HitTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletCollecter" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="BulletCollecterShape" type="CollisionShape2D" parent="BulletCollecter"]
+shape = SubResource("CircleShape2D_478ro")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="player_hit" from="." to="." method="_on_player_hit"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="area_entered" from="BulletCollecter" to="." method="_on_bullet_collecter_area_entered"]
