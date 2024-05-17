@@ -34,22 +34,8 @@ func move_to_targets() -> void:
 func create_spawners() -> void:
 	for s in spawners:
 		var spawner = SPAWNER.new()
-		if s.has("cycles"):
-			spawner.cycles = s.cycles
-		if s.has("shot_delay"):
-			spawner.shot_delay = s.shot_delay
-		if s.has("init_delay"):
-			spawner.init_delay = s.init_delay
-		if s.has("offset"):
-			spawner.offset = s.offset
-		if s.has("rotation"):
-			spawner.rotation_degrees = s.rotation
-		if s.has("rotate_speed"):
-			spawner.rotate_speed = s.rotate_speed
 		self.add_child(spawner)
-		spawner.set_type(s.type)
-		spawner.spawn_params = s.spawn_params
-		spawner.bullet_data = s.bullet_data
+		spawner.set_spawner_data(s)
 		spawner.activate()
 
 func drop_money() -> void:
@@ -68,6 +54,8 @@ func _on_area_entered(area: Area2D) -> void:
 		area.enable(false)
 
 func _on_enemy_hit() -> void:
+	# TODO If a gun is changed the bullets that are on screen will also
+	# 	damage according to the new gun. Not a big deal and an easy fix if needed
 	health -= globals.current_weapon["damage"]
 	if health <= 0:
 		enemy_killed.emit()
