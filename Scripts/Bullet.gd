@@ -5,13 +5,11 @@ class_name Bullet
 var velocity := 0.0
 var amplitude := 1.0
 var frequency := 1.0
-# Not sure if we want this this yet
-# var angular_rate := 0.0
+var acceleration := 1.0
 var movement := Callable(self, "linear_move")
 var lifetime := 10.0
 var current_time := 0.0
-var damage := 1.0
-var target := Vector2(0.0, 0.0)
+# var damage := 1.0 #UNSUED
 
 
 func _ready():
@@ -51,12 +49,13 @@ func set_movement(move_type: String):
 			movement = Callable(self, "cos_move")
 
 func linear_move(delta):
-	position += transform.x * velocity * delta
+	velocity *= acceleration
+	position += transform.orthonormalized().x * velocity * delta
 
 func sin_move(delta):
 	linear_move(delta)
-	position += transform.y * amplitude * sin(current_time * frequency)
+	position += transform.orthonormalized().y * amplitude * sin(current_time * frequency)
 
 func cos_move(delta):
 	linear_move(delta)
-	position += transform.y * amplitude * cos(current_time * frequency)
+	position += transform.orthonormalized().y * amplitude * cos(current_time * frequency)

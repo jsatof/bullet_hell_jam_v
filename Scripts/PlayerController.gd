@@ -51,7 +51,6 @@ func fire() -> void:
 	b.velocity = 1000.0
 	b.lifetime = 2
 	b.rotation = -PI/2 # Rotate 90 degrees for upward firing
-	b.damage = globals.current_weapon["damage"]
 
 	can_fire = false
 	shot_timer.start()
