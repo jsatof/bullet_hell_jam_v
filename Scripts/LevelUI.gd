@@ -7,6 +7,8 @@ extends Control
 @onready var shop_gun_name := $EquippedGunNameLabel
 @onready var equipped_gun_value := $EquippedGunValueLabel
 
+@onready var win_button := $TestButtons/WinButton
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("buy_share"):
 		on_buy_share_pressed()
@@ -19,7 +21,9 @@ func _ready() -> void:
 	global.money_added.connect(update_money_label)
 	money_value.text = "$%.2f" % global.money
 	money_value.add_theme_color_override("font_color", Color.WEB_GREEN)
-	accuracy_value.text = "%.2f%%" % global.accuracy
+	accuracy_value.text = "%.2f%%" % global.get_accuracy()
+	win_button.button_down.connect(on_win_button_pressed)
+	global.player_died.connect(on_player_died)
 
 #  TODO: proper detection on a bullet collision is a priority
 func on_shoot_button() -> void:
@@ -59,4 +63,10 @@ func on_buy_gun_pressed() -> void:
 		update_equipped_gun_label()
 	# TODO: maybe play an animation when funds are insufficient
 
+func on_win_button_pressed() -> void:
+	global.end_screen_state = global.EndScreenState.VICTORY
+	global.goto_end_screen(get_parent())
 
+func on_player_died():
+	global.end_screen_state = global.EndScreenState.YOU_DIED
+	global.goto_end_screen(get_parent())
