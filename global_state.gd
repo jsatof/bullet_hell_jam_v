@@ -37,24 +37,33 @@ var end_screen_state: EndScreenState = EndScreenState.YOU_DIED
 const fire_rate := 0.05
 const bullet_speed := 1000.0
 
-const pea_shooter_gun := {
-	"id": 0,
-	"name": "Pea Shooter",
-	"damage": 10.0,
-	"shopprice": 0.0,
+var weapons := {
+	"pea_shooter": {
+		"id": 0,
+		"name": "Pea Shooter",
+		"damage": 10.0,
+		"shopprice": 0.0,
+		"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg"),
+		"spawner": preload("res://Scripts/Spawner.gd").new(),
+	},
+	"bigger_gun": {
+		"id": 1,
+		"name": "Bigger Gun",
+		"damage": 25.0,
+		"shopprice": 500.0,
+		"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg"),
+		"spawner": preload("res://Scripts/Spawner.gd").new(),
+	},
 }
-const bigger_gun := {
-	"id": 1,
-	"name": "Bigger Gun",
-	"damage": 25.0,
-	"shopprice": 500.0,
-}
-var current_weapon: Dictionary = pea_shooter_gun
-var current_purchasable_weapon: Dictionary = bigger_gun
+
+var current_weapon: Dictionary = weapons["pea_shooter"]
+var current_purchasable_weapon: Dictionary = weapons["bigger_gun"]
 
 func _ready() -> void:
 	stock_rng.seed = 42069 # TODO: remove me when finalizing
 	bullet_rng.seed = int("2hu")
+
+	init_weapons()
 
 func set_new_heckler_stock_price() -> void:
 	last_heckler_stock_price = heckler_stock_price
@@ -113,3 +122,18 @@ func goto_main_menu(source: Node) -> void:
 	var main_menu := preload("res://Scenes/MainMenu.tscn").instantiate()
 	get_tree().root.add_child(main_menu)
 	source.queue_free()
+
+func init_weapons() -> void:
+	weapons["pea_shooter"]["spawner"].set_spawner_data(
+		{ type="radial",cycles=10,shot_delay=0.1,init_delay=0.5,rotation=20,angular_rate=1,target=false,
+					spawn_params={"amount":15},
+					bullet_data={
+						velocity=400.0,color=Color("PURPLE"),movement="sin",amplitude=3,frequency=5
+					}})
+
+	weapons["bigger_gun"]["spawner"].set_spawner_data(
+		{ type="radial",cycles=10,shot_delay=0.1,init_delay=0.5,rotation=20,angular_rate=1,target=false,
+					spawn_params={"amount":15},
+					bullet_data={
+						velocity=400.0,color=Color("PURPLE"),movement="sin",amplitude=3,frequency=5
+					}})

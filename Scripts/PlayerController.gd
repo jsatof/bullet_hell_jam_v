@@ -1,10 +1,10 @@
 extends Area2D
 
-@onready var globals = $'/root/GlobalState'
-@onready var bullet_pool = get_tree().get_first_node_in_group("pools")
-@onready var bullet_collider = $'BulletCollider'
-@onready var sprite = $'Sprite2D'
-@onready var hit_timer = $'HitTimer'
+@onready var globals := $'/root/GlobalState'
+@onready var bullet_pool := get_tree().get_first_node_in_group("pools")
+@onready var bullet_collider := $'BulletCollider'
+@onready var sprite := $'Sprite2D'
+@onready var hit_timer := $'HitTimer'
 
 const FLASH_INTERVAL = 0.1
 var sprite_visible := true
@@ -16,6 +16,8 @@ var shot_timer: Timer
 var flash_timer: Timer
 var can_fire := true
 var invincible := false
+
+var equipped_weapon: Dictionary
 
 signal player_hit
 
@@ -31,6 +33,8 @@ func _ready() -> void:
 	flash_timer.one_shot = false
 	flash_timer.timeout.connect(_on_sprite_flash)
 	add_child(flash_timer)
+
+	equipped_weapon = globals.current_weapon
 
 func _process(delta) -> void:
 	var input = Input.get_vector("player-move_left", "player-move_right", "player-move_up", "player-move_down")
