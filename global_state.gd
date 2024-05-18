@@ -23,6 +23,8 @@ var heckler_shares_owned := 0
 var stock_rng := RandomNumberGenerator.new()
 var bullet_rng := RandomNumberGenerator.new()
 
+signal money_added
+
 # Fixed fire rate as of now. Can tie to weapon if desired
 const fire_rate := 0.05
 const bullet_speed := 1000.0
@@ -75,6 +77,7 @@ func sell_heckler_stock() -> bool:
 
 func add_money(x: float) -> void:
 	money += x
+	money_added.emit()
 
 func buy_and_equip_gun_from_shop() -> bool:
 	if current_purchasable_gun["shopprice"] > money:
