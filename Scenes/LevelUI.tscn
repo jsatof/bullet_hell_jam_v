@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5557dvy4b3to" path="res://Scenes/GunShop.tscn" id="3_ijx18"]
 
 [node name="LevelUI" type="Control"]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,135 +14,192 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cjrv7")
 
+[node name="LeftBar" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -288.0
+offset_right = 85.0
+grow_vertical = 0
+color = Color(0.1504, 0.1512, 0.16, 1)
+
+[node name="RightBar" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -288.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.1504, 0.1512, 0.16, 1)
+
 [node name="MoneyLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -284.0
-offset_top = 35.0
-offset_right = -219.0
-offset_bottom = 63.0
+offset_left = -83.0
+offset_right = -18.0
+offset_bottom = 28.0
 grow_horizontal = 0
 text = "Money:"
 
 [node name="MoneyValueLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -199.0
-offset_top = 36.0
-offset_right = -33.0
-offset_bottom = 59.0
-text = "$0"
-
-[node name="AccuracyLabel" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -283.0
-offset_top = 64.0
-offset_right = -209.0
-offset_bottom = 87.0
+offset_left = -83.0
+offset_top = 28.0
+offset_right = 1.0
+offset_bottom = 51.0
 grow_horizontal = 0
+text = "$10000000"
+
+[node name="AccuracyLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -81.0
+offset_right = -9.0
+offset_bottom = -58.0
+grow_horizontal = 0
+grow_vertical = 2
 text = "Accuracy:"
 
 [node name="AccuracyValueLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 6
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-offset_left = -190.0
-offset_top = 65.0
-offset_right = -116.0
-offset_bottom = 88.0
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -51.0
+offset_right = -9.0
+offset_bottom = -28.0
 grow_horizontal = 0
+grow_vertical = 2
 text = "0.00%"
 
 [node name="SharesOwnedLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1247.0
-offset_top = 566.0
-offset_right = -1110.0
-offset_bottom = 589.0
-grow_horizontal = 0
-text = "Shares Onwed:     "
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -67.0
+offset_right = 82.0
+offset_bottom = -44.0
+grow_vertical = 2
+text = "Shares Onwed:"
+horizontal_alignment = 2
 
 [node name="SharesOwnedValueLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1104.0
-offset_top = 566.0
-offset_right = -1030.0
-offset_bottom = 589.0
-grow_horizontal = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -39.0
+offset_right = 82.0
+offset_bottom = -16.0
+grow_vertical = 2
 text = "0"
+horizontal_alignment = 2
 
 [node name="StockGraph" parent="." instance=ExtResource("2_y6mi4")]
 layout_mode = 1
-offset_left = 9.0
-offset_top = 605.0
-offset_right = -1071.0
-offset_bottom = -135.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 4.0
+offset_top = -157.0
+offset_right = 4.0
+offset_bottom = -157.0
+grow_horizontal = 1
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
 
 [node name="GunShop" parent="." instance=ExtResource("3_ijx18")]
 layout_mode = 1
-offset_left = 1064.0
-offset_top = 605.0
-offset_right = -16.0
-offset_bottom = -135.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -82.0
+offset_top = -109.0
+offset_right = -82.0
+offset_bottom = -109.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
 
 [node name="TestButtons" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ShootBulletButton" type="Button" parent="TestButtons"]
-layout_mode = 0
-offset_left = 1009.0
-offset_top = 257.0
-offset_right = 1167.0
-offset_bottom = 299.0
-text = "Shoot Bullet
-"
-
 [node name="EquippedGunNameLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 951.0
-offset_top = 490.0
-offset_right = 1058.0
-offset_bottom = 517.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -166.0
+offset_right = 25.0
+offset_bottom = -139.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "Current Gun:"
 
 [node name="EquippedGunValueLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1066.0
-offset_top = 490.0
-offset_right = 1173.0
-offset_bottom = 517.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -139.0
+offset_right = 73.0
+offset_bottom = -108.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "Default Pea Shooter"
 
 [node name="StockHotKeyDisplayLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 59.0
-offset_top = 877.0
-offset_right = 156.0
-offset_bottom = 926.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -51.0
+offset_right = 82.0
+offset_bottom = -2.0
+grow_vertical = 0
 text = "X: Buy Share
 C: Sell Share
 "
 
 [node name="GunShopHotKeyDisplayLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1129.0
-offset_top = 837.0
-offset_right = 1212.0
-offset_bottom = 860.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "F: Buy Gun"

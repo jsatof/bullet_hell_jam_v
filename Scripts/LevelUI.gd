@@ -20,7 +20,6 @@ func _ready() -> void:
 	money_value.text = "$%.2f" % global.money
 	money_value.add_theme_color_override("font_color", Color.WEB_GREEN)
 	accuracy_value.text = "%.2f%%" % global.get_accuracy()
-	global.player_died.connect(on_player_died)
 
 #  TODO: proper detection on a bullet collision is a priority
 func on_shoot_button() -> void:
@@ -59,7 +58,3 @@ func on_buy_gun_pressed() -> void:
 		update_money_label()
 		update_equipped_gun_label()
 	# TODO: maybe play an animation when funds are insufficient
-
-func on_player_died():
-	global.end_screen_state = global.EndScreenState.YOU_DIED
-	global.goto_end_screen(get_parent())
