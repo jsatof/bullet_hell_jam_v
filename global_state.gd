@@ -5,7 +5,7 @@ signal player_died
 const playspace = Vector2(400.0, 500.0)
 const scrap_value := 10
 
-const money_speed := 600.0
+const money_speed := 150.0
 const money_exponent := 1.5
 var max_lives := 5
 var lives := max_lives

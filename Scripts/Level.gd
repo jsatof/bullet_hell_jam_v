@@ -1,9 +1,12 @@
 extends Node2D
 
-var Enemy = preload("res://Scenes/Enemy.tscn")
+var EnemyPlate = preload("res://Scenes/EnemyPlate.tscn")
+var EnemyDrone = preload("res://Scenes/EnemyDrone.tscn")
+var EnemyDragonfly = preload("res://Scenes/EnemyDragonfly.tscn")
 
 var current_group := 0
 var groups = []
+
 
 func start_level():
 	call_groups_seqenced()
@@ -19,7 +22,16 @@ func wait_group_time():
 
 func spawn_group():
 	for i in groups[current_group]["enemies"]:
-		var e = Enemy.instantiate()
+		var e
+		match i["type"]:
+			"plate":
+				e = EnemyPlate.instantiate()
+			"drone":
+				e = EnemyDrone.instantiate()
+			"dragonfly":
+				e = EnemyDragonfly.instantiate()
+			_:
+				e = EnemyPlate.instantiate()
 		e.max_health = i["health"]
 		e.position = i["position"]
 		for pos in i["movement"]:

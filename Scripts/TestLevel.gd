@@ -12,7 +12,7 @@ func _ready():
 	# Rage at the lack of a struct feature in this god forsaken language
 	level.groups.append({
 		"time": 10.0, "enemies": [
-			{"health":100,"position":Vector2(0.0, -500.0),
+			{"type":"plate","health":100,"position":Vector2(0.0, -500.0),
 				"movement": [
 					{ point=Vector2(-200.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
 					{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
@@ -25,7 +25,7 @@ func _ready():
 					}}
 				]
 			},
-			{"health":100,"position":Vector2(0.0, -500.0),
+			{"type":"drone","health":100,"position":Vector2(0.0, -500.0),
 				"movement": [
 					{ point=Vector2(200.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
 					{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
@@ -47,7 +47,7 @@ func _ready():
 	})
 	level.groups.append({
 		"time": 12.0, "enemies": [
-			{"health":100,"position":Vector2(0.0, -500.0),
+			{"type":"plate","health":100,"position":Vector2(0.0, -500.0),
 				"movement": [
 				{ point=Vector2(-330.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
 				{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
@@ -70,7 +70,7 @@ func _ready():
 				}}
 				]
 			},
-			{"health":100,"position":Vector2(0.0, -500.0),
+			{"type":"plate","health":100,"position":Vector2(0.0, -500.0),
 				"movement": [
 				{ point=Vector2(330.0, 370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=4.0 },
 				{ point=Vector2(440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
@@ -83,7 +83,7 @@ func _ready():
 				}}
 				]
 			},
-			{"health":100,"position":Vector2(0.0, -500.0),
+			{"type":"plate","health":100,"position":Vector2(0.0, -500.0),
 				"movement": [
 				{ point=Vector2(0.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
 				{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
@@ -101,7 +101,7 @@ func _ready():
 	# Some crazy shit here man
 	level.groups.append({
 		"time": 10.0, "enemies": [
-			{"health":100,"position":Vector2(0.0, -500.0),
+			{"type":"dragonfly","health":100,"position":Vector2(0.0, -500.0),
 				"movement": [
 				{ point=Vector2(-330.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
 				{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }

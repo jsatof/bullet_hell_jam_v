@@ -3,7 +3,7 @@ extends Area2D
 @onready var globals = $'/root/GlobalState'
 @onready var bullet_pool = get_tree().get_first_node_in_group("pools")
 @onready var bullet_collider = $'BulletCollider'
-@onready var sprite = $'Sprite2D'
+@onready var sprite = $'PlayerSprite'
 @onready var hit_timer = $'HitTimer'
 
 const FLASH_INTERVAL = 0.1

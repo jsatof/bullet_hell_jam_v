@@ -16,7 +16,7 @@ func _ready() -> void:
 	$CollisionShape.disabled = true
 
 func _process(delta: float) -> void:
-	position += transform.y * globals.money_speed * delta
+	position += transform.orthonormalized().y * globals.money_speed * delta
 
 	if collected:
 		t += delta * 0.6
