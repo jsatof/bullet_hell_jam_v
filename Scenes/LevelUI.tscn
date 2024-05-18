@@ -112,14 +112,6 @@ offset_bottom = 299.0
 text = "Shoot Bullet
 "
 
-[node name="WinButton" type="Button" parent="TestButtons"]
-layout_mode = 0
-offset_left = 1019.0
-offset_top = 325.0
-offset_right = 1169.0
-offset_bottom = 376.0
-text = "Win Button"
-
 [node name="EquippedGunNameLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 951.0
