@@ -52,6 +52,7 @@ func fire() -> void:
 	b.lifetime = 2
 	b.rotation = -PI/2 # Rotate 90 degrees for upward firing
 
+	globals.update_bullet_counter()
 	can_fire = false
 	shot_timer.start()
 

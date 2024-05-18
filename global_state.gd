@@ -1,5 +1,7 @@
 extends Node
 
+signal player_died
+
 const playspace = Vector2(400.0, 500.0)
 const scrap_value := 10
 
@@ -10,7 +12,6 @@ var lives := max_lives
 var money := 1000.0
 
 var hit_count := 0
-var accuracy := 100.0
 var bullets_fired := 0
 var bullets_hit := 0
 
@@ -24,6 +25,14 @@ var stock_rng := RandomNumberGenerator.new()
 var bullet_rng := RandomNumberGenerator.new()
 
 signal money_added
+
+enum EndScreenState {
+	LEVEL_CLEAR,
+	VICTORY,
+	DEFEAT,
+	YOU_DIED,
+}
+var end_screen_state: EndScreenState = EndScreenState.YOU_DIED
 
 # Fixed fire rate as of now. Can tie to weapon if desired
 const fire_rate := 0.05
@@ -44,11 +53,13 @@ const bigger_gun := {
 	"shopprice": 500.0,
 }
 var current_weapon: Dictionary = pea_shooter_gun
-var current_purchasable_gun: Dictionary = bigger_gun
+var current_purchasable_weapon: Dictionary = bigger_gun
 
-var pea_shooter_bullet_count := 0
-var bigger_gun_bullet_count := 0
-var total_bullet_count := 0
+var bullet_counter: Dictionary = {
+	"pea_shooter": 0,
+	"bigger_gun": 0,
+	"total": 0,
+}
 
 func _ready() -> void:
 	stock_rng.seed = 42069 # TODO: remove me when finalizing
@@ -80,36 +91,38 @@ func add_money(x: float) -> void:
 	money_added.emit()
 
 func buy_and_equip_gun_from_shop() -> bool:
-	if current_purchasable_gun["shopprice"] > money:
+	if current_purchasable_weapon["shopprice"] > money:
 		return false
-	current_weapon = current_purchasable_gun
+	current_weapon = current_purchasable_weapon
 	money -= current_weapon["shopprice"]
 	return true
 
-func simulate_bullet_fired() -> void:
-	match current_weapon["id"]: # index 2 is the bullet cost
-		0: pea_shooter_bullet_count += 1
-		1: bigger_gun_bullet_count += 1
+func update_bullet_counter() -> void:
+	match current_weapon["id"]:
+		0: bullet_counter["pea_shooter"] += 1
+		1: bullet_counter["bigger_gun"] += 1
 
-	total_bullet_count += 1
-
-	if simulate_bullet_hit():
-		hit_count += 1
-
-	accuracy = float(hit_count) / float(total_bullet_count) * 100.0
-	money -= current_weapon["bulletcost"]
-
-func simulate_bullet_hit() -> bool:
-	return bullet_rng.randi() % 2 == 0
+	bullet_counter["total"] += 1
 
 func get_accuracy() -> float:
-	return accuracy
+	if bullet_counter["total"] == 0:
+		return 100.0
+	return float(hit_count) / float(bullet_counter["total"]) * 100.0
 
 func take_damage() -> void:
 	lives -= 1
 	if lives <= 0:
-		#TODO game over screen
-		print("Game over, man!")
+		player_died.emit()
 
 func collect_scrap() -> void:
 	add_money(scrap_value)
+
+func goto_end_screen(source: Node) -> void:
+	var end_scene := preload("res://Scenes/EndOfLevel.tscn").instantiate()
+	get_tree().root.add_child(end_scene)
+	source.queue_free()
+
+func goto_main_menu(source: Node) -> void:
+	var main_menu := preload("res://Scenes/MainMenu.tscn").instantiate()
+	get_tree().root.add_child(main_menu)
+	source.queue_free()

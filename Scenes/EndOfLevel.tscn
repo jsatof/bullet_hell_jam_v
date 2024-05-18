@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://y5i2gkunbxmu"]
+
+[ext_resource type="Script" path="res://Scripts/EndOfLevel.gd" id="1_wmvg0"]
+
+[node name="EndOfLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wmvg0")
+
+[node name="WinLoseLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -311.0
+offset_right = 55.5
+offset_bottom = -288.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Winnered"
+
+[node name="CaptionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 202.0
+offset_right = 886.0
+offset_bottom = 225.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GotoMainMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 805.0
+offset_right = 807.0
+offset_bottom = 867.0
+text = "Main Menu"
+
+[node name="VariableLabelsGroup" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 287.0
+offset_top = 265.0
+offset_right = 1023.0
+offset_bottom = 773.0
+
+[node name="BulletsShotTextLabel" type="Label" parent="VariableLabelsGroup"]
+visible = false
+layout_mode = 0
+offset_left = 559.0
+offset_top = 310.0
+offset_right = 708.0
+offset_bottom = 341.0
+text = "Bullets Shot:"
+vertical_alignment = 1
+
+[node name="BulletsShotValueLabel" type="Label" parent="VariableLabelsGroup"]
+visible = false
+layout_mode = 0
+offset_left = 723.0
+offset_top = 306.0
+offset_right = 897.0
+offset_bottom = 346.0
+text = "70
+"
+vertical_alignment = 1
+
+[node name="AccuracyTextLabel" type="Label" parent="VariableLabelsGroup"]
+visible = false
+layout_mode = 0
+offset_left = 550.0
+offset_top = 559.0
+offset_right = 724.0
+offset_bottom = 665.0
+
+[node name="AccuracyValueLabel" type="Label" parent="VariableLabelsGroup"]
+visible = false
+layout_mode = 0
+offset_left = 775.0
+offset_top = 591.0
+offset_right = 949.0
+offset_bottom = 697.0
+
+[node name="Timer" type="Timer" parent="."]
