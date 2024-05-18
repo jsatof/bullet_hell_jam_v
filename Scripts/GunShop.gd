@@ -12,4 +12,3 @@ func _ready():
 func update_labels():
 	gun_name.text = global.current_purchasable_weapon["name"]
 	gun_price.text = "$%.2f" % global.current_purchasable_weapon["shopprice"]
-	gun_bullet_cost.text = "$%.2f" % global.current_purchasable_weapon["bulletcost"]
