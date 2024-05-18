@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var audio_manager := get_node("/root/AudioManager")
+
 const SPAWNER = preload("res://Scripts/Spawner.gd")
 @onready var globals = get_node("/root/GlobalState")
 @onready var pool = get_tree().get_first_node_in_group("pools")
@@ -63,4 +65,5 @@ func _on_enemy_hit() -> void:
 
 func _on_enemy_killed() -> void:
 	drop_money()
+	audio_manager.play_enemy_death_sfx()
 	remove_self()

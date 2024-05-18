@@ -1,6 +1,6 @@
 extends Node
 
-signal player_died
+@onready var audio_manager := get_node("/root/AudioManager")
 
 const playspace = Vector2(384.0/4, 288.0/2 - 10)
 const scrap_value := 10
@@ -25,6 +25,8 @@ var stock_rng := RandomNumberGenerator.new()
 var bullet_rng := RandomNumberGenerator.new()
 
 signal money_added
+signal player_died
+signal new_weapon_equipped
 
 enum EndScreenState {
 	LEVEL_CLEAR,
@@ -44,6 +46,7 @@ const pea_shooter_gun := {
 	"damage": 10.0,
 	"bulletcost": 10.0,
 	"shopprice": 0.0,
+	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg")
 }
 const bigger_gun := {
 	"id": 1,
@@ -51,6 +54,7 @@ const bigger_gun := {
 	"damage": 25.0,
 	"bulletcost": 25.0,
 	"shopprice": 500.0,
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg")
 }
 var current_weapon: Dictionary = pea_shooter_gun
 var current_purchasable_weapon: Dictionary = bigger_gun
@@ -75,7 +79,7 @@ func buy_heckler_stock() -> bool:
 		return false
 	heckler_shares_owned += 1
 	money -= heckler_stock_price
-	print("Bought Stock for $", heckler_stock_price)
+	audio_manager.play_buy_share_sfx()
 	return true
 
 func sell_heckler_stock() -> bool:
@@ -83,7 +87,7 @@ func sell_heckler_stock() -> bool:
 		return false
 	heckler_shares_owned -= 1
 	money += heckler_stock_price
-	print("Sold Stock for $", heckler_stock_price)
+	audio_manager.play_sell_share_sfx()
 	return true
 
 func add_money(x: float) -> void:
@@ -95,6 +99,7 @@ func buy_and_equip_gun_from_shop() -> bool:
 		return false
 	current_weapon = current_purchasable_weapon
 	money -= current_weapon["shopprice"]
+	new_weapon_equipped.emit()
 	return true
 
 func update_bullet_counter() -> void:

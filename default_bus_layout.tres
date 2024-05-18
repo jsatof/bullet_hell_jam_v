@@ -1,0 +1,41 @@
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://btub3iqex778j"]
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_qju81"]
+resource_name = "Limiter"
+ceiling_db = -6.0
+threshold_db = -6.2
+
+[sub_resource type="AudioEffectPanner" id="AudioEffectPanner_hg3pw"]
+resource_name = "Panner"
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_m1j8u"]
+resource_name = "Limiter"
+ceiling_db = -6.0
+threshold_db = -3.1
+
+[resource]
+bus/0/volume_db = -2.3125
+bus/0/effect/0/effect = SubResource("AudioEffectLimiter_qju81")
+bus/0/effect/0/enabled = true
+bus/1/name = &"Player SFX"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -0.130497
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectPanner_hg3pw")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectLimiter_m1j8u")
+bus/1/effect/1/enabled = true
+bus/2/name = &"Other SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/3/name = &"Soundtrack"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = -6.57885
+bus/3/send = &"Master"
