@@ -7,7 +7,7 @@ var amplitude := 1.0
 var frequency := 1.0
 var acceleration := 1.0
 var movement := Callable(self, "linear_move")
-var lifetime := 10.0
+var lifetime := 4.0
 var current_time := 0.0
 # var damage := 1.0 #UNSUED
 
