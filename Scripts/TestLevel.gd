@@ -6,16 +6,21 @@ var level
 var current_group := 0
 var groups = []
 
+const bottom := 288.0/2.0 + 32
+const top := -bottom
+const right := 384.0/4.0 + 32
+const left := -right
+
 func _ready():
 	level = LEVEL.new()
+	self.add_to_group("level")
 	self.add_child(level)
-	# Rage at the lack of a struct feature in this god forsaken language
 	level.groups.append({
 		"time": 10.0, "enemies": [
-			{"type":"plate","health":100,"position":Vector2(0.0, -500.0),
+			{"type":"plate","health":100,"position":Vector2(0.0, top),
 				"movement": [
-					{ point=Vector2(-200.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
-					{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+					{ point=Vector2(left+64, top+64),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
+					{ point=Vector2(left, bottom),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
 				],
 				"spawners": [
 					{ type="radial",cycles=20,shot_delay=0.3,init_delay=0.5,random=Vector2(-10,10),
@@ -25,21 +30,21 @@ func _ready():
 					}}
 				]
 			},
-			{"type":"drone","health":100,"position":Vector2(0.0, -500.0),
+			{"type":"drone","health":100,"position":Vector2(0.0, top),
 				"movement": [
-					{ point=Vector2(200.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
-					{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+					{ point=Vector2(right-64, top+70),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
+					{ point=Vector2(right, bottom),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
 				],
 				"spawners": [
 					{ type="radial",cycles=10,shot_delay=2,init_delay=0.5,rotation=0,target=true,
 					spawn_params={"amount":5,"degrees":25},
 					bullet_data={
-					velocity=200.0,color=Color("RED"),size=3,
+					velocity=100.0,color=Color("RED"),size=2,
 					}},
 					{ type="radial",cycles=10,shot_delay=0.5,init_delay=0.75,rotation=0,target=true,random=Vector2(-3,3),
 					spawn_params={"amount":3,"degrees":25},
 					bullet_data={
-					velocity=200.0,color=Color("PURPLE")
+					velocity=100.0,color=Color("PURPLE")
 					}},
 				]
 			},

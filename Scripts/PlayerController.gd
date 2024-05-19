@@ -9,8 +9,8 @@ extends Area2D
 const FLASH_INTERVAL = 0.1
 var sprite_visible := true
 
-var normal_speed := 400.0
-var focus_speed := 200.0
+var normal_speed := 200.0
+var focus_speed := 50.0
 
 var shot_timer: Timer
 var flash_timer: Timer
@@ -48,7 +48,7 @@ func fire() -> void:
 	var b = bullet_pool.player_bullet()
 	b.position = self.global_position
 	b.set_color(Color("YELLOW"))
-	b.velocity = 1000.0
+	b.velocity = globals["bullet_speed"]
 	b.lifetime = 2
 	b.rotation = -PI/2 # Rotate 90 degrees for upward firing
 

@@ -2,10 +2,10 @@ extends Node
 
 signal player_died
 
-const playspace = Vector2(400.0, 500.0)
+const playspace = Vector2(384.0/4, 288.0/2 - 10)
 const scrap_value := 10
 
-const money_speed := 150.0
+const money_speed := 50.0
 const money_exponent := 1.5
 var max_lives := 5
 var lives := max_lives
@@ -36,7 +36,7 @@ var end_screen_state: EndScreenState = EndScreenState.YOU_DIED
 
 # Fixed fire rate as of now. Can tie to weapon if desired
 const fire_rate := 0.05
-const bullet_speed := 1000.0
+const bullet_speed := 300.0
 
 const pea_shooter_gun := {
 	"id": 0,
@@ -113,14 +113,16 @@ func take_damage() -> void:
 	lives -= 1
 	if lives <= 0:
 		player_died.emit()
+		goto_end_screen()
 
 func collect_scrap() -> void:
 	add_money(scrap_value)
 
-func goto_end_screen(source: Node) -> void:
+func goto_end_screen() -> void:
 	var end_scene := preload("res://Scenes/EndOfLevel.tscn").instantiate()
 	get_tree().root.add_child(end_scene)
-	source.queue_free()
+	end_screen_state = EndScreenState.YOU_DIED
+	get_tree().get_first_node_in_group("level").queue_free()
 
 func goto_main_menu(source: Node) -> void:
 	var main_menu := preload("res://Scenes/MainMenu.tscn").instantiate()

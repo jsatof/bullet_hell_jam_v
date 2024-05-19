@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dgb6m6c02ertc" path="res://Art/DinnerPlate.png" id="2_hpror"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pu0y1"]
-radius = 7.60263
+radius = 1.45602
 
 [node name="Enemy" type="Area2D" groups=["enemy"]]
 input_pickable = false
@@ -13,7 +13,6 @@ script = ExtResource("1_rq2yt")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-scale = Vector2(5, 5)
 texture = ExtResource("2_hpror")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
