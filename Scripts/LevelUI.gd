@@ -6,6 +6,7 @@ extends Control
 @onready var shares_owned_value := $SharesOwnedValueLabel
 @onready var shop_gun_name := $EquippedGunNameLabel
 @onready var equipped_gun_value := $EquippedGunValueLabel
+@onready var trades_left_value := $TradesLeftValueLabel
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("buy_share"):
@@ -14,22 +15,13 @@ func _input(event: InputEvent) -> void:
 		on_sell_share_pressed()
 	if event.is_action_pressed("buy_gun"):
 		on_buy_gun_pressed()
+	trades_left_value.text = "%d" % global.trades_remaining
 
 func _ready() -> void:
 	global.money_added.connect(update_money_label)
 	money_value.text = "$%.2f" % global.money
 	money_value.add_theme_color_override("font_color", Color.WEB_GREEN)
 	accuracy_value.text = "%.2f%%" % global.get_accuracy()
-
-#  TODO: proper detection on a bullet collision is a priority
-func on_shoot_button() -> void:
-	global.simulate_bullet_fired()
-	var acc: float = global.get_accuracy()
-
-	accuracy_value.text = "%.2f%%" % acc
-	print("Bullet Count:", global.total_bullet_count)
-	print("Hit Count:", global.hit_count)
-	print("Acc:", acc)
 
 func update_money_label() -> void:
 	money_value.text = "$%.2f" % global.money
@@ -51,10 +43,12 @@ func on_buy_share_pressed() -> void:
 func on_sell_share_pressed() -> void:
 	if global.sell_heckler_stock():
 		update_stock_owned_label()
+		trades_left_value.text = "%d" % global.trades_remaining
 	# TODO: maybe play an animation when 0 stocks to sell
 
 func on_buy_gun_pressed() -> void:
 	if global.buy_and_equip_gun_from_shop():
 		update_money_label()
 		update_equipped_gun_label()
+		trades_left_value.text = "%d" % global.trades_remaining
 	# TODO: maybe play an animation when funds are insufficient

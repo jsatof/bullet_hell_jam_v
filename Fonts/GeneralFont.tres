@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://jliowcagqcbw"]
+
+[ext_resource type="FontFile" uid="uid://bryrykwj4kch0" path="res://Fonts/Kenney High Square.ttf" id="1_8bp14"]
+
+[resource]
+default_font = ExtResource("1_8bp14")
+default_font_size = 16

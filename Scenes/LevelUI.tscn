@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccejxm28iefik"]
+[gd_scene load_steps=6 format=3 uid="uid://ccejxm28iefik"]
 
 [ext_resource type="Script" path="res://Scripts/LevelUI.gd" id="1_cjrv7"]
+[ext_resource type="FontFile" uid="uid://btdeqe64fl5oh" path="res://Fonts/Kenney High.ttf" id="1_q8xij"]
 [ext_resource type="PackedScene" uid="uid://bqr8gvqlrjdmp" path="res://Scenes/StockGraph.tscn" id="2_y6mi4"]
 [ext_resource type="PackedScene" uid="uid://5557dvy4b3to" path="res://Scenes/GunShop.tscn" id="3_ijx18"]
 
+[sub_resource type="Theme" id="Theme_0m0q1"]
+default_font = ExtResource("1_q8xij")
+
 [node name="LevelUI" type="Control"]
 z_index = 10
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 7.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_0m0q1")
 script = ExtResource("1_cjrv7")
 
 [node name="LeftBar" type="ColorRect" parent="."]
@@ -22,6 +29,7 @@ anchor_bottom = 1.0
 offset_top = -288.0
 offset_right = 85.0
 grow_vertical = 0
+theme = SubResource("Theme_0m0q1")
 color = Color(0.1504, 0.1512, 0.16, 1)
 
 [node name="RightBar" type="ColorRect" parent="."]
@@ -35,30 +43,22 @@ offset_left = -85.0
 offset_top = -288.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = SubResource("Theme_0m0q1")
 color = Color(0.1504, 0.1512, 0.16, 1)
-
-[node name="MoneyLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -83.0
-offset_right = -18.0
-offset_bottom = 28.0
-grow_horizontal = 0
-text = "Money:"
 
 [node name="MoneyValueLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -83.0
-offset_top = 28.0
-offset_right = 1.0
-offset_bottom = 51.0
+offset_left = -82.0
+offset_top = 268.0
+offset_right = -17.0
+offset_bottom = 282.0
 grow_horizontal = 0
+theme = SubResource("Theme_0m0q1")
 text = "$10000000"
+vertical_alignment = 1
 
 [node name="AccuracyLabel" type="Label" parent="."]
 layout_mode = 1
@@ -67,13 +67,15 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -81.0
-offset_right = -9.0
-offset_bottom = -58.0
+offset_left = -81.0
+offset_top = -82.0
+offset_right = -27.0
+offset_bottom = -68.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = SubResource("Theme_0m0q1")
 text = "Accuracy:"
+vertical_alignment = 1
 
 [node name="AccuracyValueLabel" type="Label" parent="."]
 layout_mode = 1
@@ -82,25 +84,63 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -51.0
-offset_right = -9.0
-offset_bottom = -28.0
+offset_left = -81.0
+offset_top = -66.0
+offset_right = -26.0
+offset_bottom = -52.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = SubResource("Theme_0m0q1")
 text = "0.00%"
+vertical_alignment = 1
+
+[node name="StockGraph" parent="." instance=ExtResource("2_y6mi4")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -115.0
+offset_right = 5.96046e-08
+offset_bottom = -115.0
+grow_horizontal = 1
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+theme = SubResource("Theme_0m0q1")
+
+[node name="GunShop" parent="." instance=ExtResource("3_ijx18")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -111.0
+offset_right = -85.0
+offset_bottom = -111.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+theme = SubResource("Theme_0m0q1")
+
+[node name="TestButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_0m0q1")
 
 [node name="SharesOwnedLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -55.0
-offset_top = -67.0
-offset_right = 82.0
-offset_bottom = -44.0
+offset_left = -1.0
+offset_top = 24.0
+offset_right = 44.0
+offset_bottom = 47.0
 grow_vertical = 2
-text = "Shares Onwed:"
+theme = SubResource("Theme_0m0q1")
+text = "Shares :"
 horizontal_alignment = 2
 
 [node name="SharesOwnedValueLabel" type="Label" parent="."]
@@ -108,44 +148,14 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 8.0
-offset_top = -39.0
-offset_right = 82.0
-offset_bottom = -16.0
+offset_left = 7.0
+offset_top = 24.0
+offset_right = 81.0
+offset_bottom = 47.0
 grow_vertical = 2
+theme = SubResource("Theme_0m0q1")
 text = "0"
 horizontal_alignment = 2
-
-[node name="StockGraph" parent="." instance=ExtResource("2_y6mi4")]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_right = 0.0
-offset_left = 4.0
-offset_top = -157.0
-offset_right = 4.0
-offset_bottom = -157.0
-grow_horizontal = 1
-grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-
-[node name="GunShop" parent="." instance=ExtResource("3_ijx18")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-offset_left = -82.0
-offset_top = -109.0
-offset_right = -82.0
-offset_bottom = -109.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-
-[node name="TestButtons" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="EquippedGunNameLabel" type="Label" parent="."]
 layout_mode = 1
@@ -154,13 +164,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -82.0
-offset_top = -166.0
-offset_right = 25.0
-offset_bottom = -139.0
+offset_left = -81.0
+offset_top = -172.0
+offset_right = -11.0
+offset_bottom = -158.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = SubResource("Theme_0m0q1")
 text = "Current Gun:"
+vertical_alignment = 1
 
 [node name="EquippedGunValueLabel" type="Label" parent="."]
 layout_mode = 1
@@ -169,37 +181,29 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -82.0
-offset_top = -139.0
-offset_right = 73.0
-offset_bottom = -108.0
+offset_left = -80.0
+offset_top = -158.0
+offset_right = -7.0
+offset_bottom = -127.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Default Pea Shooter"
+theme = SubResource("Theme_0m0q1")
+text = "Pea
+Shooter"
+vertical_alignment = 1
 
-[node name="StockHotKeyDisplayLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -15.0
-offset_top = -51.0
-offset_right = 82.0
-offset_bottom = -2.0
-grow_vertical = 0
-text = "X: Buy Share
-C: Sell Share
-"
+[node name="TradesLeftLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 106.0
+offset_right = 67.0
+offset_bottom = 120.0
+text = "Trades  Left:"
 
-[node name="GunShopHotKeyDisplayLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -83.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "F: Buy Gun"
+[node name="TradesLeftValueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 118.0
+offset_right = 135.0
+offset_bottom = 132.0
+text = "69"

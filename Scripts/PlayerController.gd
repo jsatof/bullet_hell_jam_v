@@ -112,4 +112,4 @@ func _on_player_died() -> void:
 func _on_new_weapon_equipped() -> void:
 	audio_player.stream = equip_sfx
 	audio_player.playing = true
-	shoot_sfx = globals.current_weapon["shootsound"]
+	shoot_sfx = globals.current_weapon["shootsound"] if globals.current_weapon.has("shootsound") else preload("res://Resources/Audio/SFX/that_sound_used_in_undertale.ogg")

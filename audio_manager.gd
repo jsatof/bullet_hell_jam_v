@@ -15,9 +15,11 @@ func _ready() -> void:
 	add_child(soundtrack_player)
 
 	other_sfx_player.bus = "Other SFX"
+	other_sfx_player.max_polyphony = 10
 	add_child(other_sfx_player)
 
 	player_sfx_player.bus = "Player SFX"
+	player_sfx_player.max_polyphony = 10
 	add_child(player_sfx_player)
 
 func set_soundtrack(stream: AudioStreamOggVorbis) -> void:
@@ -26,6 +28,9 @@ func set_soundtrack(stream: AudioStreamOggVorbis) -> void:
 
 func play_soundtrack() -> void:
 	soundtrack_player.playing = true
+
+func stop_soundtrack() -> void:
+	soundtrack_player.stop()
 
 func add_soundtrack_lpf() -> void:
 	pass
