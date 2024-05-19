@@ -7,7 +7,7 @@ const scrap_value := 10
 
 const money_speed := 50.0
 const money_exponent := 1.5
-var max_lives := 50
+var max_lives := 5
 var lives := max_lives
 var money := 1000.0
 
@@ -41,14 +41,13 @@ const bullet_speed := 300.0
 const pea_shooter_gun := {
 	"name": "Pea Shooter",
 	"damage": 10.0,
-	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg")
+	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg"),
 	"shopprice": 50000.0,
-	"ammo": 100,
-	"shot_delay": 0.2,
+	"cycles": 200,
+	"shot_delay": 0.01,
 	"rotation": 180,
 	"friend": true,
 	"type": "linear",
-	"spawn_params": {},
 	"bullet_data": {
 		"velocity": 300.0,
 		"color": Color("YELLOW"),
@@ -61,22 +60,21 @@ const bigger_gun := {
 	"name": "Bigger Gun",
 	"damage": 25.0,
 	"shopprice": 500.0,
-	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg")
-	"ammo": 200,
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"cycles": 200,
 	"bullet_speed": 400,
 	"shot_delay": 0.08,
 	"rotation": 180,
 	"friend": true,
 	"type": "linear",
-	"spawn_params": {},
 	"bullet_data": {
 		"velocity": 300.0,
 		"color": Color("RED"),
-		"size": 1.0,
+		"size": 2.0,
 		"acceleration": 1.0,
 		"frequency": 20,
 		"amplitude": 3,
-		"movement": "sin",
+		"movement": "linear",
 	}
 }
 var current_weapon: Dictionary = pea_shooter_gun
@@ -116,7 +114,6 @@ func buy_and_equip_gun_from_shop() -> bool:
 		return false
 	equip_weapon(current_purchasable_weapon)
 	money -= current_weapon["shopprice"]
-	new_weapon_equipped.emit()
 	return true
 
 func equip_weapon(weapon):

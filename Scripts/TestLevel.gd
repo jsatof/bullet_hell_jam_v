@@ -38,6 +38,19 @@ func _ready() -> void:
 					}}
 				]
 			},
+			{"type":"plate","health":100,"position":Vector2(0.0, top),
+				"movement": [
+					{ point=Vector2(left+80, top+64),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
+					{ point=Vector2(left, bottom),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+				],
+				"spawners": [
+					{ type="radial",cycles=20,shot_delay=0.3,init_delay=0.5,random=Vector2(-10,10),
+					spawn_params={"amount":10},
+					bullet_data={
+					velocity=20.0,acceleration=1.05,color=Color("YELLOW")
+					}}
+				]
+			},
 			{"type":"drone","health":100,"position":Vector2(0.0, top),
 				"movement": [
 					{ point=Vector2(right-64, top+70),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },

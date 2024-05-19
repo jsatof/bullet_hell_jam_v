@@ -40,7 +40,6 @@ func enable(is_enabled: bool):
 
 ### Movement functions ###
 func set_movement(move_type: String):
-	print("Set movement")
 	match move_type:
 		"linear":
 			movement = Callable(self, "linear_move")
