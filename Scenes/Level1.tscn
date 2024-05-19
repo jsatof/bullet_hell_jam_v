@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxist6bd3rnkt"]
+
+[ext_resource type="Script" path="res://Scripts/Level1.gd" id="1_oawaa"]
+[ext_resource type="PackedScene" uid="uid://ecqkk0l8ehf8" path="res://Scenes/Player.tscn" id="2_jo2k1"]
+[ext_resource type="Script" path="res://Scripts/Pools.gd" id="3_5n3gf"]
+[ext_resource type="PackedScene" uid="uid://ccejxm28iefik" path="res://Scenes/LevelUI.tscn" id="4_qfxh1"]
+[ext_resource type="PackedScene" uid="uid://c2gjwu8ar6c2a" path="res://Scenes/Background.tscn" id="5_ovsma"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_oawaa")
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_jo2k1")]
+position = Vector2(0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Pools" type="Node" parent="." groups=["pools"]]
+script = ExtResource("3_5n3gf")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -144.0
+offset_right = 193.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelUI" parent="Control" instance=ExtResource("4_qfxh1")]
+layout_mode = 1
+
+[node name="Background" parent="Control" instance=ExtResource("5_ovsma")]
+z_index = -1
+layout_mode = 1

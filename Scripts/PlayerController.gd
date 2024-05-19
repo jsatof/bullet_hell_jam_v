@@ -19,7 +19,7 @@ const SPAWNER = preload("res://Scripts/Spawner.gd")
 const FLASH_INTERVAL = 0.1
 var sprite_visible := true
 
-var normal_speed := 200.0
+var normal_speed := 150.0
 var focus_speed := 50.0
 
 var flash_timer: Timer

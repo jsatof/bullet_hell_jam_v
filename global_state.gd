@@ -44,7 +44,7 @@ const pea_shooter_gun := {
 	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg"),
 	"shopprice": 50000.0,
 	"cycles": 200,
-	"shot_delay": 0.01,
+	"shot_delay": 0.1,
 	"rotation": 180,
 	"friend": true,
 	"type": "linear",

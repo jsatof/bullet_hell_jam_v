@@ -7,20 +7,20 @@ var EnemyDragonfly = preload("res://Scenes/EnemyDragonfly.tscn")
 var current_group := 0
 var groups = []
 
-
-func start_level():
+func start_level(start_group := 0) -> void:
+	current_group = start_group
 	call_groups_seqenced()
 
-func call_groups_seqenced():
+func call_groups_seqenced() -> void:
 	for i in range(current_group, groups.size()):
 		spawn_group()
 		await wait_group_time()
 		current_group += 1
 
-func wait_group_time():
+func wait_group_time() -> void:
 	await get_tree().create_timer(groups[current_group]["time"]).timeout
 
-func spawn_group():
+func spawn_group() -> void:
 	for i in groups[current_group]["enemies"]:
 		var e
 		match i["type"]:
