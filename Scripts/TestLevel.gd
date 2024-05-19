@@ -4,6 +4,7 @@ extends Node2D
 @onready var soundtrack := AudioStreamOggVorbis.load_from_file("res://Resources/Audio/Music/Tsumi.ogg")
 
 const LEVEL = preload("res://Scripts/Level.gd")
+@onready var globals := $'/root/GlobalState'
 
 var level
 var current_group := 0
@@ -18,6 +19,7 @@ func _ready() -> void:
 	audio_manager.set_soundtrack(soundtrack)
 	audio_manager.play_soundtrack()
 
+	globals.start_level()
 	level = LEVEL.new()
 	self.add_to_group("level")
 	self.add_child(level)

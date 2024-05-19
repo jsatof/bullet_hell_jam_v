@@ -38,7 +38,7 @@ func create_spawners() -> void:
 		var spawner = SPAWNER.new()
 		self.add_child(spawner)
 		spawner.set_spawner_data(s)
-		spawner.activate()
+		spawner.activate_and_auto_fire()
 
 func drop_money() -> void:
 	for i in range(max_health/25 + pow(max_health/100, globals.money_exponent)):
