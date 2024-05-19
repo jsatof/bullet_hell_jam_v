@@ -5,7 +5,6 @@ extends AudioStreamPlayer
 @onready var soundtrack_player := AudioStreamPlayer.new()
 @onready var player_sfx_player := AudioStreamPlayer.new()
 @onready var other_sfx_player := AudioStreamPlayer.new()
-@onready var ogg_stream := AudioStreamOggVorbis.load_from_file("res://Resources/Audio/Music/Tsumi.ogg")
 @onready var enemy_death_sfx := preload("res://Resources/Audio/SFX/explosion.ogg")
 @onready var player_death_sfx := preload("res://Resources/Audio/SFX/wasted.ogg")
 @onready var buy_share_sfx := preload("res://Resources/Audio/SFX/buybuybuy.ogg")
@@ -13,18 +12,17 @@ extends AudioStreamPlayer
 
 func _ready() -> void:
 	soundtrack_player.bus = "Soundtrack"
-	set_soundtrack(ogg_stream)
 	add_child(soundtrack_player)
-
-func set_soundtrack(stream: AudioStreamOggVorbis) -> void:
-	soundtrack_player.stream = stream
-	soundtrack_player.stream.loop = true
 
 	other_sfx_player.bus = "Other SFX"
 	add_child(other_sfx_player)
 
 	player_sfx_player.bus = "Player SFX"
 	add_child(player_sfx_player)
+
+func set_soundtrack(stream: AudioStreamOggVorbis) -> void:
+	soundtrack_player.stream = stream
+	soundtrack_player.stream.loop = true
 
 func play_soundtrack() -> void:
 	soundtrack_player.playing = true
