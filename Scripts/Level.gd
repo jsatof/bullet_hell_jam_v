@@ -4,6 +4,8 @@ var EnemyPlate = preload("res://Scenes/EnemyPlate.tscn")
 var EnemyDrone = preload("res://Scenes/EnemyDrone.tscn")
 var EnemyDragonfly = preload("res://Scenes/EnemyDragonfly.tscn")
 
+@onready var globals := $'/root/GlobalState'
+
 var current_group := 0
 var groups = []
 
@@ -16,6 +18,8 @@ func call_groups_seqenced() -> void:
 		spawn_group()
 		await wait_group_time()
 		current_group += 1
+
+	globals.finish_level()
 
 func wait_group_time() -> void:
 	await get_tree().create_timer(groups[current_group]["time"]).timeout

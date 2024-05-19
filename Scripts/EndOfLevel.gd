@@ -21,6 +21,7 @@ func _ready() -> void:
 	timer.timeout.connect(on_timer_tick)
 	finished.connect(on_finished)
 
+#TODO DEBT PAGE
 	match global.end_screen_state:
 		global.EndScreenState.VICTORY:
 			win_lose_label.text = "YOU WIN"
@@ -76,6 +77,19 @@ func init_label_positions() -> void:
 	var total_money_color := Color.WEB_GREEN if global.money > 0.0 else Color.DARK_RED
 	next_label = create_new_label(current_pos, total_money_color, "$%.2f" % global.money)
 	label_stack.push_back(next_label)
+
+	current_pos = Vector2(x_start, current_pos.y + 2 * next_label.size.y)
+	next_label = create_new_label(current_pos, Color.WHITE, "Press 'F' to continue")
+	label_stack.push_back(next_label)
+
+func _input(event: InputEvent) -> void:
+	if(event.is_action_pressed("buy_gun")):
+		match global.end_screen_state:
+			global.EndScreenState.LEVEL_CLEAR:
+				global.load_next_level()
+			_:
+				global.goto_main_menu()
+
 
 # helper to generate label nodes
 func create_new_label(pos: Vector2, color: Color, text: String) -> Label:

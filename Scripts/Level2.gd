@@ -45,8 +45,6 @@ func _ready() -> void:
 	self.add_to_group("level")
 	self.add_child(level)
 
-	print(Vector2(COL1, ROW2))
-
 	level.groups.append({
 		"time":3, "enemies":[]
 	})
