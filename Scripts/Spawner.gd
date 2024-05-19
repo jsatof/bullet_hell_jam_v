@@ -93,8 +93,8 @@ func set_bullet_data(b) -> void:
 		b.frequency = bullet_data.frequency
 	if bullet_data.has("amplitude"):
 		b.amplitude = bullet_data.amplitude
-	if bullet_data.has("movement"):
-		b.set_movement(bullet_data.movement)
+	if bullet_data.has("type"):
+		b.set_movement(bullet_data.type)
 	if bullet_data.has("acceleration"):
 		b.acceleration = bullet_data.acceleration
 	if target:

@@ -7,13 +7,34 @@ const LEVEL = preload("res://Scripts/Level.gd")
 @onready var globals := $'/root/GlobalState'
 
 var level
-var current_group := 0
 var groups = []
 
-const bottom := 288.0/2.0 + 32
-const top := -bottom
-const right := 384.0/4.0 + 32
-const left := -right
+const HEIGHT := 288
+const WIDTH := 384
+
+const BOTTOM := HEIGHT/2 + 64
+const TOP := -BOTTOM
+const RIGHT := WIDTH/4 + 64
+const LEFT := -RIGHT
+
+const COL := WIDTH/(2*6)
+const COL5 := -WIDTH/4 + 6 * COL - COL/2
+const COL0 := -WIDTH/4 + 1 * COL - COL/2
+const COL1 := -WIDTH/4 + 2 * COL - COL/2
+const COL2 := -WIDTH/4 + 3 * COL - COL/2
+const COL3 := -WIDTH/4 + 4 * COL - COL/2
+const COL4 := -WIDTH/4 + 5 * COL - COL/2
+
+const ROW := HEIGHT/9
+const ROW0 := -HEIGHT/2 + 1 * ROW - ROW/2
+const ROW1 := -HEIGHT/2 + 2 * ROW - ROW/2
+const ROW2 := -HEIGHT/2 + 3 * ROW - ROW/2
+const ROW3 := -HEIGHT/2 + 4 * ROW - ROW/2
+const ROW4 := -HEIGHT/2 + 5 * ROW - ROW/2
+const ROW5 := -HEIGHT/2 + 6 * ROW - ROW/2
+const ROW6 := -HEIGHT/2 + 7 * ROW - ROW/2
+const ROW7 := -HEIGHT/2 + 8 * ROW - ROW/2
+const ROW8 := -HEIGHT/2 + 9 * ROW - ROW/2
 
 func _ready() -> void:
 	audio_manager.set_soundtrack(soundtrack)
@@ -23,124 +44,93 @@ func _ready() -> void:
 	level = LEVEL.new()
 	self.add_to_group("level")
 	self.add_child(level)
+
+	print(Vector2(COL1, ROW2))
+
+	level.groups.append({
+		"time":5, "enemies":[]
+	})
 	level.groups.append({
 		"time": 10.0, "enemies": [
-			{"type":"plate","health":100,"position":Vector2(0.0, top),
+			{"type":"plate","health":50,"position":Vector2(LEFT, TOP),
 				"movement": [
-					{ point=Vector2(left+64, top+64),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
-					{ point=Vector2(left, bottom),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+					{ point=Vector2(COL1, ROW2),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.3 },
+					{ point=Vector2(COL1, ROW7),time=5,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(LEFT, ROW8),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
 				],
 				"spawners": [
-					{ type="radial",cycles=20,shot_delay=0.3,init_delay=0.5,random=Vector2(-10,10),
-					spawn_params={"amount":10},
+					{ type="linear",cycles=10,shot_delay=0.8,init_delay=0.5,target=true,
+					spawn_params={},
 					bullet_data={
-					velocity=20.0,acceleration=1.05,color=Color("YELLOW")
+					velocity=100.0,acceleration=1.0,color=Color("RED")
 					}}
 				]
 			},
-			{"type":"plate","health":100,"position":Vector2(0.0, top),
+			{"type":"plate","health":50,"position":Vector2(COL2, TOP),
 				"movement": [
-					{ point=Vector2(left+80, top+64),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
-					{ point=Vector2(left, bottom),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+					{ point=Vector2(COL2, TOP),time=0.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=3.0 },
+					{ point=Vector2(COL2, ROW2),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.3 },
+					{ point=Vector2(COL2, ROW7),time=5,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(LEFT, ROW8),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
 				],
 				"spawners": [
-					{ type="radial",cycles=20,shot_delay=0.3,init_delay=0.5,random=Vector2(-10,10),
-					spawn_params={"amount":10},
+					{ type="linear",cycles=10,shot_delay=3.5,init_delay=0.5,target=true,
+					spawn_params={},
 					bullet_data={
-					velocity=20.0,acceleration=1.05,color=Color("YELLOW")
+					velocity=100.0,acceleration=1.0,color=Color("RED")
 					}}
 				]
 			},
-			{"type":"drone","health":100,"position":Vector2(0.0, top),
+			{"type":"plate","health":50,"position":Vector2(RIGHT, TOP),
 				"movement": [
-					{ point=Vector2(right-64, top+70),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
-					{ point=Vector2(right, bottom),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+					{ point=Vector2(COL5, TOP),time=0.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=6.0 },
+					{ point=Vector2(COL5, ROW1),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.3 },
+					{ point=Vector2(COL5, ROW6),time=5,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(RIGHT, ROW7),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
 				],
 				"spawners": [
-					{ type="radial",cycles=10,shot_delay=2,init_delay=0.5,rotation=0,target=true,
-					spawn_params={"amount":5,"degrees":25},
+					{ type="linear",cycles=10,shot_delay=3.5,init_delay=0.5,target=true,
+					spawn_params={},
 					bullet_data={
-					velocity=100.0,color=Color("RED"),size=2,
-					}},
-					{ type="radial",cycles=10,shot_delay=0.5,init_delay=0.75,rotation=0,target=true,random=Vector2(-3,3),
-					spawn_params={"amount":3,"degrees":25},
-					bullet_data={
-					velocity=100.0,color=Color("PURPLE")
-					}},
+					velocity=100.0,acceleration=1.0,color=Color("RED")
+					}}
 				]
 			},
 		]
 	})
 	level.groups.append({
-		"time": 12.0, "enemies": [
-			{"type":"plate","health":100,"position":Vector2(0.0, -500.0),
+		"time": 6.0, "enemies": [
+			{"type":"plate","health":50,"position":Vector2(LEFT, TOP),
 				"movement": [
-				{ point=Vector2(-330.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
-				{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+					{ point=Vector2(LEFT, TOP),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL1, ROW3),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL1, ROW3),time=5,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(RIGHT, ROW3),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
 				],
 				"spawners": [
-				{ type="radial",cycles=20,shot_delay=0.05,init_delay=0.5,rotation=20,
-					spawn_params={"amount":10},
+					{ type="linear",cycles=10,shot_delay=1.2,init_delay=0.5,random=Vector2(-30,30),target=true,
+					spawn_params={},
 					bullet_data={
-					velocity=400.0,color=Color("PURPLE")
-				}},
-				{ type="radial",cycles=20,shot_delay=0.05,init_delay=0.5,rotation=2.5,
-					spawn_params={"amount":10},
-					bullet_data={
-					velocity=400.0,color=Color("CYAN")
-				}},
-				{ type="radial",cycles=10,shot_delay=0.1,init_delay=0.5,rotation=2.5,target=true,
-					spawn_params={"amount":10},
-					bullet_data={
-					velocity=400.0,color=Color("RED")
-				}}
+					velocity=150.0,acceleration=1.0,color=Color("RED")
+					}}
 				]
 			},
-			{"type":"plate","health":100,"position":Vector2(0.0, -500.0),
+			{"type":"plate","health":50,"position":Vector2(LEFT, TOP),
 				"movement": [
-				{ point=Vector2(330.0, 370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=4.0 },
-				{ point=Vector2(440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
+					{ point=Vector2(LEFT, TOP),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL1, ROW3),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL1, ROW3),time=5,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(RIGHT, ROW3),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
 				],
 				"spawners": [
-				{ type="linear",cycles=20,shot_delay=0.3,init_delay=0.5,rotation=20,target=true,
-					spawn_params={"amount":10},
+					{ type="linear",cycles=10,shot_delay=1.2,init_delay=0.5,random=Vector2(-30,30),target=true,
+					spawn_params={},
 					bullet_data={
-					velocity=400.0,color=Color("YELLOW")
-				}}
-				]
-			},
-			{"type":"plate","health":100,"position":Vector2(0.0, -500.0),
-				"movement": [
-				{ point=Vector2(0.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
-				{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
-				],
-				"spawners": [
-				{ type="linear",cycles=20,shot_delay=0.3,init_delay=0.5,
-					spawn_params={"amount":10},
-					bullet_data={
-					velocity=400.0,color=Color("YELLOW")
-				}}
-				]
-			},
-		]
-	})
-	# Some crazy shit here man
-	level.groups.append({
-		"time": 10.0, "enemies": [
-			{"type":"dragonfly","health":100,"position":Vector2(0.0, -500.0),
-				"movement": [
-				{ point=Vector2(-330.0, -370.0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
-				{ point=Vector2(-440.0, 500.0),time=3,trans=Tween.TRANS_QUINT,ease=Tween.EASE_IN,pause=0.0 }
-				],
-				"spawners": [
-				{ type="radial",cycles=10,shot_delay=0.1,init_delay=0.5,rotation=20,angular_rate=1,
-					spawn_params={"amount":15},
-					bullet_data={
-					velocity=400.0,color=Color("PURPLE"),movement="sin",amplitude=3,frequency=5
-				}},
+					velocity=150.0,acceleration=1.0,color=Color("RED")
+					}}
 				]
 			},
 		]
 	})
 
-	level.start_level()
+	level.start_level(0)

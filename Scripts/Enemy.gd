@@ -18,6 +18,7 @@ signal enemy_killed
 
 func _ready() -> void:
 	current_target = 0
+	health = max_health
 	move_to_targets()
 	create_spawners()
 
@@ -41,7 +42,7 @@ func create_spawners() -> void:
 		spawner.activate_and_auto_fire()
 
 func drop_money() -> void:
-	for i in range(max_health/25 + pow(max_health/100, globals.money_exponent)):
+	for i in range(max_health/10 + pow(max_health/100, globals.money_exponent)):
 		var x = position.x + globals.bullet_rng.randi_range(-25, 25)
 		var y = position.y + globals.bullet_rng.randi_range(-25, 25)
 		var m = pool.money()

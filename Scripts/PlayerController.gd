@@ -19,7 +19,7 @@ const SPAWNER = preload("res://Scripts/Spawner.gd")
 const FLASH_INTERVAL = 0.1
 var sprite_visible := true
 
-var normal_speed := 200.0
+var normal_speed := 175.0
 var focus_speed := 50.0
 
 var flash_timer: Timer
@@ -53,8 +53,7 @@ func _process(delta: float) -> void:
 	position = position.clamp(-globals.playspace, globals.playspace)
 
 	if Input.is_action_pressed("player-fire"):
-		if !invincible:
-			fire()
+		fire()
 
 func fire() -> void:
 	if weapon.fire():
