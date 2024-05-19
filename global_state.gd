@@ -11,7 +11,6 @@ var max_lives := 5
 var lives := max_lives
 var money := 1000.0
 
-var hit_count := 0
 var bullets_fired := 0
 var bullets_hit := 0
 
@@ -42,24 +41,16 @@ const pea_shooter_gun := {
 	"id": 0,
 	"name": "Pea Shooter",
 	"damage": 10.0,
-	"bulletcost": 10.0,
 	"shopprice": 0.0,
 }
 const bigger_gun := {
 	"id": 1,
 	"name": "Bigger Gun",
 	"damage": 25.0,
-	"bulletcost": 25.0,
 	"shopprice": 500.0,
 }
 var current_weapon: Dictionary = pea_shooter_gun
 var current_purchasable_weapon: Dictionary = bigger_gun
-
-var bullet_counter: Dictionary = {
-	"pea_shooter": 0,
-	"bigger_gun": 0,
-	"total": 0,
-}
 
 func _ready() -> void:
 	stock_rng.seed = 42069 # TODO: remove me when finalizing
@@ -98,16 +89,12 @@ func buy_and_equip_gun_from_shop() -> bool:
 	return true
 
 func update_bullet_counter() -> void:
-	match current_weapon["id"]:
-		0: bullet_counter["pea_shooter"] += 1
-		1: bullet_counter["bigger_gun"] += 1
-
-	bullet_counter["total"] += 1
+	bullets_fired += 1
 
 func get_accuracy() -> float:
-	if bullet_counter["total"] == 0:
+	if bullets_fired == 0:
 		return 100.0
-	return float(hit_count) / float(bullet_counter["total"]) * 100.0
+	return float(bullets_hit) / float(bullets_fired) * 100.0
 
 func take_damage() -> void:
 	lives -= 1

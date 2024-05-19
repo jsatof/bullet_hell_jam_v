@@ -9,17 +9,14 @@ extends Control
 
 var label_stack := []
 var accuracy_bonus := 0.0
-var net_gains := 420.0
+var net_gains := 0.0
 
 signal finished
 
 func _ready() -> void:
-	var bill_subtotal: float = float(global.bullet_counter["pea_shooter"]) * global.pea_shooter_gun["bulletcost"] + float(global.bullet_counter["bigger_gun"]) * global.bigger_gun["bulletcost"]
 	accuracy_bonus = global.get_accuracy() * 5.0
-	net_gains = accuracy_bonus - bill_subtotal
+	net_gains = accuracy_bonus
 	global.add_money(net_gains)
-	print("Net Gains: %.2f" % net_gains)
-	print("Bill Subtotal: $%.2f" % bill_subtotal)
 
 	main_menu_button.button_down.connect(on_main_menu_button_pressed)
 	timer.timeout.connect(on_timer_tick)
@@ -47,49 +44,7 @@ func init_label_positions() -> void:
 	const x_indent := 16
 	var x_start := size.x / 3 + 66
 	var current_pos :=  Vector2(x_start, size.y / 3)
-	var next_label: Label = create_new_label(current_pos, Color.WHITE, "Bullets Fired:")
-	label_stack.push_back(next_label)
-
-	current_pos = Vector2(current_pos.x + next_label.size.x + x_offset, current_pos.y)
-	next_label = create_new_label(current_pos, Color.WHITE, "%d" % global.bullet_counter["total"])
-	label_stack.push_back(next_label)
-
-	if global.bullet_counter["pea_shooter"] > 0:
-		current_pos = Vector2(x_start + x_indent, current_pos.y + next_label.size.y)
-		next_label = create_new_label(current_pos, Color.WHITE, "Pea Shooter:")
-		label_stack.push_back(next_label)
-
-		current_pos = Vector2(x_start + x_offset, current_pos.y)
-		next_label = create_new_label(current_pos, Color.WHITE, "%d" % global.bullet_counter["pea_shooter"])
-		label_stack.push_back(next_label)
-
-		current_pos = Vector2(x_start + 2 * x_indent, current_pos.y + next_label.size.y)
-		next_label = create_new_label(current_pos, Color.WHITE, "%d x $%.2f:" % [global.bullet_counter["pea_shooter"], global.pea_shooter_gun["bulletcost"]])
-		label_stack.push_back(next_label)
-
-		current_pos = Vector2(x_start + x_offset, current_pos.y)
-		next_label = create_new_label(current_pos, Color.DARK_RED, "$%.2f" % float(-global.bullet_counter["pea_shooter"] * global.pea_shooter_gun["bulletcost"]))
-		label_stack.push_back(next_label)
-
-	if global.bullet_counter["bigger_gun"] > 0:
-		current_pos = Vector2(x_start + x_indent, current_pos.y + next_label.size.y)
-		next_label = create_new_label(current_pos, Color.WHITE, "Bigger Gun:")
-		label_stack.push_back(next_label)
-
-		current_pos = Vector2(x_start + x_offset, current_pos.y)
-		next_label = create_new_label(current_pos, Color.WHITE, "%d" % global.bullet_counter["bigger_gun"])
-		label_stack.push_back(next_label)
-
-		current_pos = Vector2(x_start + 2 * x_indent, current_pos.y + next_label.size.y)
-		next_label = create_new_label(current_pos, Color.WHITE, "%d x $%.2f:" % [global.bullet_counter["bigger_gun"], global.bigger_gun["bulletcost"]])
-		label_stack.push_back(next_label)
-
-		current_pos = Vector2(x_start + x_offset, current_pos.y)
-		next_label = create_new_label(current_pos, Color.DARK_RED, "$%.2f" % float(-global.bullet_counter["bigger_gun"] * global.bigger_gun["bulletcost"]))
-		label_stack.push_back(next_label)
-
-	current_pos = Vector2(x_start, current_pos.y + 2 * next_label.size.y)
-	next_label = create_new_label(current_pos, Color.WHITE, "Accuracy:")
+	var next_label = create_new_label(current_pos, Color.WHITE, "Accuracy:")
 	label_stack.push_back(next_label)
 
 	current_pos = Vector2(current_pos.x + next_label.size.x + x_offset, current_pos.y)
