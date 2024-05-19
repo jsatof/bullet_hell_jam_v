@@ -67,12 +67,17 @@ func set_spawner_data(s) -> void:
 		self.target = s.target
 	if s.has("friend"):
 		self.friend = s.friend
-	self.set_type(s.type)
-	self.spawn_params = s.spawn_params
-	self.bullet_data = s.bullet_data
+	if s.has("type"):
+		self.set_type(s.type)
+	if s.has("spawn_params"):
+		self.spawn_params = s.spawn_params
+	if s.has("bullet_data"):
+		self.bullet_data = s.bullet_data
+
 	shot_timer.wait_time = shot_delay
 
 func set_bullet_data(b) -> void:
+	b.scale = Vector2.ONE * 0.5
 	b.position = self.global_position
 	b.rotation_degrees = self.rotation_degrees
 	b.rotate(PI/2) # Rotate 90 degrees for downward firing
@@ -118,11 +123,14 @@ func activate_and_auto_fire() -> void:
 
 	finish()
 
-func fire() -> void:
-	if can_fire:
+func fire() -> bool:
+	if can_fire && cycles > 0:
+		cycles -= 1
 		spawn_func.call(spawn_params)
 		can_fire = false
 		shot_timer.start()
+		return true
+	return false
 
 func finish() -> void:
 	self.queue_free()

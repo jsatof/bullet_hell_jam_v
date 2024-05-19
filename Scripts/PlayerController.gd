@@ -41,7 +41,6 @@ func _ready() -> void:
 	add_child(flash_timer)
 
 	globals.player_died.connect(_on_player_died)
-	globals.new_weapon_equipped.connect(_on_new_weapon_equipped)
 
 	audio_player.bus = "Player SFX"
 	add_child(audio_player)
@@ -58,19 +57,14 @@ func _process(delta: float) -> void:
 			fire()
 
 func fire() -> void:
-	weapon.fire()
-
-	audio_player.stream = shoot_sfx
-	panner.pan = pos_to_pan(global_position.x)
-	audio_player.playing = true
-
-	globals.update_bullet_counter()
+	if weapon.fire():
+		audio_player.stream = shoot_sfx
+		panner.pan = pos_to_pan(global_position.x)
+		audio_player.playing = true
+		globals.update_bullet_counter()
 
 func pos_to_pan(x_pos: float) -> float:
 	return remap(x_pos, -globals.playspace.x, globals.playspace.x, -0.5, 0.5)
-
-func _on_shot_timer_timeout() -> void:
-	can_fire = true
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") && !invincible:
