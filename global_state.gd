@@ -7,7 +7,7 @@ const scrap_value := 10
 
 const money_speed := 50.0
 const money_exponent := 1.5
-var max_lives := 5
+var max_lives := 15
 var lives := max_lives
 var money := 1000.0
 

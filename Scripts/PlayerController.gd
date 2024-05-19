@@ -53,8 +53,7 @@ func _process(delta: float) -> void:
 	position = position.clamp(-globals.playspace, globals.playspace)
 
 	if Input.is_action_pressed("player-fire"):
-		if !invincible:
-			fire()
+		fire()
 
 func fire() -> void:
 	if weapon.fire():

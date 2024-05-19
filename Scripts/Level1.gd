@@ -74,7 +74,7 @@ func _ready() -> void:
 					{ point=Vector2(LEFT, ROW8),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
 				],
 				"spawners": [
-					{ type="linear",cycles=10,shot_delay=3.5,init_delay=0.5,target=true,
+					{ type="linear",cycles=10,shot_delay=0.8,init_delay=3.5,target=true,
 					spawn_params={},
 					bullet_data={
 					velocity=100.0,acceleration=1.0,color=Color("RED")
@@ -89,7 +89,7 @@ func _ready() -> void:
 					{ point=Vector2(RIGHT, ROW7),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
 				],
 				"spawners": [
-					{ type="linear",cycles=10,shot_delay=6.5,init_delay=0.5,target=true,
+					{ type="linear",cycles=10,shot_delay=0.8,init_delay=6.5,target=true,
 					spawn_params={},
 					bullet_data={
 					velocity=100.0,acceleration=1.0,color=Color("RED")
@@ -589,5 +589,225 @@ func _ready() -> void:
 			},
 		]
 	})
+	level.groups.append({
+		"time": 3.5, "enemies": [
+			{"type":"plate","health":50,"position":Vector2(LEFT, ROW5),
+				"movement": [
+					{ point=Vector2(LEFT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=1.5,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(LEFT, ROW5),
+				"movement": [
+					{ point=Vector2(LEFT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.5 },
+					{ point=Vector2(COL2, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=2.0,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(LEFT, ROW5),
+				"movement": [
+					{ point=Vector2(LEFT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=1.0 },
+					{ point=Vector2(COL2, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=2.5,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(LEFT, ROW5),
+				"movement": [
+					{ point=Vector2(LEFT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=1.5 },
+					{ point=Vector2(COL2, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=3.0,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(LEFT, ROW5),
+				"movement": [
+					{ point=Vector2(LEFT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=2.0 },
+					{ point=Vector2(COL2, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=3.5,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
 
-	level.start_level(0) #8
+			{"type":"plate","health":50,"position":Vector2(RIGHT, ROW5),
+				"movement": [
+					{ point=Vector2(RIGHT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL3, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL3, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=1.5,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(RIGHT, ROW5),
+				"movement": [
+					{ point=Vector2(RIGHT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.5 },
+					{ point=Vector2(COL3, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL3, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=2.0,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(RIGHT, ROW5),
+				"movement": [
+					{ point=Vector2(RIGHT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=1.0 },
+					{ point=Vector2(COL3, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL3, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=2.5,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(RIGHT, ROW5),
+				"movement": [
+					{ point=Vector2(RIGHT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=1.5 },
+					{ point=Vector2(COL3, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL3, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=3.0,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(RIGHT, ROW5),
+				"movement": [
+					{ point=Vector2(RIGHT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=2.0 },
+					{ point=Vector2(COL3, ROW5),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL3, ROW0),time=5.0,trans=Tween.TRANS_LINEAR,ease=Tween.EASE_OUT,pause=0.0 },
+					{ point=Vector2(COL2, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="linear",cycles=5,shot_delay=.5,init_delay=3.5,random=Vector2(-30,30),target=true,
+					spawn_params={},
+					bullet_data={
+					velocity=50.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+		]
+	})
+	level.groups.append({
+		"time": 11, "enemies": [
+			{"type":"drone","health":200,"position":Vector2(COL2+16, TOP),
+				"movement": [
+					{ point=Vector2(COL2+16, ROW2),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=10.0 },
+					{ point=Vector2(COL2+16, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="radial",cycles=12,shot_delay=0.8,init_delay=0.5,target=true,random=Vector2(-5, 5),
+					spawn_params={"amount":5,"degrees":50},
+					bullet_data={
+					velocity=100.0,acceleration=1.0,color=Color("RED")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(COL1, TOP),
+				"movement": [
+					{ point=Vector2(COL0, ROW1),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=8.0 },
+					{ point=Vector2(LEFT, BOTTOM),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="radial",cycles=45,shot_delay=0.2,init_delay=0.5,target=false,angular_rate=1,
+					spawn_params={"amount":5,},
+					bullet_data={
+					velocity=150.0,acceleration=1.0,color=Color("PURPLE")
+					}}
+				]
+			},
+			{"type":"plate","health":50,"position":Vector2(COL4, TOP),
+				"movement": [
+					{ point=Vector2(COL5, ROW1),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=8.0 },
+					{ point=Vector2(RIGHT, BOTTOM),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="radial",cycles=45,shot_delay=0.2,init_delay=0.5,target=false,angular_rate=1,
+					spawn_params={"amount":5,},
+					bullet_data={
+					velocity=150.0,acceleration=1.0,color=Color("PURPLE")
+					}}
+				]
+			},
+		]
+	})
+	level.groups.append({
+		"time": 20, "enemies": [
+			{"type":"dragonfly","health":1000,"position":Vector2(COL2+16, TOP),
+				"movement": [
+					{ point=Vector2(COL2+16, ROW2),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=20.0 },
+					{ point=Vector2(COL2+16, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
+				],
+				"spawners": [
+					{ type="radial",cycles=50,shot_delay=0.4,init_delay=0.5,target=false,angular_rate=1,
+					spawn_params={"amount":25,},
+					bullet_data={
+					velocity=100.0,acceleration=1.0,color=Color("PURPLE"),
+					}},
+					{ type="radial",cycles=20,shot_delay=1.5,init_delay=0.5,target=true,random=Vector2(-5, 5),
+					spawn_params={"amount":5,"degrees":40},
+					bullet_data={
+					velocity=300.0,acceleration=.98,color=Color("RED"),lifetime=1.5, size=1.5
+					}}
+				]
+			},
+		]
+	})
+
+	level.start_level(0)
