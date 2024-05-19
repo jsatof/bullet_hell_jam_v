@@ -2,12 +2,12 @@ extends Node
 
 @onready var audio_manager := get_node("/root/AudioManager")
 
-const playspace = Vector2(384.0/4, 288.0/2 - 10)
+const playspace := Vector2(384.0/4, 288.0/2 - 10)
 const scrap_value := 10
 
 const money_speed := 50.0
 const money_exponent := 1.5
-var max_lives := 5
+var max_lives := 50
 var lives := max_lives
 var money := 1000.0
 
@@ -17,7 +17,6 @@ var bullets_hit := 0
 var heckler_percent_diff := 5.0
 var heckler_stock_price := 23.23
 var last_heckler_stock_price := 23.23
-var bullet_price := 10.0
 var heckler_shares_owned := 0
 const max_trades := 10
 var trades_remaining := max_trades
@@ -27,7 +26,7 @@ var bullet_rng := RandomNumberGenerator.new()
 
 signal money_added
 signal player_died
-signal new_weapon_equipped
+signal weapon_equipped
 
 enum EndScreenState {
 	LEVEL_CLEAR,
@@ -42,18 +41,45 @@ const fire_rate := 0.05
 const bullet_speed := 300.0
 
 const pea_shooter_gun := {
-	"id": 0,
 	"name": "Pea Shooter",
 	"damage": 10.0,
-	"shopprice": 0.0,
 	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg")
+	"shopprice": 50000.0,
+	"ammo": 100,
+	"shot_delay": 0.2,
+	"rotation": 180,
+	"friend": true,
+	"type": "linear",
+	"spawn_params": {},
+	"bullet_data": {
+		"velocity": 300.0,
+		"color": Color("YELLOW"),
+		"size": 1.0,
+		"acceleration": 1.0,
+		"movement": "linear",
+	}
 }
 const bigger_gun := {
-	"id": 1,
 	"name": "Bigger Gun",
 	"damage": 25.0,
 	"shopprice": 500.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg")
+	"ammo": 200,
+	"bullet_speed": 400,
+	"shot_delay": 0.08,
+	"rotation": 180,
+	"friend": true,
+	"type": "linear",
+	"spawn_params": {},
+	"bullet_data": {
+		"velocity": 300.0,
+		"color": Color("RED"),
+		"size": 1.0,
+		"acceleration": 1.0,
+		"frequency": 20,
+		"amplitude": 3,
+		"movement": "sin",
+	}
 }
 const test_chungus_gun := {
 	"name": "Chungus Gun",
@@ -117,13 +143,17 @@ func add_money(x: float) -> void:
 func buy_and_equip_gun_from_shop() -> bool:
 	if current_purchasable_weapon["shopprice"] > money:
 		return false
-	current_weapon = current_purchasable_weapon
+	equip_weapon(current_purchasable_weapon)
 	money -= current_weapon["shopprice"]
 	new_weapon_equipped.emit()
 	return true
 
 func reset_trade_count():
 	trades_remaining = max_trades
+
+func equip_weapon(weapon):
+	current_weapon = weapon
+	weapon_equipped.emit()
 
 func update_bullet_counter() -> void:
 	bullets_fired += 1
@@ -141,6 +171,9 @@ func take_damage() -> void:
 
 func collect_scrap() -> void:
 	add_money(scrap_value)
+
+func start_level() -> void:
+	equip_weapon(current_weapon)
 
 func goto_end_screen() -> void:
 	var end_scene := preload("res://Scenes/EndOfLevel.tscn").instantiate()

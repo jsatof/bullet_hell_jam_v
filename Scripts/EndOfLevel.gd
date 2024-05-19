@@ -43,7 +43,8 @@ func init_label_positions() -> void:
 	const x_indent := 8
 	var x_start := size.x / 4
 	var current_pos :=  Vector2(x_start, size.y / 3)
-	var next_label = create_new_label(current_pos, Color.WHITE, "Accuracy:")
+
+	var next_label := create_new_label(current_pos, Color.WHITE, "Accuracy:")
 	label_stack.push_back(next_label)
 
 	current_pos = Vector2(current_pos.x + next_label.size.x + x_offset, current_pos.y)

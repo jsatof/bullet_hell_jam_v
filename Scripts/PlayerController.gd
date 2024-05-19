@@ -1,5 +1,7 @@
 extends Area2D
 
+const SPAWNER = preload("res://Scripts/Spawner.gd")
+
 @onready var globals := $'/root/GlobalState'
 @onready var bullet_pool := get_tree().get_first_node_in_group("pools")
 @onready var bullet_collider := $'BulletCollider'
@@ -20,19 +22,17 @@ var sprite_visible := true
 var normal_speed := 200.0
 var focus_speed := 50.0
 
-var shot_timer: Timer
 var flash_timer: Timer
-var can_fire := true
 var invincible := false
+
+@onready var weapon := SPAWNER.new()
 
 signal player_hit
 
 func _ready() -> void:
-	shot_timer = Timer.new()
-	shot_timer.wait_time = globals.fire_rate
-	shot_timer.one_shot = true
-	shot_timer.timeout.connect(_on_shot_timer_timeout)
-	add_child(shot_timer)
+	globals.connect("weapon_equipped", _on_weapon_equipped)
+
+	self.add_child(weapon)
 
 	flash_timer = Timer.new()
 	flash_timer.wait_time = FLASH_INTERVAL
@@ -54,25 +54,17 @@ func _process(delta: float) -> void:
 	position = position.clamp(-globals.playspace, globals.playspace)
 
 	if Input.is_action_pressed("player-fire"):
-		if can_fire && !invincible:
+		if !invincible:
 			fire()
 
 func fire() -> void:
-	# TODO move parameters to weapon data
-	var b = bullet_pool.player_bullet()
-	b.position = self.global_position
-	b.set_color(Color("YELLOW"))
-	b.velocity = globals["bullet_speed"]
-	b.lifetime = 2
-	b.rotation = -PI/2 # Rotate 90 degrees for upward firing
+	weapon.fire()
 
 	audio_player.stream = shoot_sfx
 	panner.pan = pos_to_pan(global_position.x)
 	audio_player.playing = true
 
 	globals.update_bullet_counter()
-	can_fire = false
-	shot_timer.start()
 
 func pos_to_pan(x_pos: float) -> float:
 	return remap(x_pos, -globals.playspace.x, globals.playspace.x, -0.5, 0.5)
@@ -109,7 +101,11 @@ func _on_bullet_collecter_area_entered(area: Area2D) -> void:
 func _on_player_died() -> void:
 	audio_manager.play_player_death_sfx()
 
-func _on_new_weapon_equipped() -> void:
+func _on_weapon_equipped() -> void:
+	weapon.reset()
+	weapon.set_spawner_data(globals.current_weapon)
+	weapon.activate()
+
 	audio_player.stream = equip_sfx
 	audio_player.playing = true
 	shoot_sfx = globals.current_weapon["shootsound"] if globals.current_weapon.has("shootsound") else preload("res://Resources/Audio/SFX/that_sound_used_in_undertale.ogg")
