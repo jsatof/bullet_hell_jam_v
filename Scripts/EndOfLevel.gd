@@ -4,7 +4,6 @@ extends Control
 @onready var main_menu_button := $GotoMainMenuButton
 @onready var win_lose_label := $WinLoseLabel
 @onready var caption_label := $CaptionLabel
-@onready var variable_labels_group := $VariableLabelsGroup
 @onready var timer := $Timer
 
 var label_stack := []
@@ -40,9 +39,9 @@ func _ready() -> void:
 
 # programatically create the labels for the statistics and put them on a stack
 func init_label_positions() -> void:
-	const x_offset := 200
-	const x_indent := 16
-	var x_start := size.x / 3 + 66
+	const x_offset := 145
+	const x_indent := 8
+	var x_start := size.x / 4
 	var current_pos :=  Vector2(x_start, size.y / 3)
 	var next_label = create_new_label(current_pos, Color.WHITE, "Accuracy:")
 	label_stack.push_back(next_label)

@@ -33,7 +33,11 @@ grow_vertical = 2
 
 [node name="LevelUI" parent="Control" instance=ExtResource("4_r25sk")]
 layout_mode = 1
+offset_left = 1.0
+offset_right = -1.0
 
 [node name="Background" parent="Control" instance=ExtResource("5_fjx7p")]
 z_index = -1
 layout_mode = 1
+offset_left = 1.0
+offset_right = 1.0

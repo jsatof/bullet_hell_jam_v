@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqr8gvqlrjdmp"]
+[gd_scene load_steps=3 format=3 uid="uid://bqr8gvqlrjdmp"]
 
+[ext_resource type="Theme" uid="uid://dh0vr00j3fq5i" path="res://Fonts/UpcsalingFont.tres" id="1_jb8te"]
 [ext_resource type="PackedScene" uid="uid://bvmr05jnuptue" path="res://Scenes/StockGraphGraph.tscn" id="2_ewybj"]
 
 [node name="StockGraph" type="Control"]
@@ -7,53 +8,70 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1080.0
-offset_bottom = -740.0
+offset_right = -384.0
+offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_jb8te")
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_right = 200.0
-offset_bottom = 264.0
+offset_top = -25.0
+offset_right = 213.0
+offset_bottom = 287.0
+theme = ExtResource("1_jb8te")
 color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
-[node name="CompanyNameLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 35.0
-offset_top = 8.0
-offset_right = 164.0
-offset_bottom = 31.0
-text = "Heckler & Gooch"
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -69.0
+offset_right = 195.0
+offset_bottom = -25.0
+color = Color(0.176471, 0.176471, 0.176471, 1)
 
 [node name="GraphBGColorRect" type="ColorRect" parent="."]
 layout_mode = 2
-offset_left = 10.0
-offset_top = 72.0
-offset_right = 190.0
-offset_bottom = 252.0
+offset_top = 34.0
+offset_right = 213.0
+offset_bottom = 231.0
+theme = ExtResource("1_jb8te")
 color = Color(0.144063, 0.144063, 0.144063, 1)
 
+[node name="CompanyNameLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+offset_left = 22.0
+offset_top = -66.0
+offset_right = 192.0
+offset_bottom = -25.0
+theme = ExtResource("1_jb8te")
+text = "Pot of Greed"
+
 [node name="StockPriceLabel" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 109.0
-offset_top = 39.147
-offset_right = 160.0
-offset_bottom = 62.147
+offset_left = 123.0
+offset_top = 240.0
+offset_right = 235.0
+offset_bottom = 281.0
+theme = ExtResource("1_jb8te")
 text = "$23.23"
 
 [node name="StockDiffLabel" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 39.0
-offset_top = 39.0
-offset_right = 85.0
-offset_bottom = 62.0
+offset_left = 8.0
+offset_top = 240.0
+offset_right = 99.0
+offset_bottom = 282.0
+theme = ExtResource("1_jb8te")
 text = "0.00%"
 
 [node name="StockGraphGraph" parent="." instance=ExtResource("2_ewybj")]
-position = Vector2(10, 72)
+position = Vector2(0, 34)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

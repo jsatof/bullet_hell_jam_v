@@ -19,6 +19,8 @@ var heckler_stock_price := 23.23
 var last_heckler_stock_price := 23.23
 var bullet_price := 10.0
 var heckler_shares_owned := 0
+const max_trades := 10
+var trades_remaining := max_trades
 
 var stock_rng := RandomNumberGenerator.new()
 var bullet_rng := RandomNumberGenerator.new()
@@ -53,8 +55,33 @@ const bigger_gun := {
 	"shopprice": 500.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg")
 }
+const test_chungus_gun := {
+	"name": "Chungus Gun",
+	"shopprice": 333.33,
+}
+const test_poopy_gun := {
+	"name": "Poopy Gun",
+	"shopprice": 444.44,
+}
+const test_bumpy_gun := {
+	"name": "Bumpy Gun",
+	"shopprice": 555.55,
+}
+const test_evil_gun := {
+	"name": "Evil Gun",
+	"shopprice": 666.66
+}
 var current_weapon: Dictionary = pea_shooter_gun
 var current_purchasable_weapon: Dictionary = bigger_gun
+
+const weapon_list := [
+	pea_shooter_gun,
+	bigger_gun,
+	test_chungus_gun,
+	test_poopy_gun,
+	test_bumpy_gun,
+	test_evil_gun,
+]
 
 func _ready() -> void:
 	stock_rng.seed = 42069 # TODO: remove me when finalizing
@@ -66,16 +93,18 @@ func set_new_heckler_stock_price() -> void:
 	heckler_percent_diff = heckler_stock_price - last_heckler_stock_price / heckler_stock_price * 100.0
 
 func buy_heckler_stock() -> bool:
-	if money < heckler_stock_price:
+	if money < heckler_stock_price || trades_remaining <= 0:
 		return false
+	trades_remaining -= 1
 	heckler_shares_owned += 1
 	money -= heckler_stock_price
 	audio_manager.play_buy_share_sfx()
 	return true
 
 func sell_heckler_stock() -> bool:
-	if heckler_shares_owned <= 0:
+	if heckler_shares_owned <= 0 || trades_remaining <= 0:
 		return false
+	trades_remaining -= 1
 	heckler_shares_owned -= 1
 	money += heckler_stock_price
 	audio_manager.play_sell_share_sfx()
@@ -92,6 +121,9 @@ func buy_and_equip_gun_from_shop() -> bool:
 	money -= current_weapon["shopprice"]
 	new_weapon_equipped.emit()
 	return true
+
+func reset_trade_count():
+	trades_remaining = max_trades
 
 func update_bullet_counter() -> void:
 	bullets_fired += 1
@@ -115,8 +147,15 @@ func goto_end_screen() -> void:
 	get_tree().root.add_child(end_scene)
 	end_screen_state = EndScreenState.YOU_DIED
 	get_tree().get_first_node_in_group("level").queue_free()
+	audio_manager.stop_soundtrack()
 
 func goto_main_menu(source: Node) -> void:
 	var main_menu := preload("res://Scenes/MainMenu.tscn").instantiate()
 	get_tree().root.add_child(main_menu)
 	source.queue_free()
+
+func get_random_weapon() -> Dictionary:
+	var my_rng := RandomNumberGenerator.new()
+	my_rng.randomize()
+	var index := my_rng.randi() % len(weapon_list)
+	return weapon_list[index]

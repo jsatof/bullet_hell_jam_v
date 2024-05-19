@@ -1,26 +1,26 @@
 extends Node2D
 
-@onready var global = get_node("/root/GlobalState")
-@onready var price_label = get_parent().get_node("StockPriceLabel")
-@onready var price_diff_label = get_parent().get_node("StockDiffLabel")
-@onready var color_rect = get_parent().get_node("GraphBGColorRect")
+@onready var global := get_node("/root/GlobalState")
+@onready var price_label := get_parent().get_node("StockPriceLabel")
+@onready var price_diff_label := get_parent().get_node("StockDiffLabel")
+@onready var color_rect := get_parent().get_node("GraphBGColorRect")
 @onready var timer := get_parent().get_node("Timer")
 
 var stock_points: PackedFloat32Array
 const max_stock_points_size := 10
-const point_size := 3
+const point_size := 4
 
-func _ready():
+func _ready() -> void:
 	assert(price_label)
 	assert(price_diff_label)
 	assert(color_rect)
 	assert(timer)
 
-func _draw():
+func _draw() -> void:
 	for i in range(1, len(stock_points)):
 		var start: Vector2 = screen_coord_from_stock_points(i - 1)
 		var current: Vector2 = screen_coord_from_stock_points(i)
-		draw_line(start, current, Color.WEB_GREEN, 1, true)
+		draw_line(start, current, Color.WEB_GREEN, 2, true)
 	# draw circle at last point
 	if len(stock_points) > 0:
 		var last_index := len(stock_points) - 1
@@ -29,7 +29,7 @@ func _draw():
 # every second the stock prices will update
 # so far only the last 10 points are saved,
 # the oldest will be evicted when a new one comes in if full
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	global.set_new_heckler_stock_price()
 	var current_price: float = global.heckler_stock_price
 	var percent_diff: float = global.heckler_percent_diff
