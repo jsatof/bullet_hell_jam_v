@@ -33,7 +33,7 @@ func _ready() -> void:
 			win_lose_label.text = "LEVEL CLEAR"
 			caption_label.text = "Mission cleared. Onwards to the next. We got money to make."
 		global.EndScreenState.VICTORY:
-			win_lose_label.text = "YOU WIN"
+			win_lose_label.text = "YOU WIN!"
 			caption_label.text = "All the debt owed was paid. Contract passed."
 		global.EndScreenState.DEFEAT:
 			win_lose_label.text = "YOU LOSE"

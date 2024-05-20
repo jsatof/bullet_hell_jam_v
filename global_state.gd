@@ -6,7 +6,7 @@ var level_2 := preload("res://Scenes/Level2.tscn")
 @onready var audio_manager := get_node("/root/AudioManager")
 
 const playspace := Vector2(384.0/4, 288.0/2 - 10)
-const scrap_value := 1200
+const scrap_value := 1100
 
 const money_speed := 60.0
 const money_exponent := 1.5
@@ -29,7 +29,7 @@ var stock_price_high_bound := 30_000.0
 var heckler_stock_price := stock_price_high_bound
 var last_heckler_stock_price := stock_price_high_bound
 
-var current_level := 1
+var current_level := 0
 
 var stock_rng := RandomNumberGenerator.new()
 var bullet_rng := RandomNumberGenerator.new()
@@ -320,10 +320,12 @@ func start_level() -> void:
 	equip_weapon(current_weapon)
 
 func finish_level() -> void:
-	if current_level < 3:
+	if current_level < 2:
 		end_screen_state = EndScreenState.LEVEL_CLEAR
-	else:
+	elif money >= 1_000_000:
 		end_screen_state = EndScreenState.VICTORY
+	else:
+		end_screen_state = EndScreenState.DEFEAT
 	goto_end_screen()
 
 func goto_end_screen() -> void:
