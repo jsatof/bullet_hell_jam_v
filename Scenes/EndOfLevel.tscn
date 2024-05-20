@@ -1,53 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://bulb0fdqefvun"]
+[gd_scene load_steps=2 format=3 uid="uid://bulb0fdqefvun"]
 
 [ext_resource type="Script" path="res://Scripts/EndOfLevel.gd" id="1_wmvg0"]
-[ext_resource type="Theme" uid="uid://dmp4llucswt6l" path="res://Fonts/HeaderFontTheme.tres" id="3_tk2ao"]
-[ext_resource type="Theme" uid="uid://jliowcagqcbw" path="res://Fonts/GeneralFont.tres" id="4_bscj3"]
 
 [node name="EndOfLevel" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("4_bscj3")
 script = ExtResource("1_wmvg0")
 
 [node name="WinLoseLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.5
-offset_top = -127.0
-offset_right = 61.5
-offset_bottom = -105.0
+offset_left = -54.5
+offset_top = 25.0
+offset_right = 54.5
+offset_bottom = 48.0
 grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_tk2ao")
 text = "You Winnered"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CaptionLabel" type="Label" parent="."]
-layout_mode = 0
-offset_top = 46.0
-offset_right = 383.0
-offset_bottom = 69.0
-theme = ExtResource("4_bscj3")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.0
+offset_top = 62.0
+offset_right = 237.0
+offset_bottom = 85.0
+grow_horizontal = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GotoMainMenuButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 150.0
-offset_top = 254.0
-offset_right = 238.0
-offset_bottom = 276.0
-theme = ExtResource("4_bscj3")
+offset_left = 608.0
+offset_top = 805.0
+offset_right = 807.0
+offset_bottom = 867.0
 text = "Main Menu"
 
 [node name="Timer" type="Timer" parent="."]

@@ -1,5 +1,8 @@
 extends Node
 
+var level_1 := preload("res://Scenes/Level1.tscn")
+var level_2 := preload("res://Scenes/Level2.tscn")
+
 @onready var audio_manager := get_node("/root/AudioManager")
 
 const playspace := Vector2(384.0/4, 288.0/2 - 10)
@@ -9,10 +12,13 @@ const money_speed := 50.0
 const money_exponent := 1.5
 var max_lives := 5
 var lives := max_lives
-var money := 1000.0
+var starting_money := 1000.0
+var money := starting_money
 
 var bullets_fired := 0
 var bullets_hit := 0
+var max_ammo := 100
+var current_ammo := max_ammo
 
 var heckler_percent_diff := 5.0
 var heckler_stock_price := 23.23
@@ -21,12 +27,16 @@ var heckler_shares_owned := 0
 const max_trades := 10
 var trades_remaining := max_trades
 
+var current_level := 1
+
 var stock_rng := RandomNumberGenerator.new()
 var bullet_rng := RandomNumberGenerator.new()
 
 signal money_added
 signal player_died
+signal player_damaged
 signal weapon_equipped
+signal weapon_fired
 
 enum EndScreenState {
 	LEVEL_CLEAR,
@@ -36,17 +46,13 @@ enum EndScreenState {
 }
 var end_screen_state: EndScreenState = EndScreenState.YOU_DIED
 
-# Fixed fire rate as of now. Can tie to weapon if desired
-const fire_rate := 0.05
-const bullet_speed := 300.0
-
 const pea_shooter_gun := {
 	"name": "Pea Shooter",
 	"damage": 10.0,
 	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg"),
 	"shopprice": 50000.0,
-	"cycles": 200,
-	"shot_delay": 0.01,
+	"cycles": 50,
+	"shot_delay": 0.1,
 	"rotation": 180,
 	"friend": true,
 	"type": "linear",
@@ -150,10 +156,17 @@ func reset_trade_count():
 
 func equip_weapon(weapon):
 	current_weapon = weapon
+	max_ammo = current_weapon.cycles
+	current_ammo = max_ammo
 	weapon_equipped.emit()
 
 func update_bullet_counter() -> void:
+	current_ammo -= 1
 	bullets_fired += 1
+	weapon_fired.emit()
+
+func get_ammo_percent() -> float:
+	return  float(current_ammo) / max_ammo
 
 func get_accuracy() -> float:
 	if bullets_fired == 0:
@@ -164,25 +177,54 @@ func take_damage() -> void:
 	lives -= 1
 	if lives <= 0:
 		player_died.emit()
+		end_screen_state = EndScreenState.YOU_DIED
 		goto_end_screen()
+	player_damaged.emit()
 
 func collect_scrap() -> void:
 	add_money(scrap_value)
 
+func reset_game() -> void:
+	current_level = 0
+	lives = max_lives
+	money = starting_money
+	bullets_fired = 0
+	bullets_hit = 0
+	trades_remaining = max_trades
+
+func start_new_game() -> void:
+	reset_game()
+	load_next_level()
+	start_level()
+
+func load_next_level() -> void:
+	current_level += 1
+	match current_level:
+		1:
+			get_tree().change_scene_to_packed(level_1)
+		2:
+			get_tree().change_scene_to_packed(level_2)
+		_:
+			goto_main_menu()
+
 func start_level() -> void:
 	equip_weapon(current_weapon)
 
-func goto_end_screen() -> void:
-	var end_scene := preload("res://Scenes/EndOfLevel.tscn").instantiate()
-	get_tree().root.add_child(end_scene)
-	end_screen_state = EndScreenState.YOU_DIED
-	get_tree().get_first_node_in_group("level").queue_free()
-	audio_manager.stop_soundtrack()
+func finish_level() -> void:
+	if current_level < 3:
+		end_screen_state = EndScreenState.LEVEL_CLEAR
+	else:
+		end_screen_state = EndScreenState.VICTORY
+	goto_end_screen()
 
-func goto_main_menu(source: Node) -> void:
-	var main_menu := preload("res://Scenes/MainMenu.tscn").instantiate()
-	get_tree().root.add_child(main_menu)
-	source.queue_free()
+func goto_end_screen() -> void:
+	audio_manager.stop_soundtrack()
+	var end_scene := preload("res://Scenes/EndOfLevel.tscn")
+	get_tree().change_scene_to_packed(end_scene)
+
+func goto_main_menu() -> void:
+	var main_menu := preload("res://Scenes/MainMenu.tscn")
+	get_tree().change_scene_to_packed(main_menu)
 
 func get_random_weapon() -> Dictionary:
 	var my_rng := RandomNumberGenerator.new()

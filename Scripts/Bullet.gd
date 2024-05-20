@@ -37,6 +37,16 @@ func enable(is_enabled: bool):
 	set_visible(is_enabled)
 	get_child(0).set_deferred("disabled", !is_enabled)
 
+# I know it's a hack but I don't have the hours to care
+	if !is_enabled:
+		velocity = 0.0
+		amplitude = 1.0
+		frequency = 1.0
+		acceleration = 1.0
+		movement = Callable(self, "linear_move")
+		lifetime = 4.0
+		current_time = 0.0
+
 
 ### Movement functions ###
 func set_movement(move_type: String):

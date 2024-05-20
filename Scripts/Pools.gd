@@ -8,13 +8,13 @@ var enemy_idx := -1
 var enemy_pool := []
 
 const PLAYER_BULLET := preload("res://Scenes/PlayerBullet.tscn")
-const PLAYER_SIZE := 100
+const PLAYER_SIZE := 150
 var player_idx := -1
 # Was going to call it p_pool, but I don't p in the pool
 var player_pool := []
 
 const MONEY := preload("res://Scenes/Money.tscn")
-const MONEY_SIZE := 100
+const MONEY_SIZE := 200
 var money_idx = -1
 var money_pool = []
 
