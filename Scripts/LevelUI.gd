@@ -8,6 +8,7 @@ extends Control
 @onready var equipped_gun_value := $EquippedGunValueLabel
 @onready var trades_left_value := $TradesLeftValueLabel
 @onready var ammo_bar := $'AmmoBar/FrontColorRect'
+@onready var health_sprites = $'HealthSprites'
 
 var ammo_max_size: float
 
@@ -29,6 +30,11 @@ func _ready() -> void:
 	global.weapon_equipped.connect(update_ammo_bar)
 	global.weapon_fired.connect(update_ammo_bar)
 	ammo_max_size = ammo_bar.size.x
+
+	global.player_damaged.connect(update_health_sprites)
+
+	update_ammo_bar()
+	update_health_sprites()
 
 func update_money_label() -> void:
 	money_value.text = "$%.2f" % global.money
@@ -62,3 +68,10 @@ func on_buy_gun_pressed() -> void:
 
 func update_ammo_bar() -> void:
 	ammo_bar.size.x = ammo_max_size * global.get_ammo_percent()
+
+func update_health_sprites() -> void:
+	for i in range(0, global.max_lives - global.lives):
+		health_sprites.get_child(global.max_lives - i-1).modulate = Color("BLACK")
+
+	for i in range(0, global.lives):
+		health_sprites.get_child(i).modulate = Color("WHITE")

@@ -34,6 +34,7 @@ var bullet_rng := RandomNumberGenerator.new()
 
 signal money_added
 signal player_died
+signal player_damaged
 signal weapon_equipped
 signal weapon_fired
 
@@ -178,6 +179,7 @@ func take_damage() -> void:
 		player_died.emit()
 		end_screen_state = EndScreenState.YOU_DIED
 		goto_end_screen()
+	player_damaged.emit()
 
 func collect_scrap() -> void:
 	add_money(scrap_value)
