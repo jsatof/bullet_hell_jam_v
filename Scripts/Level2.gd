@@ -815,4 +815,4 @@ func _ready() -> void:
 	})
 
 
-	level.start_level(0) #13
+	level.start_level(15) #13

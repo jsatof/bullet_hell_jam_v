@@ -808,4 +808,4 @@ func _ready() -> void:
 		]
 	})
 
-	level.start_level(0)
+	level.start_level(10)
