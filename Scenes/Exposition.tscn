@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=3 uid="uid://c78wybbmtps4s"]
+
+[ext_resource type="Script" path="res://Scripts/Exposition.gd" id="1_6hk7t"]
+[ext_resource type="Theme" uid="uid://jliowcagqcbw" path="res://Fonts/GeneralFont.tres" id="1_f23t3"]
+
+[node name="Exposition" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_f23t3")
+script = ExtResource("1_6hk7t")
+
+[node name="WASDLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 54.0
+offset_right = 309.0
+offset_bottom = 68.0
+text = "WASD  or arrows to move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SmallLoanLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 6.0
+offset_right = 384.0
+offset_bottom = 54.0
+text = "You took a small loan of $10,000,00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollectLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 68.0
+offset_right = 360.0
+offset_bottom = 91.0
+text = "Collect scrap"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ZShootLabel" type="Label" parent="CollectLabel"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 23.0
+offset_right = 212.0
+offset_bottom = 37.0
+text = "'Z'   to shoot"
+
+[node name="BuyWeaponsLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 384.0
+offset_bottom = 128.0
+text = "Buy better weapons"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FShootLabel" type="Label" parent="BuyWeaponsLabel"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 23.0
+offset_right = 263.0
+offset_bottom = 37.0
+text = "'F'  to buy a new gun"
+
+[node name="MakeInvestmentsLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 29.0
+offset_top = 144.0
+offset_right = 384.0
+offset_bottom = 167.0
+text = "Make smart investments"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XBuyLabel" type="Label" parent="MakeInvestmentsLabel"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 23.0
+offset_right = 183.0
+offset_bottom = 37.0
+text = "'X'   to buy a share"
+
+[node name="CSellLabel" type="Label" parent="MakeInvestmentsLabel"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 37.0
+offset_right = 183.0
+offset_bottom = 51.0
+text = "'C'   to sell a share"
+
+[node name="TradeLimitLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 207.0
+offset_right = 384.0
+offset_bottom = 221.0
+text = "You only get 10 trades per level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PaybackLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 225.0
+offset_right = 384.0
+offset_bottom = 248.0
+text = "then you might be able to pay back the debt"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 250.0
+offset_right = 384.0
+offset_bottom = 273.0
+text = "Press   'f'   if you're ready"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
