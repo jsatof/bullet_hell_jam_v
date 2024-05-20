@@ -22,9 +22,8 @@ func _ready() -> void:
 	player_sfx_player.max_polyphony = 10
 	add_child(player_sfx_player)
 
-func set_soundtrack(stream: AudioStreamOggVorbis) -> void:
-	soundtrack_player.stream = stream
-	soundtrack_player.stream.loop = true
+func set_soundtrack(s: Resource) -> void:
+	soundtrack_player.stream = s
 
 func play_soundtrack() -> void:
 	soundtrack_player.playing = true

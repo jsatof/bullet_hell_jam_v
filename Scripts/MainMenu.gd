@@ -4,7 +4,7 @@ extends Control
 @onready var globals := get_node("/root/GlobalState")
 
 func _ready() -> void:
-	var main_menu_song := AudioStreamOggVorbis.load_from_file("res://Resources/Audio/Music/Reonidas.ogg")
+	var main_menu_song := preload("res://Resources/Audio/Music/Reonidas.ogg")
 	audio_manager.set_soundtrack(main_menu_song)
 	audio_manager.play_soundtrack()
 
