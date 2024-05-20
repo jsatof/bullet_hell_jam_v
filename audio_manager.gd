@@ -35,7 +35,7 @@ func stop_soundtrack() -> void:
 func add_soundtrack_lpf() -> void:
 	pass
 
-func remove_soundtreack_lpf() -> void:
+func remove_soundtrack_lpf() -> void:
 	pass
 
 func play_enemy_death_sfx() -> void:

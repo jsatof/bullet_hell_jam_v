@@ -21,10 +21,6 @@ func _draw() -> void:
 		var start: Vector2 = screen_coord_from_stock_points(i - 1)
 		var current: Vector2 = screen_coord_from_stock_points(i)
 		draw_line(start, current, Color.WEB_GREEN, 2, true)
-	# draw circle at last point
-	if len(stock_points) > 0:
-		var last_index := len(stock_points) - 1
-		draw_circle(screen_coord_from_stock_points(last_index), point_size, Color.WEB_GREEN)
 
 # every second the stock prices will update
 # so far only the last 10 points are saved,
