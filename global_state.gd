@@ -35,6 +35,7 @@ var bullet_rng := RandomNumberGenerator.new()
 signal money_added
 signal player_died
 signal weapon_equipped
+signal weapon_fired
 
 enum EndScreenState {
 	LEVEL_CLEAR,
@@ -44,16 +45,12 @@ enum EndScreenState {
 }
 var end_screen_state: EndScreenState = EndScreenState.YOU_DIED
 
-# Fixed fire rate as of now. Can tie to weapon if desired
-const fire_rate := 0.05
-const bullet_speed := 300.0
-
 const pea_shooter_gun := {
 	"name": "Pea Shooter",
 	"damage": 10.0,
 	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg"),
 	"shopprice": 50000.0,
-	"cycles": 10,
+	"cycles": 50,
 	"shot_delay": 0.1,
 	"rotation": 180,
 	"friend": true,
@@ -163,9 +160,12 @@ func equip_weapon(weapon):
 	weapon_equipped.emit()
 
 func update_bullet_counter() -> void:
-	print(current_ammo)
 	current_ammo -= 1
 	bullets_fired += 1
+	weapon_fired.emit()
+
+func get_ammo_percent() -> float:
+	return  float(current_ammo) / max_ammo
 
 func get_accuracy() -> float:
 	if bullets_fired == 0:
