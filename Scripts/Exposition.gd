@@ -31,7 +31,7 @@ func _ready() -> void:
 	timer.start()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("buy_gun") && ready_to_continue:
+	if event.is_action_pressed("buy_gun"):
 		audio_manager.remove_soundtrack_lpf()
 		global.start_new_game()
 

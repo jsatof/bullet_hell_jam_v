@@ -6,13 +6,13 @@ var level_2 := preload("res://Scenes/Level2.tscn")
 @onready var audio_manager := get_node("/root/AudioManager")
 
 const playspace := Vector2(384.0/4, 288.0/2 - 10)
-const scrap_value := 10
+const scrap_value := 1200
 
-const money_speed := 50.0
+const money_speed := 60.0
 const money_exponent := 1.5
 var max_lives := 5
 var lives := max_lives
-var starting_money := 1000000.0
+var starting_money := 10000.0
 var money := starting_money
 
 var bullets_fired := 0
@@ -21,13 +21,13 @@ var max_ammo := 100
 var current_ammo := max_ammo
 
 var heckler_percent_diff := 5.0
-var heckler_stock_price := 23.23
-var last_heckler_stock_price := 23.23
 var heckler_shares_owned := 0
 const max_trades := 10
 var trades_remaining := max_trades
-var stock_price_low_bound := 4000.0
-var stock_price_high_bound := 10_000.0
+var stock_price_low_bound := 10_000.0
+var stock_price_high_bound := 30_000.0
+var heckler_stock_price := stock_price_high_bound
+var last_heckler_stock_price := stock_price_high_bound
 
 var current_level := 1
 
@@ -52,8 +52,8 @@ const Ol_Reliable := {
 	"name": "Ol'Reliable",
 	"damage": 10.0,
 	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg"),
-	"shopprice": 500.0,
-	"cycles": 100,
+	"shopprice": 10000.0,
+	"cycles": 120,
 	"shot_delay": 0.1,
 	"rotation": 180,
 	"friend": true,
@@ -69,9 +69,9 @@ const Ol_Reliable := {
 const Scrapper := {
 	"name": "Scrapper",
 	"damage": 15.0,
-	"shopprice": 750.0,
+	"shopprice": 15000.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
-	"cycles": 40,
+	"cycles": 80,
 	"bullet_speed": 400,
 	"shot_delay": 0.08,
 	"rotation": 180,
@@ -90,9 +90,9 @@ const Scrapper := {
 const Bertha := {
 	"name": "Bertha",
 	"damage": 50.0,
-	"shopprice": 2000.0,
+	"shopprice": 20000.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_3.ogg"),
-	"cycles": 25,
+	"cycles": 40,
 	"bullet_speed": 200,
 	"shot_delay": 0.3,
 	"rotation": 180,
@@ -111,9 +111,9 @@ const Bertha := {
 const Sawed_Off := {
 	"name": "Sawed-Off",
 	"damage": 15.0,
-	"shopprice": 1000.0,
+	"shopprice": 15000.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
-	"cycles": 30,
+	"cycles": 40,
 	"bullet_speed": 200,
 	"shot_delay": 0.2,
 	"rotation": 180,
@@ -122,7 +122,7 @@ const Sawed_Off := {
 	"random": Vector2(-2, 2),
 	"spawn_params": {
 		"amount":3,
-		"degrees":30,
+		"degrees":20,
 	},
 	"bullet_data": {
 		"velocity": 500.0,
@@ -136,10 +136,10 @@ const Sawed_Off := {
 }
 const Minigun := {
 	"name": "Minigun",
-	"damage": 2.0,
-	"shopprice": 1000.0,
+	"damage": 3.0,
+	"shopprice": 17500.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_6.ogg"),
-	"cycles": 500,
+	"cycles": 400,
 	"bullet_speed": 200,
 	"shot_delay": 0.02,
 	"rotation": 180,
@@ -163,9 +163,9 @@ const Minigun := {
 const Bendy := {
 	"name": "Bendy",
 	"damage": 15.0,
-	"shopprice": 1000.0,
+	"shopprice": 15000.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_5.ogg"),
-	"cycles": 150,
+	"cycles": 100,
 	"bullet_speed": 450,
 	"shot_delay": 0.08,
 	"rotation": 180,
@@ -183,10 +183,10 @@ const Bendy := {
 		"type": "sin",
 	}
 }
-const Collster := {
-	"name": "Collster",
+const Shank := {
+	"name": "Shank",
 	"damage": 25.0,
-	"shopprice": 1000.0,
+	"shopprice": 5000.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_7.ogg"),
 	"cycles": 10000,
 	"bullet_speed": 800,
@@ -201,7 +201,7 @@ const Collster := {
 		"color": Color("YELLOW"),
 		"size": 0.5,
 		"acceleration": 0.93,
-		"lifetime": 0.1,
+		"lifetime": 0.15,
 		"frequency": 20,
 		"amplitude": 2,
 		"type": "linear",
@@ -218,17 +218,16 @@ const weapon_list := [
 	Sawed_Off,
 	Minigun,
 	Bendy,
-	Collster
+	Shank
 ]
 
 func _ready() -> void:
-	stock_rng.seed = 42069 # TODO: remove me when finalizing
 	bullet_rng.seed = int("2hu")
 
 func set_new_heckler_stock_price() -> void:
 	last_heckler_stock_price = heckler_stock_price
 	heckler_stock_price = stock_rng.randf() * (stock_price_high_bound - stock_price_low_bound) + stock_price_low_bound
-	heckler_percent_diff = heckler_stock_price - last_heckler_stock_price / heckler_stock_price * 100.0
+	heckler_percent_diff = (heckler_stock_price - last_heckler_stock_price) / heckler_stock_price * 100.0
 
 func buy_heckler_stock() -> bool:
 	if money < heckler_stock_price || trades_remaining <= 0:
@@ -307,6 +306,7 @@ func start_new_game() -> void:
 	start_level()
 
 func load_next_level() -> void:
+	lives = max_lives
 	current_level += 1
 	match current_level:
 		1:

@@ -379,7 +379,7 @@ func _ready() -> void:
 		]
 	})
 	level.groups.append({
-		"time": 6, "enemies": [
+		"time": 10, "enemies": [
 			{"type":"plate","health":50,"position":Vector2(LEFT, TOP),
 				"movement": [
 					{ point=Vector2(COL0, TOP),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
@@ -588,7 +588,7 @@ func _ready() -> void:
 		]
 	})
 	level.groups.append({
-		"time": 3.5, "enemies": [
+		"time": 6, "enemies": [
 			{"type":"plate","health":50,"position":Vector2(LEFT, ROW5),
 				"movement": [
 					{ point=Vector2(LEFT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
@@ -743,7 +743,7 @@ func _ready() -> void:
 		]
 	})
 	level.groups.append({
-		"time": 11, "enemies": [
+		"time": 13, "enemies": [
 			{"type":"drone","health":200,"position":Vector2(COL2+16, TOP),
 				"movement": [
 					{ point=Vector2(COL2+16, ROW2),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=10.0 },
@@ -808,4 +808,4 @@ func _ready() -> void:
 		]
 	})
 
-	level.start_level(10)
+	level.start_level(0)

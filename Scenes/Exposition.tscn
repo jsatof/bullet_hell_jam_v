@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c78wybbmtps4s"]
+[gd_scene load_steps=3 format=3 uid="uid://c7dewswguioy4"]
 
 [ext_resource type="Script" path="res://Scripts/Exposition.gd" id="1_6hk7t"]
 [ext_resource type="Theme" uid="uid://jliowcagqcbw" path="res://Fonts/GeneralFont.tres" id="1_f23t3"]
@@ -29,7 +29,7 @@ layout_mode = 0
 offset_top = 6.0
 offset_right = 384.0
 offset_bottom = 54.0
-text = "You took a small loan of $10,000,00"
+text = "You took a small loan of $1,000,00"
 horizontal_alignment = 1
 vertical_alignment = 1
 

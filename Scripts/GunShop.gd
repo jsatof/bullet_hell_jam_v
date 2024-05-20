@@ -6,7 +6,7 @@ extends Control
 @onready var timer_bar := $TimerBar/FrontColorRect
 @onready var global := get_node("/root/GlobalState")
 
-const max_duration := 15 # seconds until new weapon
+const max_duration := 8 # seconds until new weapon
 var subbar_size: float # the amount of width to subtract on timer tick
 var start_size: float
 var weapon_for_sale: Dictionary
