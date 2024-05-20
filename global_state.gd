@@ -89,10 +89,10 @@ const Bertha := {
 	"name": "Bertha",
 	"damage": 50.0,
 	"shopprice": 2000.0,
-	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_3.ogg"),
 	"cycles": 25,
 	"bullet_speed": 200,
-	"shot_delay": 0.1,
+	"shot_delay": 0.3,
 	"rotation": 180,
 	"friend": true,
 	"type": "linear",
@@ -136,7 +136,7 @@ const Minigun := {
 	"name": "Minigun",
 	"damage": 2.0,
 	"shopprice": 1000.0,
-	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_6.ogg"),
 	"cycles": 500,
 	"bullet_speed": 200,
 	"shot_delay": 0.02,
@@ -160,9 +160,9 @@ const Minigun := {
 }
 const Bendy := {
 	"name": "Bendy",
-	"damage": 20.0,
+	"damage": 15.0,
 	"shopprice": 1000.0,
-	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_5.ogg"),
 	"cycles": 150,
 	"bullet_speed": 450,
 	"shot_delay": 0.08,
@@ -185,7 +185,7 @@ const Collster := {
 	"name": "Collster",
 	"damage": 25.0,
 	"shopprice": 1000.0,
-	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_7.ogg"),
 	"cycles": 10000,
 	"bullet_speed": 800,
 	"shot_delay": 0.01,
@@ -206,7 +206,7 @@ const Collster := {
 	}
 }
 
-var current_weapon: Dictionary = Bendy
+var current_weapon: Dictionary = Ol_Reliable
 var current_purchasable_weapon: Dictionary = Scrapper
 
 const weapon_list := [
@@ -291,6 +291,7 @@ func collect_scrap() -> void:
 	add_money(scrap_value)
 
 func reset_game() -> void:
+	current_weapon = Ol_Reliable
 	current_level = 0
 	lives = max_lives
 	money = starting_money

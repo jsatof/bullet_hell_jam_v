@@ -786,7 +786,7 @@ func _ready() -> void:
 		]
 	})
 	level.groups.append({
-		"time": 20, "enemies": [
+		"time": 23, "enemies": [
 			{"type":"dragonfly","health":1000,"position":Vector2(COL2+16, TOP),
 				"movement": [
 					{ point=Vector2(COL2+16, ROW2),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=20.0 },
