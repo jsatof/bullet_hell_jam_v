@@ -7,7 +7,7 @@ extends Control
 @onready var timer := $Timer
 
 @onready var audio_manager := get_node("/root/AudioManager")
-@onready var soundtrack := AudioStreamOggVorbis.load_from_file("res://Resources/Audio/Music/Reonidas.ogg")
+@onready var soundtrack := preload("res://Resources/Audio/Music/Reonidas.ogg")
 
 var label_stack := []
 var accuracy_bonus := 0.0

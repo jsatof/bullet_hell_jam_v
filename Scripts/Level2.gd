@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var audio_manager := get_node("/root/AudioManager")
-@onready var soundtrack := AudioStreamOggVorbis.load_from_file("res://Resources/Audio/Music/Tsumi.ogg")
+@onready var soundtrack := preload("res://Resources/Audio/Music/BetsAreOff.ogg")
 
 const LEVEL = preload("res://Scripts/Level.gd")
 @onready var globals := $'/root/GlobalState'
