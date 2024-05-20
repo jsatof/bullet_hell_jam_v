@@ -48,7 +48,9 @@ offset_top = -66.0
 offset_right = 192.0
 offset_bottom = -25.0
 theme = ExtResource("1_jb8te")
-text = "Pot of Greed"
+text = "SCRAP LLC."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StockPriceLabel" type="Label" parent="."]
 texture_filter = 1

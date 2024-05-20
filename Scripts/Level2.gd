@@ -241,7 +241,7 @@ func _ready() -> void:
 		]
 	})
 	level.groups.append({
-		"time": 16.0, "enemies": [
+		"time": 17.0, "enemies": [
 			{"type":"drone","health":500,"position":Vector2(COL2+16, TOP),
 				"movement": [
 					{ point=Vector2(COL2+16, ROW2),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=15.0 },
@@ -290,10 +290,10 @@ func _ready() -> void:
 	})
 
 	level.groups.append({
-		"time": 6, "enemies": [
+		"time": 9, "enemies": [
 			{"type":"plate","health":30,"position":Vector2(LEFT, TOP),
 				"movement": [
-					{ point=Vector2(COL0, ROW0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=5.0 },
+					{ point=Vector2(COL0, ROW0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=8.0 },
 					{ point=Vector2(LEFT, TOP),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_IN,pause=0.0 },
 				],
 				"spawners": [
@@ -451,7 +451,7 @@ func _ready() -> void:
 	})
 
 	level.groups.append({
-		"time": 13.0, "enemies": [
+		"time": 17.0, "enemies": [
 			{"type":"dragonfly","health":800,"position":Vector2(COL2+16, TOP),
 				"movement": [
 					{ point=Vector2(COL2+16, ROW0),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=15.0 },

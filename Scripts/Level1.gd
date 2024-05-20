@@ -743,7 +743,7 @@ func _ready() -> void:
 		]
 	})
 	level.groups.append({
-		"time": 11, "enemies": [
+		"time": 13, "enemies": [
 			{"type":"drone","health":200,"position":Vector2(COL2+16, TOP),
 				"movement": [
 					{ point=Vector2(COL2+16, ROW2),time=0.5,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=10.0 },
@@ -808,4 +808,4 @@ func _ready() -> void:
 		]
 	})
 
-	level.start_level(10)
+	level.start_level(0)

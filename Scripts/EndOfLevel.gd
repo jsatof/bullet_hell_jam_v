@@ -16,7 +16,7 @@ var portfolio_value := 0.0
 signal finished
 
 func _ready() -> void:
-	accuracy_bonus = global.get_accuracy() * 5.0
+	accuracy_bonus = global.get_accuracy() * 500.0
 	portfolio_value = global.heckler_stock_price * global.heckler_shares_owned
 	global.add_money(accuracy_bonus)
 
@@ -92,7 +92,7 @@ func init_label_positions() -> void:
 	label_stack.push_back(next_label)
 
 	current_pos = Vector2(current_pos.x + next_label.size.x + x_offset, current_pos.y)
-	next_label = create_new_label(current_pos, Color.DARK_RED, "$%.2f" % float(10_000_000.0 - global.money))
+	next_label = create_new_label(current_pos, Color.DARK_RED, "$%.2f" % float(1_000_000.0 - global.money))
 	label_stack.push_back(next_label)
 
 	current_pos = Vector2(x_start, current_pos.y + 1.5 * next_label.size.y)

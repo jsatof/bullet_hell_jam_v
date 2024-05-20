@@ -63,10 +63,10 @@ texture_filter = 1
 layout_mode = 0
 offset_left = 13.0
 offset_top = 82.0
-offset_right = 313.0
+offset_right = 208.0
 offset_bottom = 126.0
 theme = ExtResource("4_iqbdw")
-text = "The Chungus-inator"
+text = "Ol'Reliable"
 
 [node name="PurchaseValueLabel" type="Label" parent="."]
 texture_filter = 1
