@@ -26,6 +26,8 @@ var last_heckler_stock_price := 23.23
 var heckler_shares_owned := 0
 const max_trades := 10
 var trades_remaining := max_trades
+var stock_price_low_bound := 4000.0
+var stock_price_high_bound := 10_000.0
 
 var current_level := 1
 
@@ -225,7 +227,7 @@ func _ready() -> void:
 
 func set_new_heckler_stock_price() -> void:
 	last_heckler_stock_price = heckler_stock_price
-	heckler_stock_price = stock_rng.randf() * 50.0 + 40.0 # range from [40.0, 90.0)
+	heckler_stock_price = stock_rng.randf() * (stock_price_high_bound - stock_price_low_bound) + stock_price_low_bound
 	heckler_percent_diff = heckler_stock_price - last_heckler_stock_price / heckler_stock_price * 100.0
 
 func buy_heckler_stock() -> bool:
