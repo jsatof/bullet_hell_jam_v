@@ -8,14 +8,14 @@ extends Control
 
 var label_stack := []
 var accuracy_bonus := 0.0
-var net_gains := 0.0
+var portfolio_value := 0.0
 
 signal finished
 
 func _ready() -> void:
 	accuracy_bonus = global.get_accuracy() * 5.0
-	net_gains = accuracy_bonus
-	global.add_money(net_gains)
+	portfolio_value = global.heckler_stock_price * global.heckler_shares_owned
+	global.add_money(accuracy_bonus)
 
 	main_menu_button.button_down.connect(on_main_menu_button_pressed)
 	timer.timeout.connect(on_timer_tick)
@@ -59,12 +59,12 @@ func init_label_positions() -> void:
 	label_stack.push_back(next_label)
 
 	current_pos = Vector2(x_start, current_pos.y + 2 * next_label.size.y)
-	next_label = create_new_label(current_pos, Color.WHITE, "Net Gains:")
+	next_label = create_new_label(current_pos, Color.WHITE, "Portfolio Value:")
 	label_stack.push_back(next_label)
 
 	current_pos = Vector2(current_pos.x + next_label.size.x + x_offset, current_pos.y)
-	var net_gains_color := Color.WEB_GREEN if net_gains > 0.0 else Color.DARK_RED
-	next_label = create_new_label(current_pos, net_gains_color, "$%.2f" % net_gains)
+	var net_gains_color := Color.WEB_GREEN if portfolio_value >= 0.0 else Color.DARK_RED
+	next_label = create_new_label(current_pos, net_gains_color, "$%.2f" % portfolio_value)
 	label_stack.push_back(next_label)
 
 	current_pos = Vector2(x_start, current_pos.y + 2 * next_label.size.y)
