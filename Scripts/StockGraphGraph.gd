@@ -35,7 +35,7 @@ func _on_timer_timeout() -> void:
 	price_diff_label.add_theme_color_override("font_color", label_color)
 	price_diff_label.text = "%.2f%%" % percent_diff
 
-	var new_price_point: float = color_rect.size.y - current_price
+	var new_price_point: float = current_price
 	stock_points.push_back(new_price_point)
 
 	if len(stock_points) >= max_stock_points_size:
@@ -47,5 +47,7 @@ func screen_coord_from_stock_points(index: int) -> Vector2:
 	# This condition should never occur, but just in case
 	if index < 0 || index >= len(stock_points):
 		return Vector2(-1000, -1000) # will lead to draw dramatically wild line
-	return Vector2(index * color_rect.size.x / 8, stock_points[index])
+	var y_pos := remap(stock_points[index], global.stock_price_low_bound, global.stock_price_high_bound, 0.0, color_rect.size.y)
+	print(y_pos)
+	return Vector2(index * color_rect.size.x / 8, y_pos)
 
