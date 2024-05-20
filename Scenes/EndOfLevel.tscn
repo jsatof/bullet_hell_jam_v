@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bulb0fdqefvun"]
+[gd_scene load_steps=4 format=3 uid="uid://bulb0fdqefvun"]
 
 [ext_resource type="Script" path="res://Scripts/EndOfLevel.gd" id="1_wmvg0"]
+[ext_resource type="Theme" uid="uid://dmp4llucswt6l" path="res://Fonts/HeaderFontTheme.tres" id="2_ew3p7"]
+[ext_resource type="Theme" uid="uid://jliowcagqcbw" path="res://Fonts/GeneralFont.tres" id="3_v4xbb"]
 
 [node name="EndOfLevel" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,9 +14,11 @@ offset_left = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_v4xbb")
 script = ExtResource("1_wmvg0")
 
 [node name="WinLoseLabel" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -23,9 +28,11 @@ offset_top = 25.0
 offset_right = 54.5
 offset_bottom = 48.0
 grow_horizontal = 2
+theme = ExtResource("2_ew3p7")
 text = "You Winnered"
 
 [node name="CaptionLabel" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -35,15 +42,18 @@ offset_top = 62.0
 offset_right = 237.0
 offset_bottom = 85.0
 grow_horizontal = 2
+theme = ExtResource("3_v4xbb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GotoMainMenuButton" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 608.0
 offset_top = 805.0
 offset_right = 807.0
 offset_bottom = 867.0
+theme = ExtResource("3_v4xbb")
 text = "Main Menu"
 
 [node name="Timer" type="Timer" parent="."]

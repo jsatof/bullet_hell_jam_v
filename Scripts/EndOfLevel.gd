@@ -6,6 +6,9 @@ extends Control
 @onready var caption_label := $CaptionLabel
 @onready var timer := $Timer
 
+@onready var audio_manager := get_node("/root/AudioManager")
+@onready var soundtrack := AudioStreamOggVorbis.load_from_file("res://Resources/Audio/Music/Reonidas.ogg")
+
 var label_stack := []
 var accuracy_bonus := 0.0
 var portfolio_value := 0.0
@@ -21,8 +24,14 @@ func _ready() -> void:
 	timer.timeout.connect(on_timer_tick)
 	finished.connect(on_finished)
 
-#TODO DEBT PAGE
+	if !(global.end_screen_state == global.EndScreenState.YOU_DIED):
+		audio_manager.set_soundtrack(soundtrack)
+		audio_manager.play_soundtrack()
+
 	match global.end_screen_state:
+		global.EndScreenState.LEVEL_CLEAR:
+			win_lose_label.text = "LEVEL CLEAR"
+			caption_label.text = "Mission cleared. Onwards to the next. We got money to make."
 		global.EndScreenState.VICTORY:
 			win_lose_label.text = "YOU WIN"
 			caption_label.text = "All the debt owed was paid. Contract passed."
@@ -52,7 +61,7 @@ func init_label_positions() -> void:
 	next_label = create_new_label(current_pos, Color.WHITE, "%.2f%%" % global.get_accuracy())
 	label_stack.push_back(next_label)
 
-	current_pos = Vector2(x_start + 2 * x_indent, current_pos.y + next_label.size.y)
+	current_pos = Vector2(x_start + 1.5 * x_indent, current_pos.y + next_label.size.y)
 	next_label = create_new_label(current_pos, Color.WHITE, "Accuracy Bonus:")
 	label_stack.push_back(next_label)
 
@@ -60,7 +69,7 @@ func init_label_positions() -> void:
 	next_label = create_new_label(current_pos, Color.WEB_GREEN, "$%.2f" % accuracy_bonus)
 	label_stack.push_back(next_label)
 
-	current_pos = Vector2(x_start, current_pos.y + 2 * next_label.size.y)
+	current_pos = Vector2(x_start, current_pos.y + 1.5 * next_label.size.y)
 	next_label = create_new_label(current_pos, Color.WHITE, "Portfolio Value:")
 	label_stack.push_back(next_label)
 
@@ -69,7 +78,7 @@ func init_label_positions() -> void:
 	next_label = create_new_label(current_pos, net_gains_color, "$%.2f" % portfolio_value)
 	label_stack.push_back(next_label)
 
-	current_pos = Vector2(x_start, current_pos.y + 2 * next_label.size.y)
+	current_pos = Vector2(x_start, current_pos.y + 1.5 * next_label.size.y)
 	next_label = create_new_label(current_pos, Color.WHITE, "Your Money:")
 	label_stack.push_back(next_label)
 
@@ -78,8 +87,17 @@ func init_label_positions() -> void:
 	next_label = create_new_label(current_pos, total_money_color, "$%.2f" % global.money)
 	label_stack.push_back(next_label)
 
-	current_pos = Vector2(x_start, current_pos.y + 2 * next_label.size.y)
+	current_pos = Vector2(x_start, current_pos.y + 1.5 * next_label.size.y)
+	next_label = create_new_label(current_pos, Color.WHITE, "Debt Remaining:")
+	label_stack.push_back(next_label)
+
+	current_pos = Vector2(current_pos.x + next_label.size.x + x_offset, current_pos.y)
+	next_label = create_new_label(current_pos, Color.DARK_RED, "$%.2f" % float(10_000_000.0 - global.money))
+	label_stack.push_back(next_label)
+
+	current_pos = Vector2(x_start, current_pos.y + 1.5 * next_label.size.y)
 	next_label = create_new_label(current_pos, Color.WHITE, "Press 'F' to continue")
+	next_label.position.x = size.x / 3 - next_label.size.x # to re-center the "continue" label
 	label_stack.push_back(next_label)
 
 func _input(event: InputEvent) -> void:
