@@ -12,7 +12,7 @@ const money_speed := 50.0
 const money_exponent := 1.5
 var max_lives := 5
 var lives := max_lives
-var starting_money := 1000.0
+var starting_money := 1000000.0
 var money := starting_money
 
 var bullets_fired := 0
@@ -46,12 +46,12 @@ enum EndScreenState {
 }
 var end_screen_state: EndScreenState = EndScreenState.YOU_DIED
 
-const pea_shooter_gun := {
-	"name": "Pea Shooter",
+const Ol_Reliable := {
+	"name": "Ol'Reliable",
 	"damage": 10.0,
 	"shootsound": preload("res://Resources/Audio/SFX/pea_shooter_sound.ogg"),
-	"shopprice": 50000.0,
-	"cycles": 50,
+	"shopprice": 500.0,
+	"cycles": 100,
 	"shot_delay": 0.1,
 	"rotation": 180,
 	"friend": true,
@@ -61,15 +61,15 @@ const pea_shooter_gun := {
 		"color": Color("YELLOW"),
 		"size": 1.0,
 		"acceleration": 1.0,
-		"movement": "linear",
+		"type": "linear",
 	}
 }
-const bigger_gun := {
-	"name": "Bigger Gun",
-	"damage": 25.0,
-	"shopprice": 500.0,
+const Scrapper := {
+	"name": "Scrapper",
+	"damage": 15.0,
+	"shopprice": 750.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
-	"cycles": 200,
+	"cycles": 40,
 	"bullet_speed": 400,
 	"shot_delay": 0.08,
 	"rotation": 180,
@@ -77,40 +77,146 @@ const bigger_gun := {
 	"type": "linear",
 	"bullet_data": {
 		"velocity": 300.0,
-		"color": Color("RED"),
+		"color": Color("YELLOW"),
+		"size": 1.0,
+		"acceleration": 1.0,
+		"frequency": 20,
+		"amplitude": 3,
+		"type": "linear",
+	}
+}
+const Bertha := {
+	"name": "Bertha",
+	"damage": 50.0,
+	"shopprice": 2000.0,
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"cycles": 25,
+	"bullet_speed": 200,
+	"shot_delay": 0.1,
+	"rotation": 180,
+	"friend": true,
+	"type": "linear",
+	"bullet_data": {
+		"velocity": 300.0,
+		"color": Color("YELLOW"),
 		"size": 2.0,
 		"acceleration": 1.0,
 		"frequency": 20,
 		"amplitude": 3,
-		"movement": "linear",
+		"type": "linear",
 	}
 }
-const test_chungus_gun := {
-	"name": "Chungus Gun",
-	"shopprice": 333.33,
+const Sawed_Off := {
+	"name": "Sawed-Off",
+	"damage": 15.0,
+	"shopprice": 1000.0,
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"cycles": 30,
+	"bullet_speed": 200,
+	"shot_delay": 0.2,
+	"rotation": 180,
+	"friend": true,
+	"type": "radial",
+	"random": Vector2(-2, 2),
+	"spawn_params": {
+		"amount":3,
+		"degrees":30,
+	},
+	"bullet_data": {
+		"velocity": 500.0,
+		"color": Color("YELLOW"),
+		"size": 1.0,
+		"acceleration": 1.0,
+		"frequency": 20,
+		"amplitude": 3,
+		"type": "linear",
+	}
 }
-const test_poopy_gun := {
-	"name": "Poopy Gun",
-	"shopprice": 444.44,
+const Minigun := {
+	"name": "Minigun",
+	"damage": 2.0,
+	"shopprice": 1000.0,
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"cycles": 500,
+	"bullet_speed": 200,
+	"shot_delay": 0.02,
+	"rotation": 180,
+	"friend": true,
+	"type": "radial",
+	"random": Vector2(-5, 5),
+	"spawn_params": {
+		"amount":2,
+		"degrees":10,
+	},
+	"bullet_data": {
+		"velocity": 400.0,
+		"color": Color("YELLOW"),
+		"size": 0.5,
+		"acceleration": 1.0,
+		"frequency": 20,
+		"amplitude": 3,
+		"type": "linear",
+	}
 }
-const test_bumpy_gun := {
-	"name": "Bumpy Gun",
-	"shopprice": 555.55,
+const Bendy := {
+	"name": "Bendy",
+	"damage": 20.0,
+	"shopprice": 1000.0,
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"cycles": 150,
+	"bullet_speed": 450,
+	"shot_delay": 0.08,
+	"rotation": 180,
+	"friend": true,
+	"type": "linear",
+	"spawn_params": {
+	},
+	"bullet_data": {
+		"velocity": 400.0,
+		"color": Color("YELLOW"),
+		"size": 1.0,
+		"acceleration": 1.0,
+		"frequency": 20,
+		"amplitude": 4,
+		"type": "sin",
+	}
 }
-const test_evil_gun := {
-	"name": "Evil Gun",
-	"shopprice": 666.66
+const Collster := {
+	"name": "Collster",
+	"damage": 25.0,
+	"shopprice": 1000.0,
+	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_2.ogg"),
+	"cycles": 10000,
+	"bullet_speed": 800,
+	"shot_delay": 0.01,
+	"rotation": 180,
+	"friend": true,
+	"type": "linear",
+	"spawn_params": {
+	},
+	"bullet_data": {
+		"velocity": 400.0,
+		"color": Color("YELLOW"),
+		"size": 0.5,
+		"acceleration": 0.93,
+		"lifetime": 0.1,
+		"frequency": 20,
+		"amplitude": 2,
+		"type": "linear",
+	}
 }
-var current_weapon: Dictionary = pea_shooter_gun
-var current_purchasable_weapon: Dictionary = bigger_gun
+
+var current_weapon: Dictionary = Bendy
+var current_purchasable_weapon: Dictionary = Scrapper
 
 const weapon_list := [
-	pea_shooter_gun,
-	bigger_gun,
-	test_chungus_gun,
-	test_poopy_gun,
-	test_bumpy_gun,
-	test_evil_gun,
+	Ol_Reliable,
+	Scrapper,
+	Bertha,
+	Sawed_Off,
+	Minigun,
+	Bendy,
+	Collster
 ]
 
 func _ready() -> void:
