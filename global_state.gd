@@ -21,13 +21,13 @@ var max_ammo := 100
 var current_ammo := max_ammo
 
 var heckler_percent_diff := 5.0
-var heckler_stock_price := 23.23
-var last_heckler_stock_price := 23.23
 var heckler_shares_owned := 0
 const max_trades := 10
 var trades_remaining := max_trades
-var stock_price_low_bound := 4000.0
-var stock_price_high_bound := 10_000.0
+var stock_price_low_bound := 10_000.0
+var stock_price_high_bound := 30_000.0
+var heckler_stock_price := stock_price_high_bound
+var last_heckler_stock_price := stock_price_high_bound
 
 var current_level := 1
 
@@ -139,7 +139,7 @@ const Minigun := {
 	"damage": 3.0,
 	"shopprice": 17500.0,
 	"shootsound": preload("res://Resources/Audio/SFX/shoot_sound_6.ogg"),
-	"cycles": 500,
+	"cycles": 400,
 	"bullet_speed": 200,
 	"shot_delay": 0.02,
 	"rotation": 180,
@@ -227,7 +227,7 @@ func _ready() -> void:
 func set_new_heckler_stock_price() -> void:
 	last_heckler_stock_price = heckler_stock_price
 	heckler_stock_price = stock_rng.randf() * (stock_price_high_bound - stock_price_low_bound) + stock_price_low_bound
-	heckler_percent_diff = heckler_stock_price - last_heckler_stock_price / heckler_stock_price * 100.0
+	heckler_percent_diff = (heckler_stock_price - last_heckler_stock_price) / heckler_stock_price * 100.0
 
 func buy_heckler_stock() -> bool:
 	if money < heckler_stock_price || trades_remaining <= 0:

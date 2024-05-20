@@ -379,7 +379,7 @@ func _ready() -> void:
 		]
 	})
 	level.groups.append({
-		"time": 6, "enemies": [
+		"time": 10, "enemies": [
 			{"type":"plate","health":50,"position":Vector2(LEFT, TOP),
 				"movement": [
 					{ point=Vector2(COL0, TOP),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },
@@ -588,7 +588,7 @@ func _ready() -> void:
 		]
 	})
 	level.groups.append({
-		"time": 3.5, "enemies": [
+		"time": 6, "enemies": [
 			{"type":"plate","health":50,"position":Vector2(LEFT, ROW5),
 				"movement": [
 					{ point=Vector2(LEFT, ROW5),time=0.0,trans=Tween.TRANS_SINE,ease=Tween.EASE_OUT,pause=0.0 },

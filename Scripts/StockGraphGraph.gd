@@ -47,7 +47,6 @@ func screen_coord_from_stock_points(index: int) -> Vector2:
 	# This condition should never occur, but just in case
 	if index < 0 || index >= len(stock_points):
 		return Vector2(-1000, -1000) # will lead to draw dramatically wild line
-	var y_pos := remap(stock_points[index], global.stock_price_low_bound, global.stock_price_high_bound, 0.0, color_rect.size.y)
-	print(y_pos)
+	var y_pos := remap(stock_points[index], global.stock_price_low_bound, global.stock_price_high_bound, color_rect.size.y, 0.0)
 	return Vector2(index * color_rect.size.x / 8, y_pos)
 
