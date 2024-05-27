@@ -14,7 +14,7 @@ var label_list: Array
 var ready_to_continue := false
 
 func _ready() -> void:
-	audio_manager.add_soundtrack_lpf()
+	audio_manager.enable_soundtrack_lpf()
 
 	# these must be in order
 	# and set to NOT visible in the scene
@@ -32,7 +32,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("buy_gun"):
-		audio_manager.remove_soundtrack_lpf()
+		audio_manager.disable_soundtrack_lpf()
 		global.start_new_game()
 
 func on_timer_timeout() -> void:

@@ -10,9 +10,17 @@ extends AudioStreamPlayer
 @onready var buy_share_sfx := preload("res://Resources/Audio/SFX/buybuybuy.ogg")
 @onready var sell_share_sfx := preload("res://Resources/Audio/SFX/chaching.ogg")
 
+@onready var soundtrack_lpf := AudioEffectLowPassFilter.new()
+
+signal update_filter(hz: float, db: AudioEffectFilter)
+
 func _ready() -> void:
 	soundtrack_player.bus = "Soundtrack"
 	add_child(soundtrack_player)
+
+	var index := AudioServer.get_bus_index("Soundtrack")
+	AudioServer.add_bus_effect(index, soundtrack_lpf)
+	soundtrack_lpf.cutoff_hz = 880.0
 
 	other_sfx_player.bus = "Other SFX"
 	other_sfx_player.max_polyphony = 10
@@ -31,11 +39,11 @@ func play_soundtrack() -> void:
 func stop_soundtrack() -> void:
 	soundtrack_player.stop()
 
-func add_soundtrack_lpf() -> void:
-	pass
+func enable_soundtrack_lpf() -> void:
+	soundtrack_lpf.db = AudioEffectFilter.FILTER_12DB
 
-func remove_soundtrack_lpf() -> void:
-	pass
+func disable_soundtrack_lpf() -> void:
+	soundtrack_lpf.db = AudioEffectFilter.FILTER_6DB
 
 func play_enemy_death_sfx() -> void:
 	other_sfx_player.stream = enemy_death_sfx
